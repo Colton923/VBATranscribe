@@ -2963,7 +2963,7 @@ export class Building {
 				if ( WallAlterationStatuse1 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuse1 == 'Partial' && this.WallAlteratione1Length != 'undefined' ) {
+				else if( WallAlterationStatuse1 == 'Partial' && typeof this.WallAlteratione1Length != 'undefined' ) {
 					return this.WallAlteratione1Length
 				}
 				else if( WallAlterationStatuse1 == 'Gable Only' && typeof this.WallAlteratione1Length != 'undefined' ) {

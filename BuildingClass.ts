@@ -21,7 +21,7 @@ export class Building {
 	e1ExtensionPanelQty: number
 	e3ExtensionPanelQty: number
 	Gutters: boolean
-	BaseTri: boolean
+	BaseTrim: boolean
 	//endwall wall panel overlaps
 	e1WallPanelOverlaps: number
 	e3WallPanelOverlaps: number
@@ -123,6 +123,27 @@ export class Building {
 
 	//''''''''''''''''''''''''''''''''''''''''''''''''' Weld Plates
 	WeldPlates = []
+
+	e1LinerPanels: string
+	e3LinerPanels: string
+	s2LinerPanels: string
+	s4LinerPanels: string
+	roofLinerPanel: string
+
+	wainscote1: string
+	wainscots2: string
+	wainscote3: string
+	wainscots4: string
+	
+	wallStatuse1: string
+	wallStatuss2: string
+	wallStatuse3: string
+	wallStatuss4: string
+
+	WallAlteratione1Length: number
+	WallAlterations2Length: number
+	WallAlteratione3Length: number
+	WallAlterations4Length: number
 
 	constructor(
 		formBHeight: number,
@@ -236,7 +257,27 @@ export class Building {
 		formPType: string,
 		formRakeTrimColor: string,
 		formOutsideCornerTrimColor: string,
-		baseTrimColor: string
+		baseTrimColor: string,
+		e1GableOverhangSoffit: boolean,
+		e3GableOverhangSoffit: boolean,
+		s2EaveOverhangSoffit: boolean,
+		s4EaveOverhangSoffit: boolean,
+		e1GableExtensionSoffit: boolean,
+		e3GableExtensionSoffit: boolean,
+		s2EaveExtensionSoffit: boolean,
+		s4EaveExtensionSoffit: boolean,
+		wainscote1Value: string,
+		wainscots2Value: string,
+		wainscote3Value: string,
+		wainscots4Value: string,
+		wallStatuse1: string,
+		wallStatuss2: string,
+		wallStatuse3: string,
+		wallStatuss4: string,
+		WallAlteratione1Length: number,
+		WallAlterations2Length: number,
+		WallAlteratione3Length: number,
+		WallAlterations4Length: number
 	) {
 		this.bHeight = formBHeight
 		this.bWidth = formBWidth
@@ -260,12 +301,24 @@ export class Building {
 		this.rPanelColor = formPColor
 		this.RakeTrimColor = formRakeTrimColor
 		this.OutsideCornerTrimColor = formOutsideCornerTrimColor
+		
+		
 		if ( baseTrimColor = 'None' || typeof baseTrimColor == 'undefined' ) {
 			this.BaseTrim = false
 		} else {
 			this.BaseTrim = true
 		}
 		
+		if ( e1GableOverhangSoffit == true ) { this.e1GableOverhangSoffit = true }
+		if ( e3GableOverhangSoffit == true ) { this.e3GableOverhangSoffit = true }
+		if ( s2EaveOverhangSoffit == true ) { this.s2EaveOverhangSoffit = true }
+		if ( s4EaveOverhangSoffit == true ) { this.s4EaveOverhangSoffit = true }
+		if ( e1GableExtensionSoffit == true ) { this.e1GableExtensionSoffi = true }
+		if ( e3GableExtensionSoffit == true ) { this.e3GableExtensionSoffi = true }
+		if ( s2EaveExtensionSoffit == true ) { this.s2EaveExtensionSoffit = true }
+		if ( s4EaveExtensionSoffit == true ) { this.s4EaveExtensionSoffit = true }
+
+
 
 		this.setExtensionPitches( s2_EaveExtension, s4_EaveExtension, s2_EaveExtensionPitch, s4_EaveExtensionPitch)
 		this.generateSidewall2ColumnCenterlines( 
@@ -508,7 +561,37 @@ export class Building {
 			b11,
 			b12
 		)
+		this.SetWainscot( wainscote1Value, wainscots2Value, wainscote3Value, wainscots4Value )
+		this.SetWallStatus( wallStatuse1, wallStatuss2, wallStatuse3, wallStatuss4 )
+		this.SetWallAlterations(WallAlteratione1Length, WallAlterations2Length, WallAlteratione3Length, WallAlterations4Length)
 	}
+	SetWallAlterations( WallAlteratione1Length: number,
+		WallAlterations2Length: number,
+		WallAlteratione3Length: number,
+		WallAlterations4Length: number,) {
+			this.WallAlteratione1Length = WallAlteratione1Length
+			this.WallAlterations2Length = WallAlterations2Length
+			this.WallAlteratione3Length = WallAlteratione3Length
+			this.WallAlterations4Length = WallAlterations4Length
+		}
+	SetWallStatus( wallStatuse1, wallStatuss2, wallStatuse3, wallStatuss4 ) {
+		this.wallStatuse1 = wallStatuse1
+		this.wallStatuss2 = wallStatuss2
+		this.wallStatuse3 = wallStatuse3
+		this.wallStatuss4 = wallStatuss4
+
+	}
+	SetWainscot(
+		wainscote1Value: string,
+		wainscots2Value: string,
+		wainscote3Value: string,
+		wainscots4Value: string
+		) {
+			this.wainscote1 = wainscote1Value
+			this.wainscots2 = wainscots2Value
+			this.wainscote3 = wainscote3Value
+			this.wainscots4 = wainscots4Value
+		}
 	SetMisc(
 		h1?: number,
 		h2?: number,
@@ -2847,7 +2930,7 @@ export class Building {
 	}
 
 	NetSingleRoofPanelQty() {
-		return ( Math.round(( this.bLength * 12 + this.e1Overhang + this.e3Overhang + this.e1Extension + this.e3Extension) / 36) )
+		return ( Math.ceil(( this.bLength * 12 + this.e1Overhang + this.e3Overhang + this.e1Extension + this.e3Extension) / 36) )
 	}
 
 	WallStatus( 
@@ -2875,20 +2958,15 @@ export class Building {
 			WallAlterationStatuss2?: string,
 			WallAlterationStatuse3?: string,
 			WallAlterationStatuss4?: string,
-			WallAlteratione1Length?: number,
-			WallAlterations2Length?: number,
-			WallAlteratione3Length?: number,
-			WallAlterations4Length?: number,
-			
 		) {
 			if ( typeof WallAlterationStatuse1 != 'undefined' ) {
 				if ( WallAlterationStatuse1 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuse1 == 'Partial' && typeof WallAlteratione1Length != 'undefined' ) {
-					return WallAlteratione1Length
+				else if( WallAlterationStatuse1 == 'Partial' && this.WallAlteratione1Length != 'undefined' ) {
+					return this.WallAlteratione1Length
 				}
-				else if( WallAlterationStatuse1 == 'Gable Only' && typeof WallAlteratione1Length != 'undefined' ) {
+				else if( WallAlterationStatuse1 == 'Gable Only' && typeof this.WallAlteratione1Length != 'undefined' ) {
 					return this.bHeight
 				}
 			}
@@ -2896,10 +2974,10 @@ export class Building {
 				if ( WallAlterationStatuss2 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuss2 == 'Partial' && typeof WallAlterations2Length != 'undefined' ) {
-					return WallAlterations2Length
+				else if( WallAlterationStatuss2 == 'Partial' && typeof this.WallAlterations2Length != 'undefined' ) {
+					return this.WallAlterations2Length
 				}
-				else if( WallAlterationStatuss2 == 'Gable Only' && typeof WallAlterations2Length != 'undefined' ) {
+				else if( WallAlterationStatuss2 == 'Gable Only' && typeof this.WallAlterations2Length != 'undefined' ) {
 					return this.bHeight
 				}
 			}
@@ -2907,10 +2985,10 @@ export class Building {
 				if ( WallAlterationStatuse3 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuse3 == 'Partial' && typeof WallAlteratione3Length != 'undefined' ) {
-					return WallAlteratione3Length
+				else if( WallAlterationStatuse3 == 'Partial' && typeof this.WallAlteratione3Length != 'undefined' ) {
+					return this.WallAlteratione3Length
 				}
-				else if( WallAlterationStatuse3 == 'Gable Only' && typeof WallAlteratione3Length != 'undefined' ) {
+				else if( WallAlterationStatuse3 == 'Gable Only' && typeof this.WallAlteratione3Length != 'undefined' ) {
 					return this.bHeight
 				}
 			}
@@ -2918,10 +2996,10 @@ export class Building {
 				if ( WallAlterationStatuss4 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuss4 == 'Partial' && typeof WallAlterations4Length != 'undefined' ) {
-					return WallAlterations4Length
+				else if( WallAlterationStatuss4 == 'Partial' && typeof this.WallAlterations4Length != 'undefined' ) {
+					return this.WallAlterations4Length
 				}
-				else if( WallAlterationStatuss4 == 'Gable Only' && typeof WallAlterations4Length != 'undefined' ) {
+				else if( WallAlterationStatuss4 == 'Gable Only' && typeof this.WallAlterations4Length != 'undefined' ) {
 					return this.bHeight
 				}
 			}
@@ -2935,38 +3013,37 @@ export class Building {
 		LinerPanelRoof?: string
 		) {
 			if ( typeof LinerPanele1 != 'undefined' && LinerPanele1 == '') {
-				return 'None'
+				this.e1LinerPanels = 'None'
 			}
 			if ( typeof LinerPanels2 != 'undefined' && LinerPanels2 == '') {
-				return 'None'
+				this.s2LinerPanels = 'None'
 			}
 			if ( typeof LinerPanele3 != 'undefined' && LinerPanele3 == '') {
-				return 'None'
+				this.e3LinerPanels = 'None'
 			}
 			if ( typeof LinerPanels4 != 'undefined' && LinerPanels4 == '') {
-				return 'None'
+				this.s4LinerPanels = 'None'
 			}
 			if ( typeof LinerPanelRoof != 'undefined' && LinerPanelRoof == '') {
-				return 'None'
+				this.roofLinerPanel = 'None'
 			}
 	}
-
 	Wainscot( 
 		Wainscote1?: string,
 		Wainscots2?: string,
 		Wainscote3?: string,
 		Wainscots4?: string,
 	) {
-		if ( typeof Wainscote1 != 'undefined' && Wainscote1 == '') {
+		if ( typeof Wainscote1 == 'undefined' || this.wainscote1 == '') {
 			return 'None'
 		}
-		if ( typeof Wainscots2 != 'undefined' && Wainscots2 == '') {
+		if ( typeof Wainscots2 == 'undefined' || this.wainscots2 == '') {
 			return 'None'
 		}
-		if ( typeof Wainscote3 != 'undefined' && Wainscote3 == '') {
+		if ( typeof Wainscote3 == 'undefined' || this.wainscote3 == '') {
 			return 'None'
 		}
-		if ( typeof Wainscots4 != 'undefined' && Wainscots4 == '') {
+		if ( typeof Wainscots4 == 'undefined' || this.wainscots4 == '') {
 			return 'None'
 		}
 	}

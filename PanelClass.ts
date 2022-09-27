@@ -1,6 +1,6 @@
 class Panel {
     //Fractional Inches
-    PanelLength As Double
+    PanelLength: number
     //Formatted Imperial Measurement
     PanelMeasurement: string
     Quantity: number
@@ -15,11 +15,12 @@ class Panel {
     FootageCost: any
     SkipFlag: boolean
     rEdgePosition: number
-    bEdgeHeight As Double
+    bEdgeHeight: number
 
     constructor() {
         this.clsType = "Panel"
         this.FootageCost = "N/A"
+        this.DeleteFlag = false
     }
 
     lEdgePosition() {

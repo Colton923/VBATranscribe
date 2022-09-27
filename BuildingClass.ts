@@ -1,7 +1,7 @@
 import { Member } from './MemberClass'
 import { FO } from './FOClass'
 
-class Building {
+export class Building {
 	bLength: number
 	bHeight: number
 	rPitch: number
@@ -44,13 +44,13 @@ class Building {
 
 	//Panel Types, Colors
 	rPanelType: string
-	rPanelColo: string
+	rPanelColor: string
 	wPanelType: string
 	wPanelColor: string
 
 	//Trim Colors
 	RakeTrimColor: string
-	OutsideCorner: string
+	OutsideCornerTrimColor: string
 
 	//soffit booleans
 	e1GableOverhangSoffit: boolean
@@ -90,7 +90,7 @@ class Building {
 	e1Columns: any[]
 	s2Columns: any[]
 	e3Columns: any[]
-	s4Columns: any[]
+	s4Columns: any[] 
 
 	//''''''''''''''''''''''''''''''''''''''''''''''''' Girt Collections
 	e1Girts: any[]
@@ -146,13 +146,126 @@ class Building {
 		bay9_length: number,
 		bay10_length: number,
 		bay11_length: number,
-		bay12_length: number
+		bay12_length: number,
+		size1: string,
+		size2: string,
+		size3: string,
+		size4: string,
+		size5: string,
+		size6: string,
+		size7: string,
+		size8: string,
+		size9: string,
+		size10: string,
+		size11: string,
+		size12: string,
+		wall1: string,
+		wall2: string,
+		wall3: string,
+		wall4: string,
+		wall5: string,
+		wall6: string,
+		wall7: string,
+		wall8: string,
+		wall9: string,
+		wall10: string,
+		wall11: string,
+		wall12: string,
+		rEdge1: number,
+		rEdge2: number,
+		rEdge3: number,
+		rEdge4: number,
+		rEdge5: number,
+		rEdge6: number,
+		rEdge7: number,
+		rEdge8: number,
+		rEdge9: number,
+		rEdge10: number,
+		rEdge11: number,
+		rEdge12: number,
+		h1: number,
+		h2: number,
+		h3: number,
+		h4: number,
+		h5: number,
+		h6: number,
+		h7: number,
+		h8: number,
+		h9: number,
+		h10: number,
+		h11: number,
+		h12: number,
+		w1: number,
+		w2: number,
+		w3: number,
+		w4: number,
+		w5: number,
+		w6: number,
+		w7: number,
+		w8: number,
+		w9: number,
+		w10: number,
+		w11: number,
+		w12: number,
+		b1: number,
+		b2: number,
+		b3: number,
+		b4: number,
+		b5: number,
+		b6: number,
+		b7: number,
+		b8: number,
+		b9: number,
+		b10: number,
+		b11: number,
+		b12: number,
+		e1GableOverhang: number,
+		e3GableOverhang: number,
+		s2EaveOverhang: number,
+		s4EaveOverhang: number,
+		e1GableExtension: number,
+		e3GableExtension: number,
+		s2EaveExtension: number,
+		s4EaveExtension: number,
+		formGutters: boolean,
+		formWShape: string,
+		formWColor: string,
+		formWType: string,
+		formPShape: string,
+		formPColor: string,
+		formPType: string,
+		formRakeTrimColor: string,
+		formOutsideCornerTrimColor: string,
+		baseTrimColor: string
 	) {
 		this.bHeight = formBHeight
 		this.bWidth = formBWidth
 		this.bLength = formBLength
 		this.rPitch = formRPitch
 		this.rShape = formRShape
+		this.e1Overhang = e1GableOverhang
+		this.e3Overhang = e3GableOverhang
+		this.s2Overhang = s2EaveOverhang
+		this.s4Overhang = s4EaveOverhang
+		this.e1Extension = e1GableExtension
+		this.e3Extension = e3GableExtension
+		this.s2Extension = s2EaveExtension
+		this.s4Extension = s4EaveExtension
+		this.Gutters = formGutters
+		this.wPanelShape = formWShape
+		this.wPanelColor = formWColor
+		this.wPanelType = formWType
+		this.rPanelShape = formPShape
+		this.rPanelType = formPType
+		this.rPanelColor = formPColor
+		this.RakeTrimColor = formRakeTrimColor
+		this.OutsideCornerTrimColor = formOutsideCornerTrimColor
+		if ( baseTrimColor = 'None' || typeof baseTrimColor == 'undefined' ) {
+			this.BaseTrim = false
+		} else {
+			this.BaseTrim = true
+		}
+		
 
 		this.setExtensionPitches( s2_EaveExtension, s4_EaveExtension, s2_EaveExtensionPitch, s4_EaveExtensionPitch)
 		this.generateSidewall2ColumnCenterlines( 
@@ -183,10 +296,1585 @@ class Building {
 			bay10_length,
 			bay11_length,
 			bay12_length )
-		
+		this.SetPersonnelDoors(
+				size1,
+				size2,
+				size3,
+				size4,
+				size5,
+				size6,
+				size7,
+				size8,
+				size9,
+				size10,
+				size11,
+				size12,
+				wall1,
+				wall2,
+				wall3,
+				wall4,
+				wall5,
+				wall6,
+				wall7,
+				wall8,
+				wall9,
+				wall10,
+				wall11,
+				wall12,
+				rEdge1,
+				rEdge2,
+				rEdge3,
+				rEdge4,
+				rEdge5,
+				rEdge6,
+				rEdge7,
+				rEdge8,
+				rEdge9,
+				rEdge10,
+				rEdge11,
+				rEdge12
+			)
+		this.SetOverheadDoors(
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			h7,
+			h8,
+			h9,
+			h10,
+			h11,
+			h12,
+			w1,
+			w2,
+			w3,
+			w4,
+			w5,
+			w6,
+			w7,
+			w8,
+			w9,
+			w10,
+			w11,
+			w12,
+			wall1,
+			wall2,
+			wall3,
+			wall4,
+			wall5,
+			wall6,
+			wall7,
+			wall8,
+			wall9,
+			wall10,
+			wall11,
+			wall12,
+			rEdge1,
+			rEdge2,
+			rEdge3,
+			rEdge4,
+			rEdge5,
+			rEdge6,
+			rEdge7,
+			rEdge8,
+			rEdge9,
+			rEdge10,
+			rEdge11,
+			rEdge12
+		)
+		this.SetWindows(
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			h7,
+			h8,
+			h9,
+			h10,
+			h11,
+			h12,
+			w1,
+			w2,
+			w3,
+			w4,
+			w5,
+			w6,
+			w7,
+			w8,
+			w9,
+			w10,
+			w11,
+			w12,
+			wall1,
+			wall2,
+			wall3,
+			wall4,
+			wall5,
+			wall6,
+			wall7,
+			wall8,
+			wall9,
+			wall10,
+			wall11,
+			wall12,
+			rEdge1,
+			rEdge2,
+			rEdge3,
+			rEdge4,
+			rEdge5,
+			rEdge6,
+			rEdge7,
+			rEdge8,
+			rEdge9,
+			rEdge10,
+			rEdge11,
+			rEdge12,
+			b1,
+			b2,
+			b3,
+			b4,
+			b5,
+			b6,
+			b7,
+			b8,
+			b9,
+			b10,
+			b11,
+			b12
+		)
+		this.SetMisc(
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			h7,
+			h8,
+			h9,
+			h10,
+			h11,
+			h12,
+			w1,
+			w2,
+			w3,
+			w4,
+			w5,
+			w6,
+			w7,
+			w8,
+			w9,
+			w10,
+			w11,
+			w12,
+			wall1,
+			wall2,
+			wall3,
+			wall4,
+			wall5,
+			wall6,
+			wall7,
+			wall8,
+			wall9,
+			wall10,
+			wall11,
+			wall12,
+			rEdge1,
+			rEdge2,
+			rEdge3,
+			rEdge4,
+			rEdge5,
+			rEdge6,
+			rEdge7,
+			rEdge8,
+			rEdge9,
+			rEdge10,
+			rEdge11,
+			rEdge12,
+			b1,
+			b2,
+			b3,
+			b4,
+			b5,
+			b6,
+			b7,
+			b8,
+			b9,
+			b10,
+			b11,
+			b12
+		)
+	}
+	SetMisc(
+		h1?: number,
+		h2?: number,
+		h3?: number,
+		h4?: number,
+		h5?: number,
+		h6?: number,
+		h7?: number,
+		h8?: number,
+		h9?: number,
+		h10?: number,
+		h11?: number,
+		h12?: number,
+		w1?: number,
+		w2?: number,
+		w3?: number,
+		w4?: number,
+		w5?: number,
+		w6?: number,
+		w7?: number,
+		w8?: number,
+		w9?: number,
+		w10?: number,
+		w11?: number,
+		w12?: number,
+		wall1?: string,
+		wall2?: string,
+		wall3?: string,
+		wall4?: string,
+		wall5?: string,
+		wall6?: string,
+		wall7?: string,
+		wall8?: string,
+		wall9?: string,
+		wall10?: string,
+		wall11?: string,
+		wall12?: string,
+		rEdge1?: number,
+		rEdge2?: number,
+		rEdge3?: number,
+		rEdge4?: number,
+		rEdge5?: number,
+		rEdge6?: number,
+		rEdge7?: number,
+		rEdge8?: number,
+		rEdge9?: number,
+		rEdge10?: number,
+		rEdge11?: number,
+		rEdge12?: number,
+		b1?: number,
+		b2?: number,
+		b3?: number,
+		b4?: number,
+		b5?: number,
+		b6?: number,
+		b7?: number,
+		b8?: number,
+		b9?: number,
+		b10?: number,
+		b11?: number,
+		b12?: number
+	) {
+		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' && typeof w1 != 'undefined' && typeof h1 != 'undefined' && typeof b1 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w1 * 12)
+			FramedOpening.setHeight( h1 * 12 )
+			FramedOpening.setbEdgeHeight( b1 * 12 )
+			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12)
+			}
+			FramedOpening.setDescription(1, wall1)
+			if ( wall1 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' && typeof w2 != 'undefined' && typeof h2 != 'undefined' && typeof b2 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w2 * 12 )
+			FramedOpening.setHeight( h2 * 12 )
+			FramedOpening.setbEdgeHeight( b2 * 12 )
+			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12)
+			}
+			FramedOpening.setDescription(1, wall2)
+			if ( wall2 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' && typeof w3 != 'undefined' && typeof h3 != 'undefined' && typeof b3 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w3 * 12 )
+			FramedOpening.setHeight( h3 * 12 )
+			FramedOpening.setbEdgeHeight( b3 * 12 )
+			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12)
+			}
+			FramedOpening.setDescription(1, wall3)
+			if ( wall3 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' && typeof w4 != 'undefined' && typeof h4 != 'undefined' && typeof b4 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w4 * 12 )
+			FramedOpening.setHeight( h4 * 12 )
+			FramedOpening.setbEdgeHeight( b4 * 12 )
+			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12)
+			}
+			FramedOpening.setDescription(1, wall4)
+			if ( wall4 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' && typeof w5 != 'undefined' && typeof h5 != 'undefined' && typeof b5 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w5 * 12 )
+			FramedOpening.setHeight( h5 * 12 )
+			FramedOpening.setbEdgeHeight( b5 * 12 )
+			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12)
+			}
+			FramedOpening.setDescription(1, wall5)
+			if ( wall5 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' && typeof w6 != 'undefined' && typeof h6 != 'undefined' && typeof b6 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w6 * 12 )
+			FramedOpening.setHeight( h6 * 12)
+			FramedOpening.setbEdgeHeight( b6 * 12 )
+			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12)
+			}
+			FramedOpening.setDescription(1, wall6)
+			if ( wall6 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' && typeof w7 != 'undefined' && typeof h7 != 'undefined' && typeof b7 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w7 * 12 )
+			FramedOpening.setHeight( h7 * 12 )
+			FramedOpening.setbEdgeHeight( b7 * 12 )
+			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12)
+			}
+			FramedOpening.setDescription(1, wall7)
+			if ( wall7 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' && typeof w8 != 'undefined' && typeof h8 != 'undefined' && typeof b8 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w8 * 12 )
+			FramedOpening.setHeight( h8 * 12 )
+			FramedOpening.setbEdgeHeight( b8 * 12 )
+			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12)
+			}
+			FramedOpening.setDescription(1, wall8)
+			if ( wall8 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' && typeof w9 != 'undefined' && typeof h9 != 'undefined' && typeof b9 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w9 * 12 )
+			FramedOpening.setHeight( h9 * 12 )
+			FramedOpening.setbEdgeHeight( b9 * 12 )
+			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12)
+			}
+			FramedOpening.setDescription(1, wall9)
+			if ( wall9 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' && typeof w10 != 'undefined' && typeof h10 != 'undefined' && typeof b10 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w10 * 12 )
+			FramedOpening.setHeight( h10 * 12 )
+			FramedOpening.setbEdgeHeight( b10 * 12 )
+			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12)
+			}
+			FramedOpening.setDescription(1, wall10)
+			if ( wall10 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' && typeof w11 != 'undefined' && typeof h11 != 'undefined' && typeof b11 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w11 * 12 )
+			FramedOpening.setHeight( h11 * 12 )
+			FramedOpening.setbEdgeHeight( b11 * 12 )
+			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12)
+			}
+			FramedOpening.setDescription(1, wall11)
+			if ( wall11 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' && typeof w12 != 'undefined' && typeof h12 != 'undefined' && typeof b12 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('MiscFO')
+			FramedOpening.setWidth( w12 * 12 )
+			FramedOpening.setHeight( h12 * 12 )
+			FramedOpening.setbEdgeHeight( b12 * 12 )
+			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12)
+			}
+			FramedOpening.setDescription(1, wall12)
+			if ( wall12 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+	}
+	SetWindows(
+		h1?: number,
+		h2?: number,
+		h3?: number,
+		h4?: number,
+		h5?: number,
+		h6?: number,
+		h7?: number,
+		h8?: number,
+		h9?: number,
+		h10?: number,
+		h11?: number,
+		h12?: number,
+		w1?: number,
+		w2?: number,
+		w3?: number,
+		w4?: number,
+		w5?: number,
+		w6?: number,
+		w7?: number,
+		w8?: number,
+		w9?: number,
+		w10?: number,
+		w11?: number,
+		w12?: number,
+		wall1?: string,
+		wall2?: string,
+		wall3?: string,
+		wall4?: string,
+		wall5?: string,
+		wall6?: string,
+		wall7?: string,
+		wall8?: string,
+		wall9?: string,
+		wall10?: string,
+		wall11?: string,
+		wall12?: string,
+		rEdge1?: number,
+		rEdge2?: number,
+		rEdge3?: number,
+		rEdge4?: number,
+		rEdge5?: number,
+		rEdge6?: number,
+		rEdge7?: number,
+		rEdge8?: number,
+		rEdge9?: number,
+		rEdge10?: number,
+		rEdge11?: number,
+		rEdge12?: number,
+		b1?: number,
+		b2?: number,
+		b3?: number,
+		b4?: number,
+		b5?: number,
+		b6?: number,
+		b7?: number,
+		b8?: number,
+		b9?: number,
+		b10?: number,
+		b11?: number,
+		b12?: number
+	) {
+		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' && typeof w1 != 'undefined' && typeof h1 != 'undefined' && typeof b1 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w1 * 12 )
+			FramedOpening.setHeight( h1 * 12 )
+			FramedOpening.setbEdgeHeight( b1 * 12 )
+			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12)
+			}
+			FramedOpening.setDescription(1, wall1)
+			if ( wall1 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' && typeof w2 != 'undefined' && typeof h2 != 'undefined' && typeof b2 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w2 * 12 )
+			FramedOpening.setHeight( h2 * 12 )
+			FramedOpening.setbEdgeHeight( b2 * 12 )
+			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12)
+			}
+			FramedOpening.setDescription(1, wall2)
+			if ( wall2 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' && typeof w3 != 'undefined' && typeof h3 != 'undefined' && typeof b3 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w3 * 12 )
+			FramedOpening.setHeight( h3 * 12 )
+			FramedOpening.setbEdgeHeight( b3 * 12 )
+			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12)
+			}
+			FramedOpening.setDescription(1, wall3)
+			if ( wall3 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' && typeof w4 != 'undefined' && typeof h4 != 'undefined' && typeof b4 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w4 * 12 )
+			FramedOpening.setHeight( h4 * 12 )
+			FramedOpening.setbEdgeHeight( b4 * 12 )
+			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12)
+			}
+			FramedOpening.setDescription(1, wall4)
+			if ( wall4 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' && typeof w5 != 'undefined' && typeof h5 != 'undefined' && typeof b5 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w5 * 12 )
+			FramedOpening.setHeight( h5 * 12 )
+			FramedOpening.setbEdgeHeight( b5 * 12 )
+			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12)
+			}
+			FramedOpening.setDescription(1, wall5)
+			if ( wall5 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' && typeof w6 != 'undefined' && typeof h6 != 'undefined' && typeof b6 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w6 * 12 )
+			FramedOpening.setHeight( h6 * 12 )
+			FramedOpening.setbEdgeHeight( b6 * 12 )
+			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12)
+			}
+			FramedOpening.setDescription(1, wall6)
+			if ( wall6 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' && typeof w7 != 'undefined' && typeof h7 != 'undefined' && typeof b7 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w7 * 12 )
+			FramedOpening.setHeight( h7 * 12 )
+			FramedOpening.setbEdgeHeight( b7 * 12 )
+			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12)
+			}
+			FramedOpening.setDescription(1, wall7)
+			if ( wall7 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' && typeof w8 != 'undefined' && typeof h8 != 'undefined' && typeof b8 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w8 * 12 )
+			FramedOpening.setHeight( h8 * 12 )
+			FramedOpening.setbEdgeHeight( b8 * 12 )
+			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12)
+			}
+			FramedOpening.setDescription(1, wall8)
+			if ( wall8 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' && typeof w9 != 'undefined' && typeof h9 != 'undefined' && typeof b9 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w9 * 12 )
+			FramedOpening.setHeight( h9 * 12 )
+			FramedOpening.setbEdgeHeight( b9 * 12 )
+			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12)
+			}
+			FramedOpening.setDescription(1, wall9)
+			if ( wall9 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' && typeof w10 != 'undefined' && typeof h10 != 'undefined' && typeof b10 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w10 * 12 )
+			FramedOpening.setHeight( h10 * 12 )
+			FramedOpening.setbEdgeHeight( b10 * 12 )
+			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12)
+			}
+			FramedOpening.setDescription(1, wall10)
+			if ( wall10 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' && typeof w11 != 'undefined' && typeof h11 != 'undefined' && typeof b11 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w11 * 12 )
+			FramedOpening.setHeight( h11 * 12 )
+			FramedOpening.setbEdgeHeight( b11 * 12 )
+			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12)
+			}
+			FramedOpening.setDescription(1, wall11)
+			if ( wall11 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' && typeof w12 != 'undefined' && typeof h12 != 'undefined' && typeof b12 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('Window')
+			FramedOpening.setWidth( w12 * 12 )
+			FramedOpening.setHeight( h12 * 12 )
+			FramedOpening.setbEdgeHeight( b12 * 12 )
+			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12)
+			}
+			FramedOpening.setDescription(1, wall12)
+			if ( wall12 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+	}
+	SetOverheadDoors(
+		h1?: number,
+		h2?: number,
+		h3?: number,
+		h4?: number,
+		h5?: number,
+		h6?: number,
+		h7?: number,
+		h8?: number,
+		h9?: number,
+		h10?: number,
+		h11?: number,
+		h12?: number,
+		w1?: number,
+		w2?: number,
+		w3?: number,
+		w4?: number,
+		w5?: number,
+		w6?: number,
+		w7?: number,
+		w8?: number,
+		w9?: number,
+		w10?: number,
+		w11?: number,
+		w12?: number,
+		wall1?: string,
+		wall2?: string,
+		wall3?: string,
+		wall4?: string,
+		wall5?: string,
+		wall6?: string,
+		wall7?: string,
+		wall8?: string,
+		wall9?: string,
+		wall10?: string,
+		wall11?: string,
+		wall12?: string,
+		rEdge1?: number,
+		rEdge2?: number,
+		rEdge3?: number,
+		rEdge4?: number,
+		rEdge5?: number,
+		rEdge6?: number,
+		rEdge7?: number,
+		rEdge8?: number,
+		rEdge9?: number,
+		rEdge10?: number,
+		rEdge11?: number,
+		rEdge12?: number
+	) {
+		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' && typeof w1 != 'undefined' && typeof h1 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w1 * 12 )
+			FramedOpening.setHeight( h1 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12)
+			}
+			FramedOpening.setDescription(1, wall1)
+			if ( wall1 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' && typeof w2 != 'undefined' && typeof h2 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w2 * 12 )
+			FramedOpening.setHeight( h2 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12)
+			}
+			FramedOpening.setDescription(1, wall2)
+			if ( wall2 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' && typeof w3 != 'undefined' && typeof h3 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w3 * 12 )
+			FramedOpening.setHeight( h3 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12)
+			}
+			FramedOpening.setDescription(1, wall3)
+			if ( wall3 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' && typeof w4 != 'undefined' && typeof h4 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w4 * 12 )
+			FramedOpening.setHeight( h4 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12)
+			}
+			FramedOpening.setDescription(1, wall4)
+			if ( wall4 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' && typeof w5 != 'undefined' && typeof h5 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w5 * 12 )
+			FramedOpening.setHeight( h5 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12)
+			}
+			FramedOpening.setDescription(1, wall5)
+			if ( wall5 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' && typeof w6 != 'undefined' && typeof h6 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w6 * 12 )
+			FramedOpening.setHeight( h6 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12)
+			}
+			FramedOpening.setDescription(1, wall6)
+			if ( wall6 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' && typeof w7 != 'undefined' && typeof h7 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w7 * 12 )
+			FramedOpening.setHeight( h7 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12)
+			}
+			FramedOpening.setDescription(1, wall7)
+			if ( wall7 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' && typeof w8 != 'undefined' && typeof h8 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w8 * 12 )
+			FramedOpening.setHeight( h8 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12)
+			}
+			FramedOpening.setDescription(1, wall8)
+			if ( wall8 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' && typeof w9 != 'undefined' && typeof h9 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w9 * 12 )
+			FramedOpening.setHeight( h9 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12)
+			}
+			FramedOpening.setDescription(1, wall9)
+			if ( wall9 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' && typeof w10 != 'undefined' && typeof h10 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w10 * 12 )
+			FramedOpening.setHeight( h10 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12)
+			}
+			FramedOpening.setDescription(1, wall10)
+			if ( wall10 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' && typeof w11 != 'undefined' && typeof h11 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w11 * 12 )
+			FramedOpening.setHeight( h11 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12)
+			}
+			FramedOpening.setDescription(1, wall11)
+			if ( wall11 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' && typeof w12 != 'undefined' && typeof h12 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('OHDoor')
+			FramedOpening.setWidth( w12 * 12 )
+			FramedOpening.setHeight( h12 * 12 )
+			FramedOpening.setbEdgeHeight( 0 )
+			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12)
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12)
+			}
+			FramedOpening.setDescription(1, wall12)
+			if ( wall12 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
 	}
 	SetPersonnelDoors(
-		DoorNums: number,
 		size1?: string,
 		size2?: string,
 		size3?: string,
@@ -211,10 +1899,463 @@ class Building {
 		wall10?: string,
 		wall11?: string,
 		wall12?: string,
-
+		rEdge1?: number,
+		rEdge2?: number,
+		rEdge3?: number,
+		rEdge4?: number,
+		rEdge5?: number,
+		rEdge6?: number,
+		rEdge7?: number,
+		rEdge8?: number,
+		rEdge9?: number,
+		rEdge10?: number,
+		rEdge11?: number,
+		rEdge12?: number
 	) {
-		var FramedOpening = new FO()
-		FO.
+		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size1 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size1 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12 )
+			}
+			FramedOpening.setDescription(1, wall1)
+			if ( wall1 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall1 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size2 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size2 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12 )
+			}
+			FramedOpening.setDescription(1, wall2)
+			if ( wall2 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall2 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size3 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size3 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12 )
+			}
+			FramedOpening.setDescription(1, wall3)
+			if ( wall3 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall3 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size4 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size4 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12 )
+			}
+			FramedOpening.setDescription(1, wall4)
+			if ( wall4 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall4 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size5 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size5 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12 )
+			}
+			FramedOpening.setDescription(1, wall5)
+			if ( wall5 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall5 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size6 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size6 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12 )
+			}
+			FramedOpening.setDescription(1, wall6)
+			if ( wall6 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall6 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size7 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size7 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12 )
+			}
+			FramedOpening.setDescription(1, wall7)
+			if ( wall7 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall7 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size8 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size8 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12 )
+			}
+			FramedOpening.setDescription(1, wall8)
+			if ( wall8 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall8 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size9 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size9 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12 )
+			}
+			FramedOpening.setDescription(1, wall9)
+			if ( wall9 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall9 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size10 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size10 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12 )
+			}
+			FramedOpening.setDescription(1, wall10)
+			if ( wall10 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall10 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size11 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size11 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12 )
+			}
+			FramedOpening.setDescription(1, wall11)
+			if ( wall11 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall11 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
+		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' ) {
+			var FramedOpening = new FO()
+			FramedOpening.setType('PDoor')
+			FramedOpening.setHeight( 7 * 12 )
+			if ( size12 == '3070' ) {
+				FramedOpening.setWidth( 3 * 12 )
+			}
+			if ( size12 == '4070' ) {
+				FramedOpening.setWidth( 4 * 12 )
+			}
+			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12 )
+			} else {
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12 )
+			}
+			FramedOpening.setDescription(1, wall12)
+			if ( wall12 == 'Endwall 1' ) {
+				FramedOpening.setWall( 'e1' )
+				this.e1FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 2' ) {
+				FramedOpening.setWall( 's2' )
+				this.s2FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Endwall 3' ) {
+				FramedOpening.setWall( 'e3' )
+				this.e3FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Sidewall 4' ) {
+				FramedOpening.setWall( 's4' )
+				this.s4FOs.push( FramedOpening )
+			}
+			if ( wall12 == 'Field Locate' ) {
+				FramedOpening.setWall( 'Field Locate' )
+				this.fieldlocateFOs.push( FramedOpening )
+			}
+		}
 	}
 	setExtensionPitches(
 		s2_EaveExtension: number, 
@@ -859,6 +3000,7 @@ class Building {
 			return true
 		}
 	}
+
 	DistanceToRoof(	
 		DistanceFromRightCorner: number, 
 		StartingHeight: number,
@@ -911,7 +3053,6 @@ class Building {
 			}
 	}
 
-	//Function for distance from right corner of an endwall at a given height
 	DistanceFromCorner(
 		HeightAlongRoof: number,
 		Walle1?: string

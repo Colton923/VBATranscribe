@@ -1,3 +1,5 @@
+import { Building } from './BuildingClass'
+import { NonExpandableEndwallColumnTbl, MainColumnAndExpandableEndwallColumnTbl, MainRafterAndExpandableEndwallRafterTbl } from './SteelLookupSht'
 export class Member {
 	//Classified by Type: Column, Rafter, Girt, Eave Struct, etc.
 	mType: string
@@ -63,6 +65,7 @@ export class Member {
 			return this.rEdgePosition + this.width
 		}
 	}
+	
 	SetSize(
 		b: Building,
 		ColumnOrRafter: string,
@@ -70,13 +73,13 @@ export class Member {
 		HorizontalReferenceDistance: number,
 		CustomNonExpandable?: string
 	) {
-		let LookupTbl: any[]
+		let LookupTbl: any
 		let LookupHeight: number
 		let LookupHorizontalIndex: number
 		let LookupSizeString: string
 		let NearestHorizontalValue: number
 
-		if (ColumnOrRafter === 'Rafter') {
+		if (ColumnOrRafter == 'Rafter') {
 			LookupTbl = this.LookupTblMatch(b, ColumnOrRafter, Location)
 			LookupHeight = Math.round(this.tEdgeHeight / 12 / 10) * 10
 			if (HorizontalReferenceDistance <= 25 * 12) {
@@ -92,98 +95,125 @@ export class Member {
 				if (LookupHeight > 80) {
 					return 'Bad Lookup Data'
 				}
-				if (this.location === 'e1' || this.location === 'e3') {
+				if (this.location == 'e1' || this.location == 'e3') {
 					LookupHorizontalIndex = 12
+				} else { 
+					return 'Bad Lookup Data'
 				}
 			}
-			this.size = LookupTbl[(LookupHorizontalIndex, LookupHeight)]
-			if (this.size.includes('TS')) {
-				this.width = 4
-			} else if (this.size.includes('W')) {
-				//JFC what a line
-				/*
-				 *a = left(size, instr(1,size,"x") -1) <-This returns everything to the left of the "x"
-				 *right(a,b) <- This returns everything to the right of the b: number counting right to left
-				 *b = len(left(size, instr(1, size, "x") - 1)) - 1
-				 * ^^ length of everything to the left of the x - 1
-				 */
-				this.width
+			switch ( LookupHeight ) {
+				case 20:
+					LookupHeight = 1
+					break
+				case 30:
+					LookupHeight = 2
+					break
+				case 40:
+					LookupHeight = 3
+					break
+				case 50:
+					LookupHeight = 4
+					break
+				case 60:
+					LookupHeight = 5
+					break
+				case 70:
+					LookupHeight = 6
+					break
+				case 80:
+					LookupHeight = 7
+					break
 			}
-		} else if (ColumnOrRafter === 'Column') {
-			if (CustomNonExpandable === 'NonExpandable') {
-				//This is a worksheet function..
-				//Set LookupTbl = SteelLookupSht.ListObjects("NonExpandableEndwallColumnTbl")
-				//LookupTbl
-			} else {
-				LookupTbl = this.LookupTblMatch(b, ColumnOrRafter, Location)
-			}
-			LookupHeight = Math.round(this.tEdgeHeight / 12 / 10) * 10
-			if (HorizontalReferenceDistance < 30 * 12) {
-				LookupHorizontalIndex = 1
-			} else {
-				LookupHorizontalIndex =
-					(Math.round(HorizontalReferenceDistance / 12 / 10) * 10 - 30) / 10 + 1
-			}
-			if (LookupHeight > 80) {
-				return 'Bad Lookup Data'
-			}
-			if (LookupHeight < 20) {
-				LookupHeight = 20
-			}
-			if (LookupHorizontalIndex > 6) {
-				if (Location === 'e1' || Location === 'e3') {
-					LookupHorizontalIndex = 6
-				} else {
-					//...VBA-Dev Error: "WHY IS S2 and S4 sending this to baddata"
-					LookupHorizontalIndex = 6
-				}
-			}
-			this.size = LookupTbl[(LookupHorizontalIndex, LookupHeight)]
-			if (this.size.includes('TS')) {
-				this.width = 4
-			}
-			if (this.size.includes('W')) {
-				//The left, right, left right bullshit again for width =
-			}
+			this.size = LookupTbl[LookupHorizontalIndex][LookupHeight]
+			var thisWidth = this.size.split('x')
+			this.width = parseInt(thisWidth[1])
+		} else if ( ColumnOrRafter == 'Column' ) {
+		if (CustomNonExpandable == 'NonExpandable') {
+			var tempTbl = new NonExpandableEndwallColumnTbl
+			LookupTbl = tempTbl.tbl
+		} else {
+			LookupTbl = this.LookupTblMatch(b, ColumnOrRafter, Location)
+		}
+		LookupHeight = Math.round(this.tEdgeHeight / 12 / 10) * 10
+		if (HorizontalReferenceDistance < 30 * 12) {
+			LookupHorizontalIndex = 1
+		} else {
+			LookupHorizontalIndex =
+				(Math.round(HorizontalReferenceDistance / 12 / 10) * 10 - 30) / 10 + 1
+		}
+		if (LookupHeight > 80) {
+			return 'Bad Lookup Data'
+		}
+		if (LookupHeight < 20) {
+			LookupHeight = 20
+		}
+		if (LookupHorizontalIndex > 6) {
+			LookupHorizontalIndex = 6
+		}
+		switch ( LookupHeight ) {
+			case 20:
+				LookupHeight = 1
+				break
+			case 30:
+				LookupHeight = 2
+				break
+			case 40:
+				LookupHeight = 3
+				break
+			case 50:
+				LookupHeight = 4
+				break
+			case 60:
+				LookupHeight = 5
+				break
+			case 70:
+				LookupHeight = 6
+				break
+			case 80:
+				LookupHeight = 7
+				break
+		}
+		this.size = LookupTbl[LookupHorizontalIndex][LookupHeight]
+		if (this.size.includes('TS')) {
+			this.width = 4
+		}
+		if (this.size.includes('W')) {
+			var thisWidth = this.size.split('x')
+			this.width = parseInt(thisWidth[1])
+		}
 		}
 	}
-	/*Section here for error handling in VBA
-	 *BadLookupData:
-	 *If LookupHorizontalIndex > 80 Then
-	 *    MsgBox "A horizontal lookup distance of greater than 80' has been calculated!", vbCritical, "Member Lookup Error"
-	 *ElseIf LookupHorizontalIndex > 80 Then
-	 *    MsgBox "A lookup height of greater than 80' has been calculated!", vbCritical, "Member Lookup Error"
-	 *End If
-	 *Stop
-	 *Exit Sub
-	 *LookupFail:
-	 *MsgBox "Member size lookup failed! Bad lookup string returned.", vbCritical, "Member Lookup Error"
-	 *Stop
-	 */
-
 	LookupTblMatch(b: Building, ColumnsOrRafters: string, Wall?: string) {
-		if ((ColumnsOrRafters = 'Rafter')) {
-			//Return Steel Lookup Sheet List Objects "MainRafterAndExpandableEndwallRafterTbl"
-		} else if ((ColumnsOrRafters = 'Column')) {
-			switch (Wall) {
-				case 's2':
-				//Return Steel Lookup Sheet stuff
-				case 's4':
-				//Return same as above
-				case 'e1':
-					if ((b.ExpandableEndwall('e1') = true)) {
-						//return steel lookupsheet stuff
-					} else {
-						//return other table in sheet
-					}
-				case 'e3':
-					if ((b.ExpandableEndwall('e3') = flase)) {
-						//return steel lokoup sheet
-					} else {
-						//return other table in sheet
-					}
-				case 'Interior':
-				//return other tbl
+		if ( ColumnsOrRafters == 'Rafter' ) {
+			var thisTbl = new MainRafterAndExpandableEndwallRafterTbl
+					return thisTbl.tbl
+		} else if ( ColumnsOrRafters == 'Column' && typeof Wall != 'undefined' ) {
+				switch (Wall) {
+					case 's2':
+						var thisTbl = new MainColumnAndExpandableEndwallColumnTbl
+						return thisTbl.tbl
+					case 's4':
+						var thisTbl = new MainColumnAndExpandableEndwallColumnTbl
+						return thisTbl.tbl
+					case 'e1':
+						if ((b.ExpandableEndwall('e1', undefined, undefined, undefined) == true)) {
+							var thisTbl = new MainColumnAndExpandableEndwallColumnTbl
+							return thisTbl.tbl
+						} else {
+							var thisTbl = new NonExpandableEndwallColumnTbl
+							return thisTbl.tbl
+						}
+					case 'e3':
+						if ((b.ExpandableEndwall(undefined, undefined, 'e3', undefined) == false)) {
+							var thisTbl = new MainColumnAndExpandableEndwallColumnTbl
+							return thisTbl.tbl
+						} else {
+							var thisTbl = new NonExpandableEndwallColumnTbl
+							return thisTbl.tbl
+						}
+					case 'Interior':
+						var thisTbl = new MainColumnAndExpandableEndwallColumnTbl
+						return thisTbl.tbl
 			}
 		}
 	}
@@ -193,11 +223,14 @@ export class Member {
 				this.depth = 4
 				this.width = 4
 			case 'W-Beam':
-			//this.depth is another string manipulation
-			//weird typos below in vba
-			case '8 Receiver Cee':
+				//Apparently this doesn't even work in the VBA
+				if ( typeof mName != 'undefined' ) {
+					var splitstr = mName.split('x')
+					this.depth = parseInt(splitstr[1])
+				}
+			case '8" Receiver Cee':
 				this.width = 8
-			case '10 Receiver Cee':
+			case '10" Receiver Cee':
 				this.width = 10
 			case 'C Purlin':
 			//"Width Unknown - VBA-Dev Note"

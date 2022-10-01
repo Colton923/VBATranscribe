@@ -1,19 +1,21 @@
 /**
  * BuildingData - main
  */
+export type ProjectData = {
+  customer: Customer
+  building: BuildingData
+}
+
 export type BuildingData = {
-	customer: Customer
-	building: {
-		info: BuildingInfo
-		exteriorPanels: ExteriorPanels
-		trim: Trim
-		personnelDoors: PersonnelDoors
-		overheadDoors: OverheadDoors
-		windows: Windows
-		framedOpenings: FramedOpenings
-		insulation: Insulation
-		additionalOptions: AdditionalOptions
-	}
+  info: BuildingInfo
+  exteriorPanels: ExteriorPanels
+  trim: Trim
+  personnelDoors: PersonnelDoors
+  overheadDoors: OverheadDoors
+  windows: Windows
+  framedOpenings: FramedOpenings
+  insulation: Insulation
+  additionalOptions: AdditionalOptions
 }
 
 export type Customer = {
@@ -111,17 +113,17 @@ export type ExteriorPanels = {
 	wallPanelShape: PanelShape
 	wallPanelType: PanelType
 	wallColor: Colors
-	linearPanels: SelectBoolean
+	linerPanels: SelectBoolean
 	roofPanelShape: PanelShape
 	roofPanelType: Partial<PanelType>
 	roofColor: Colors
 	wallAlterations: SelectBoolean
-	linearPanelsGroup: {
-		endwall1: LinearPanel
-		sidewall2: LinearPanel
-		endwall3: LinearPanel
-		sidewall4: LinearPanel
-		roof: LinearPanelRoof
+	linerPanelsGroup: {
+		endwall1: LinerPanel
+		sidewall2: LinerPanel
+		endwall3: LinerPanel
+		sidewall4: LinerPanel
+		roof: LinerPanelRoof
 	}
 	wallAlterationsGroup: {
 		endwall1: WallAlteration
@@ -131,15 +133,15 @@ export type ExteriorPanels = {
 	}
 }
 
-type LinearPanel = {
-	linearPanel: 'None' | "8'" | 'Full Height'
+type LinerPanel = {
+	linerPanel: 'None' | "8'" | 'Full Height'
 	panelShape: PanelShape
 	panelType: PanelType
 	panelColor: Colors
 }
 
-type LinearPanelRoof = {
-	linearPanel: 'None' | 'Full Height'
+type LinerPanelRoof = {
+	linerPanel: 'None' | 'Full Height'
 	panelShape: PanelShape
 	panelType: PanelTypeRoof
 	panelColor: Colors

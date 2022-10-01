@@ -1,5 +1,4 @@
-export default function inchesInputToImperial(_inches: string) {
-	const inches = parseInt(_inches)
+export default function inchesInputToImperial(inches: number) {
 	let divisor = 16
 	let ft = Math.floor(inches / 12)
 	let inch = inches - ft * 12 - (inches - ft * 12 - Math.floor(inches - ft * 12))

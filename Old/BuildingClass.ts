@@ -1,6 +1,6 @@
 import { Member } from './MemberClass'
 import { FO } from './FOClass'
-
+undefined
 export class Building {
 	bLength: number
 	bHeight: number
@@ -303,7 +303,7 @@ export class Building {
 		this.OutsideCornerTrimColor = formOutsideCornerTrimColor
 		
 		
-		if ( baseTrimColor = 'None' || typeof baseTrimColor == 'undefined' ) {
+		if ( baseTrimColor = 'None' || typeof baseTrimColor == undefined ) {
 			this.BaseTrim = false
 		} else {
 			this.BaseTrim = true
@@ -654,18 +654,18 @@ export class Building {
 		b11?: number,
 		b12?: number
 	) {
-		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' && typeof w1 != 'undefined' && typeof h1 != 'undefined' && typeof b1 != 'undefined' ) {
+		if (typeof wall1 != undefined && typeof rEdge1 != undefined && typeof w1 != undefined && typeof h1 != undefined && typeof b1 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w1 * 12)
-			FramedOpening.setHeight( h1 * 12 )
-			FramedOpening.setbEdgeHeight( b1 * 12 )
+			FramedOpening.setWidth( w1! * 12)
+			FramedOpening.setHeight( h1! * 12 )
+			FramedOpening.setbEdgeHeight( b1! * 12 )
 			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1! * 12)
 			}
-			FramedOpening.setDescription(1, wall1)
+			FramedOpening.setDescription(1, wall1!)
 			if ( wall1 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -687,18 +687,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' && typeof w2 != 'undefined' && typeof h2 != 'undefined' && typeof b2 != 'undefined' ) {
+		if ( typeof wall2 != undefined && typeof rEdge2 != undefined && typeof w2 != undefined && typeof h2 != undefined && typeof b2 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w2 * 12 )
-			FramedOpening.setHeight( h2 * 12 )
-			FramedOpening.setbEdgeHeight( b2 * 12 )
+			FramedOpening.setWidth( w2! * 12 )
+			FramedOpening.setHeight( h2! * 12 )
+			FramedOpening.setbEdgeHeight( b2! * 12 )
 			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2! * 12)
 			}
-			FramedOpening.setDescription(1, wall2)
+			FramedOpening.setDescription(1, wall2!)
 			if ( wall2 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -720,18 +720,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' && typeof w3 != 'undefined' && typeof h3 != 'undefined' && typeof b3 != 'undefined' ) {
+		if ( typeof wall3 != undefined && typeof rEdge3 != undefined && typeof w3 != undefined && typeof h3 != undefined && typeof b3 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w3 * 12 )
-			FramedOpening.setHeight( h3 * 12 )
-			FramedOpening.setbEdgeHeight( b3 * 12 )
+			FramedOpening.setWidth( w3! * 12 )
+			FramedOpening.setHeight( h3! * 12 )
+			FramedOpening.setbEdgeHeight( b3! * 12 )
 			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3! * 12)
 			}
-			FramedOpening.setDescription(1, wall3)
+			FramedOpening.setDescription(1, wall3!)
 			if ( wall3 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -753,18 +753,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' && typeof w4 != 'undefined' && typeof h4 != 'undefined' && typeof b4 != 'undefined' ) {
+		if ( typeof wall4 != undefined && typeof rEdge4 != undefined && typeof w4 != undefined && typeof h4 != undefined && typeof b4 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w4 * 12 )
-			FramedOpening.setHeight( h4 * 12 )
-			FramedOpening.setbEdgeHeight( b4 * 12 )
+			FramedOpening.setWidth( w4! * 12 )
+			FramedOpening.setHeight( h4! * 12 )
+			FramedOpening.setbEdgeHeight( b4! * 12 )
 			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4! * 12)
 			}
-			FramedOpening.setDescription(1, wall4)
+			FramedOpening.setDescription(1, wall4!)
 			if ( wall4 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -786,18 +786,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' && typeof w5 != 'undefined' && typeof h5 != 'undefined' && typeof b5 != 'undefined' ) {
+		if ( typeof wall5 != undefined && typeof rEdge5 != undefined && typeof w5 != undefined && typeof h5 != undefined && typeof b5 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w5 * 12 )
-			FramedOpening.setHeight( h5 * 12 )
-			FramedOpening.setbEdgeHeight( b5 * 12 )
+			FramedOpening.setWidth( w5! * 12 )
+			FramedOpening.setHeight( h5! * 12 )
+			FramedOpening.setbEdgeHeight( b5! * 12 )
 			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5! * 12)
 			}
-			FramedOpening.setDescription(1, wall5)
+			FramedOpening.setDescription(1, wall5!)
 			if ( wall5 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -819,18 +819,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' && typeof w6 != 'undefined' && typeof h6 != 'undefined' && typeof b6 != 'undefined' ) {
+		if ( typeof wall6 != undefined && typeof rEdge6 != undefined && typeof w6 != undefined && typeof h6 != undefined && typeof b6 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w6 * 12 )
-			FramedOpening.setHeight( h6 * 12)
-			FramedOpening.setbEdgeHeight( b6 * 12 )
+			FramedOpening.setWidth( w6! * 12 )
+			FramedOpening.setHeight( h6! * 12)
+			FramedOpening.setbEdgeHeight( b6! * 12 )
 			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6! * 12)
 			}
-			FramedOpening.setDescription(1, wall6)
+			FramedOpening.setDescription(1, wall6!)
 			if ( wall6 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -852,18 +852,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' && typeof w7 != 'undefined' && typeof h7 != 'undefined' && typeof b7 != 'undefined' ) {
+		if ( typeof wall7 != undefined && typeof rEdge7 != undefined && typeof w7 != undefined && typeof h7 != undefined && typeof b7 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w7 * 12 )
-			FramedOpening.setHeight( h7 * 12 )
-			FramedOpening.setbEdgeHeight( b7 * 12 )
+			FramedOpening.setWidth( w7! * 12 )
+			FramedOpening.setHeight( h7! * 12 )
+			FramedOpening.setbEdgeHeight( b7! * 12 )
 			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7! * 12)
 			}
-			FramedOpening.setDescription(1, wall7)
+			FramedOpening.setDescription(1, wall7!)
 			if ( wall7 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -885,18 +885,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' && typeof w8 != 'undefined' && typeof h8 != 'undefined' && typeof b8 != 'undefined' ) {
+		if ( typeof wall8 != undefined && typeof rEdge8 != undefined && typeof w8 != undefined && typeof h8 != undefined && typeof b8 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w8 * 12 )
-			FramedOpening.setHeight( h8 * 12 )
-			FramedOpening.setbEdgeHeight( b8 * 12 )
+			FramedOpening.setWidth( w8! * 12 )
+			FramedOpening.setHeight( h8! * 12 )
+			FramedOpening.setbEdgeHeight( b8! * 12 )
 			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8! * 12)
 			}
-			FramedOpening.setDescription(1, wall8)
+			FramedOpening.setDescription(1, wall8!)
 			if ( wall8 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -918,18 +918,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' && typeof w9 != 'undefined' && typeof h9 != 'undefined' && typeof b9 != 'undefined' ) {
+		if ( typeof wall9 != undefined && typeof rEdge9 != undefined && typeof w9 != undefined && typeof h9 != undefined && typeof b9 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w9 * 12 )
-			FramedOpening.setHeight( h9 * 12 )
-			FramedOpening.setbEdgeHeight( b9 * 12 )
+			FramedOpening.setWidth( w9! * 12 )
+			FramedOpening.setHeight( h9! * 12 )
+			FramedOpening.setbEdgeHeight( b9! * 12 )
 			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9! * 12)
 			}
-			FramedOpening.setDescription(1, wall9)
+			FramedOpening.setDescription(1, wall9!)
 			if ( wall9 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -951,18 +951,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' && typeof w10 != 'undefined' && typeof h10 != 'undefined' && typeof b10 != 'undefined' ) {
+		if ( typeof wall10 != undefined && typeof rEdge10 != undefined && typeof w10 != undefined && typeof h10 != undefined && typeof b10 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w10 * 12 )
-			FramedOpening.setHeight( h10 * 12 )
-			FramedOpening.setbEdgeHeight( b10 * 12 )
+			FramedOpening.setWidth( w10! * 12 )
+			FramedOpening.setHeight( h10! * 12 )
+			FramedOpening.setbEdgeHeight( b10! * 12 )
 			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10! * 12)
 			}
-			FramedOpening.setDescription(1, wall10)
+			FramedOpening.setDescription(1, wall10!)
 			if ( wall10 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -984,18 +984,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' && typeof w11 != 'undefined' && typeof h11 != 'undefined' && typeof b11 != 'undefined' ) {
+		if ( typeof wall11 != undefined && typeof rEdge11 != undefined && typeof w11 != undefined && typeof h11 != undefined && typeof b11 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w11 * 12 )
-			FramedOpening.setHeight( h11 * 12 )
-			FramedOpening.setbEdgeHeight( b11 * 12 )
+			FramedOpening.setWidth( w11! * 12 )
+			FramedOpening.setHeight( h11! * 12 )
+			FramedOpening.setbEdgeHeight( b11! * 12 )
 			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11! * 12)
 			}
-			FramedOpening.setDescription(1, wall11)
+			FramedOpening.setDescription(1, wall11!)
 			if ( wall11 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1017,18 +1017,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' && typeof w12 != 'undefined' && typeof h12 != 'undefined' && typeof b12 != 'undefined' ) {
+		if ( typeof wall12 != undefined && typeof rEdge12 != undefined && typeof w12 != undefined && typeof h12 != undefined && typeof b12 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('MiscFO')
-			FramedOpening.setWidth( w12 * 12 )
-			FramedOpening.setHeight( h12 * 12 )
-			FramedOpening.setbEdgeHeight( b12 * 12 )
+			FramedOpening.setWidth( w12! * 12 )
+			FramedOpening.setHeight( h12! * 12 )
+			FramedOpening.setbEdgeHeight( b12! * 12 )
 			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12! * 12)
 			}
-			FramedOpening.setDescription(1, wall12)
+			FramedOpening.setDescription(1, wall12!)
 			if ( wall12 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1113,18 +1113,18 @@ export class Building {
 		b11?: number,
 		b12?: number
 	) {
-		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' && typeof w1 != 'undefined' && typeof h1 != 'undefined' && typeof b1 != 'undefined' ) {
+		if ( typeof wall1 != undefined && typeof rEdge1 != undefined && typeof w1 != undefined && typeof h1 != undefined && typeof b1 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w1 * 12 )
-			FramedOpening.setHeight( h1 * 12 )
-			FramedOpening.setbEdgeHeight( b1 * 12 )
+			FramedOpening.setWidth( w1! * 12 )
+			FramedOpening.setHeight( h1! * 12 )
+			FramedOpening.setbEdgeHeight( b1! * 12 )
 			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1! * 12)
 			}
-			FramedOpening.setDescription(1, wall1)
+			FramedOpening.setDescription(1, wall1!)
 			if ( wall1 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1146,18 +1146,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' && typeof w2 != 'undefined' && typeof h2 != 'undefined' && typeof b2 != 'undefined' ) {
+		if ( typeof wall2 != undefined && typeof rEdge2 != undefined && typeof w2 != undefined && typeof h2 != undefined && typeof b2 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w2 * 12 )
-			FramedOpening.setHeight( h2 * 12 )
-			FramedOpening.setbEdgeHeight( b2 * 12 )
+			FramedOpening.setWidth( w2! * 12 )
+			FramedOpening.setHeight( h2! * 12 )
+			FramedOpening.setbEdgeHeight( b2! * 12 )
 			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2! * 12)
 			}
-			FramedOpening.setDescription(1, wall2)
+			FramedOpening.setDescription(1, wall2!)
 			if ( wall2 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1179,18 +1179,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' && typeof w3 != 'undefined' && typeof h3 != 'undefined' && typeof b3 != 'undefined' ) {
+		if ( typeof wall3 != undefined && typeof rEdge3 != undefined && typeof w3 != undefined && typeof h3 != undefined && typeof b3 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w3 * 12 )
-			FramedOpening.setHeight( h3 * 12 )
-			FramedOpening.setbEdgeHeight( b3 * 12 )
-			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12)
+			FramedOpening.setWidth( w3! * 12 )
+			FramedOpening.setHeight( h3! * 12 )
+			FramedOpening.setbEdgeHeight( b3! * 12 )
+			if ( wall3 == 'Endwall 1' || wall3! == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3! * 12)
 			}
-			FramedOpening.setDescription(1, wall3)
+			FramedOpening.setDescription(1, wall3!)
 			if ( wall3 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1212,18 +1212,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' && typeof w4 != 'undefined' && typeof h4 != 'undefined' && typeof b4 != 'undefined' ) {
+		if ( typeof wall4 != undefined && typeof rEdge4 != undefined && typeof w4 != undefined && typeof h4 != undefined && typeof b4 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w4 * 12 )
-			FramedOpening.setHeight( h4 * 12 )
-			FramedOpening.setbEdgeHeight( b4 * 12 )
-			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12)
+			FramedOpening.setWidth( w4! * 12 )
+			FramedOpening.setHeight( h4! * 12 )
+			FramedOpening.setbEdgeHeight( b4! * 12 )
+			if ( wall4 == 'Endwall 1' || wall4! == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4! * 12)
 			}
-			FramedOpening.setDescription(1, wall4)
+			FramedOpening.setDescription(1, wall4!)
 			if ( wall4 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1245,18 +1245,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' && typeof w5 != 'undefined' && typeof h5 != 'undefined' && typeof b5 != 'undefined' ) {
+		if ( typeof wall5 != undefined && typeof rEdge5 != undefined && typeof w5 != undefined && typeof h5 != undefined && typeof b5 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w5 * 12 )
-			FramedOpening.setHeight( h5 * 12 )
-			FramedOpening.setbEdgeHeight( b5 * 12 )
-			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12)
+			FramedOpening.setWidth( w5! * 12 )
+			FramedOpening.setHeight( h5! * 12 )
+			FramedOpening.setbEdgeHeight( b5! * 12 )
+			if ( wall5 == 'Endwall 1' || wall5! == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5! * 12)
 			}
-			FramedOpening.setDescription(1, wall5)
+			FramedOpening.setDescription(1, wall5!)
 			if ( wall5 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1278,18 +1278,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' && typeof w6 != 'undefined' && typeof h6 != 'undefined' && typeof b6 != 'undefined' ) {
+		if ( typeof wall6 != undefined && typeof rEdge6 != undefined && typeof w6 != undefined && typeof h6 != undefined && typeof b6 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w6 * 12 )
-			FramedOpening.setHeight( h6 * 12 )
-			FramedOpening.setbEdgeHeight( b6 * 12 )
-			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12)
+			FramedOpening.setWidth( w6! * 12 )
+			FramedOpening.setHeight( h6! * 12 )
+			FramedOpening.setbEdgeHeight( b6! * 12 )
+			if ( wall6 == 'Endwall 1' || wall6! == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6! * 12)
 			}
-			FramedOpening.setDescription(1, wall6)
+			FramedOpening.setDescription(1, wall6!)
 			if ( wall6 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1311,18 +1311,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' && typeof w7 != 'undefined' && typeof h7 != 'undefined' && typeof b7 != 'undefined' ) {
+		if ( typeof wall7 != undefined && typeof rEdge7 != undefined && typeof w7 != undefined && typeof h7 != undefined && typeof b7 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w7 * 12 )
-			FramedOpening.setHeight( h7 * 12 )
-			FramedOpening.setbEdgeHeight( b7 * 12 )
-			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12)
+			FramedOpening.setWidth( w7! * 12 )
+			FramedOpening.setHeight( h7! * 12 )
+			FramedOpening.setbEdgeHeight( b7! * 12 )
+			if ( wall7 == 'Endwall 1' || wall7! == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7! * 12)
 			}
-			FramedOpening.setDescription(1, wall7)
+			FramedOpening.setDescription(1, wall7!)
 			if ( wall7 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1344,18 +1344,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' && typeof w8 != 'undefined' && typeof h8 != 'undefined' && typeof b8 != 'undefined' ) {
+		if ( typeof wall8 != undefined && typeof rEdge8 != undefined && typeof w8 != undefined && typeof h8 != undefined && typeof b8 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w8 * 12 )
-			FramedOpening.setHeight( h8 * 12 )
-			FramedOpening.setbEdgeHeight( b8 * 12 )
-			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12)
+			FramedOpening.setWidth( w8! * 12 )
+			FramedOpening.setHeight( h8! * 12 )
+			FramedOpening.setbEdgeHeight( b8! * 12 )
+			if ( wall8 == 'Endwall 1' || wall8! == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8! * 12)
 			}
-			FramedOpening.setDescription(1, wall8)
+			FramedOpening.setDescription(1, wall8!)
 			if ( wall8 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1377,18 +1377,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' && typeof w9 != 'undefined' && typeof h9 != 'undefined' && typeof b9 != 'undefined' ) {
+		if ( typeof wall9 != undefined && typeof rEdge9 != undefined && typeof w9 != undefined && typeof h9 != undefined && typeof b9 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w9 * 12 )
-			FramedOpening.setHeight( h9 * 12 )
-			FramedOpening.setbEdgeHeight( b9 * 12 )
-			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12)
+			FramedOpening.setWidth( w9! * 12 )
+			FramedOpening.setHeight( h9! * 12 )
+			FramedOpening.setbEdgeHeight( b9! * 12 )
+			if ( wall9 == 'Endwall 1' || wall9! == 'Endwall 3' ) {
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9! * 12)
 			}
-			FramedOpening.setDescription(1, wall9)
+			FramedOpening.setDescription(1, wall9!)
 			if ( wall9 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1410,18 +1410,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' && typeof w10 != 'undefined' && typeof h10 != 'undefined' && typeof b10 != 'undefined' ) {
+		if ( typeof wall10 != undefined && typeof rEdge10 != undefined && typeof w10 != undefined && typeof h10 != undefined && typeof b10 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w10 * 12 )
-			FramedOpening.setHeight( h10 * 12 )
-			FramedOpening.setbEdgeHeight( b10 * 12 )
+			FramedOpening.setWidth( w10! * 12 )
+			FramedOpening.setHeight( h10! * 12 )
+			FramedOpening.setbEdgeHeight( b10! * 12 )
 			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10! * 12)
 			}
-			FramedOpening.setDescription(1, wall10)
+			FramedOpening.setDescription(1, wall10!)
 			if ( wall10 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1443,18 +1443,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' && typeof w11 != 'undefined' && typeof h11 != 'undefined' && typeof b11 != 'undefined' ) {
+		if ( typeof wall11 != undefined && typeof rEdge11 != undefined && typeof w11 != undefined && typeof h11 != undefined && typeof b11 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w11 * 12 )
-			FramedOpening.setHeight( h11 * 12 )
-			FramedOpening.setbEdgeHeight( b11 * 12 )
+			FramedOpening.setWidth( w11! * 12 )
+			FramedOpening.setHeight( h11! * 12 )
+			FramedOpening.setbEdgeHeight( b11! * 12 )
 			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11! * 12)
 			}
-			FramedOpening.setDescription(1, wall11)
+			FramedOpening.setDescription(1, wall11!)
 			if ( wall11 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1476,18 +1476,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' && typeof w12 != 'undefined' && typeof h12 != 'undefined' && typeof b12 != 'undefined' ) {
+		if ( typeof wall12 != undefined && typeof rEdge12 != undefined && typeof w12 != undefined && typeof h12 != undefined && typeof b12 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w12 * 12 )
-			FramedOpening.setHeight( h12 * 12 )
-			FramedOpening.setbEdgeHeight( b12 * 12 )
+			FramedOpening.setWidth( w12! * 12 )
+			FramedOpening.setHeight( h12! * 12 )
+			FramedOpening.setbEdgeHeight( b12! * 12 )
 			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12! * 12)
 			}
-			FramedOpening.setDescription(1, wall12)
+			FramedOpening.setDescription(1, wall12!)
 			if ( wall12 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1560,18 +1560,18 @@ export class Building {
 		rEdge11?: number,
 		rEdge12?: number
 	) {
-		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' && typeof w1 != 'undefined' && typeof h1 != 'undefined' ) {
+		if ( typeof wall1 != undefined && typeof rEdge1 != undefined && typeof w1 != undefined && typeof h1 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w1 * 12 )
-			FramedOpening.setHeight( h1 * 12 )
+			FramedOpening.setWidth( w1! * 12 )
+			FramedOpening.setHeight( h1! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1! * 12)
 			}
-			FramedOpening.setDescription(1, wall1)
+			FramedOpening.setDescription(1, wall1!)
 			if ( wall1 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1593,18 +1593,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' && typeof w2 != 'undefined' && typeof h2 != 'undefined' ) {
+		if ( typeof wall2 != undefined && typeof rEdge2 != undefined && typeof w2 != undefined && typeof h2 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w2 * 12 )
-			FramedOpening.setHeight( h2 * 12 )
+			FramedOpening.setWidth( w2! * 12 )
+			FramedOpening.setHeight( h2! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2! * 12)
 			}
-			FramedOpening.setDescription(1, wall2)
+			FramedOpening.setDescription(1, wall2!)
 			if ( wall2 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1626,18 +1626,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' && typeof w3 != 'undefined' && typeof h3 != 'undefined' ) {
+		if ( typeof wall3 != undefined && typeof rEdge3 != undefined && typeof w3 != undefined && typeof h3 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w3 * 12 )
-			FramedOpening.setHeight( h3 * 12 )
+			FramedOpening.setWidth( w3! * 12 )
+			FramedOpening.setHeight( h3! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3! * 12)
 			}
-			FramedOpening.setDescription(1, wall3)
+			FramedOpening.setDescription(1, wall3!)
 			if ( wall3 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1659,18 +1659,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' && typeof w4 != 'undefined' && typeof h4 != 'undefined' ) {
+		if ( typeof wall4 != undefined && typeof rEdge4 != undefined && typeof w4 != undefined && typeof h4 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w4 * 12 )
-			FramedOpening.setHeight( h4 * 12 )
+			FramedOpening.setWidth( w4! * 12 )
+			FramedOpening.setHeight( h4! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4! * 12)
 			}
-			FramedOpening.setDescription(1, wall4)
+			FramedOpening.setDescription(1, wall4!)
 			if ( wall4 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1692,18 +1692,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' && typeof w5 != 'undefined' && typeof h5 != 'undefined' ) {
+		if ( typeof wall5 != undefined && typeof rEdge5 != undefined && typeof w5 != undefined && typeof h5 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w5 * 12 )
-			FramedOpening.setHeight( h5 * 12 )
+			FramedOpening.setWidth( w5! * 12 )
+			FramedOpening.setHeight( h5! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5! * 12)
 			}
-			FramedOpening.setDescription(1, wall5)
+			FramedOpening.setDescription(1, wall5!)
 			if ( wall5 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1725,18 +1725,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' && typeof w6 != 'undefined' && typeof h6 != 'undefined' ) {
+		if ( typeof wall6 != undefined && typeof rEdge6 != undefined && typeof w6 != undefined && typeof h6 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w6 * 12 )
-			FramedOpening.setHeight( h6 * 12 )
+			FramedOpening.setWidth( w6! * 12 )
+			FramedOpening.setHeight( h6! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6! * 12)
 			}
-			FramedOpening.setDescription(1, wall6)
+			FramedOpening.setDescription(1, wall6!)
 			if ( wall6 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1758,18 +1758,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' && typeof w7 != 'undefined' && typeof h7 != 'undefined' ) {
+		if ( typeof wall7 != undefined && typeof rEdge7 != undefined && typeof w7 != undefined && typeof h7 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w7 * 12 )
-			FramedOpening.setHeight( h7 * 12 )
+			FramedOpening.setWidth( w7! * 12 )
+			FramedOpening.setHeight( h7! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7! * 12)
 			}
-			FramedOpening.setDescription(1, wall7)
+			FramedOpening.setDescription(1, wall7!)
 			if ( wall7 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1791,18 +1791,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' && typeof w8 != 'undefined' && typeof h8 != 'undefined' ) {
+		if ( typeof wall8 != undefined && typeof rEdge8 != undefined && typeof w8 != undefined && typeof h8 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w8 * 12 )
-			FramedOpening.setHeight( h8 * 12 )
+			FramedOpening.setWidth( w8! * 12 )
+			FramedOpening.setHeight( h8! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8! * 12)
 			}
-			FramedOpening.setDescription(1, wall8)
+			FramedOpening.setDescription(1, wall8!)
 			if ( wall8 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1824,18 +1824,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' && typeof w9 != 'undefined' && typeof h9 != 'undefined' ) {
+		if ( typeof wall9 != undefined && typeof rEdge9 != undefined && typeof w9 != undefined && typeof h9 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w9 * 12 )
-			FramedOpening.setHeight( h9 * 12 )
+			FramedOpening.setWidth( w9! * 12 )
+			FramedOpening.setHeight( h9! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9! * 12)
 			}
-			FramedOpening.setDescription(1, wall9)
+			FramedOpening.setDescription(1, wall9!)
 			if ( wall9 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1857,18 +1857,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' && typeof w10 != 'undefined' && typeof h10 != 'undefined' ) {
+		if ( typeof wall10 != undefined && typeof rEdge10 != undefined && typeof w10 != undefined && typeof h10 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w10 * 12 )
-			FramedOpening.setHeight( h10 * 12 )
+			FramedOpening.setWidth( w10! * 12 )
+			FramedOpening.setHeight( h10! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10! * 12)
 			}
-			FramedOpening.setDescription(1, wall10)
+			FramedOpening.setDescription(1, wall10!)
 			if ( wall10 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1890,18 +1890,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' && typeof w11 != 'undefined' && typeof h11 != 'undefined' ) {
+		if ( typeof wall11 != undefined && typeof rEdge11 != undefined && typeof w11 != undefined && typeof h11 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w11 * 12 )
-			FramedOpening.setHeight( h11 * 12 )
+			FramedOpening.setWidth( w11! * 12 )
+			FramedOpening.setHeight( h11! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11! * 12)
 			}
-			FramedOpening.setDescription(1, wall11)
+			FramedOpening.setDescription(1, wall11!)
 			if ( wall11 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1923,18 +1923,18 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' && typeof w12 != 'undefined' && typeof h12 != 'undefined' ) {
+		if ( typeof wall12 != undefined && typeof rEdge12 != undefined && typeof w12 != undefined && typeof h12 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w12 * 12 )
-			FramedOpening.setHeight( h12 * 12 )
+			FramedOpening.setWidth( w12! * 12 )
+			FramedOpening.setHeight( h12! * 12 )
 			FramedOpening.setbEdgeHeight( 0 )
 			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12)
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12! * 12)
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12)
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12! * 12)
 			}
-			FramedOpening.setDescription(1, wall12)
+			FramedOpening.setDescription(1, wall12!)
 			if ( wall12 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -1995,7 +1995,7 @@ export class Building {
 		rEdge11?: number,
 		rEdge12?: number
 	) {
-		if ( typeof wall1 != 'undefined' && typeof rEdge1 != 'undefined' ) {
+		if ( typeof wall1 != undefined && typeof rEdge1 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2006,11 +2006,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall1 == 'Endwall 1' || wall1 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge1! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge1! * 12 )
 			}
-			FramedOpening.setDescription(1, wall1)
+			FramedOpening.setDescription(1, wall1!)
 			if ( wall1 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2032,7 +2032,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall2 != 'undefined' && typeof rEdge2 != 'undefined' ) {
+		if ( typeof wall2 != undefined && typeof rEdge2 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2043,11 +2043,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2! * 12 )
 			}
-			FramedOpening.setDescription(1, wall2)
+			FramedOpening.setDescription(1, wall2!)
 			if ( wall2 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2069,7 +2069,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall3 != 'undefined' && typeof rEdge3 != 'undefined' ) {
+		if ( typeof wall3 != undefined && typeof rEdge3 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2080,11 +2080,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3! * 12 )
 			}
-			FramedOpening.setDescription(1, wall3)
+			FramedOpening.setDescription(1, wall3!)
 			if ( wall3 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2106,7 +2106,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall4 != 'undefined' && typeof rEdge4 != 'undefined' ) {
+		if ( typeof wall4 != undefined && typeof rEdge4 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2117,11 +2117,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4! * 12 )
 			}
-			FramedOpening.setDescription(1, wall4)
+			FramedOpening.setDescription(1, wall4!)
 			if ( wall4 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2143,7 +2143,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall5 != 'undefined' && typeof rEdge5 != 'undefined' ) {
+		if ( typeof wall5 != undefined && typeof rEdge5 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2154,11 +2154,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5! * 12 )
 			}
-			FramedOpening.setDescription(1, wall5)
+			FramedOpening.setDescription(1, wall5!)
 			if ( wall5 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2180,7 +2180,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall6 != 'undefined' && typeof rEdge6 != 'undefined' ) {
+		if ( typeof wall6 != undefined && typeof rEdge6 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2191,11 +2191,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6! * 12 )
 			}
-			FramedOpening.setDescription(1, wall6)
+			FramedOpening.setDescription(1, wall6!)
 			if ( wall6 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2217,7 +2217,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall7 != 'undefined' && typeof rEdge7 != 'undefined' ) {
+		if ( typeof wall7 != undefined && typeof rEdge7 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2228,11 +2228,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7! * 12 )
 			}
-			FramedOpening.setDescription(1, wall7)
+			FramedOpening.setDescription(1, wall7!)
 			if ( wall7 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2254,7 +2254,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall8 != 'undefined' && typeof rEdge8 != 'undefined' ) {
+		if ( typeof wall8 != undefined && typeof rEdge8 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2265,11 +2265,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8! * 12 )
 			}
-			FramedOpening.setDescription(1, wall8)
+			FramedOpening.setDescription(1, wall8!)
 			if ( wall8 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2291,7 +2291,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall9 != 'undefined' && typeof rEdge9 != 'undefined' ) {
+		if ( typeof wall9 != undefined && typeof rEdge9 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2302,11 +2302,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9! * 12 )
 			}
-			FramedOpening.setDescription(1, wall9)
+			FramedOpening.setDescription(1, wall9!)
 			if ( wall9 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2328,7 +2328,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall10 != 'undefined' && typeof rEdge10 != 'undefined' ) {
+		if ( typeof wall10 != undefined && typeof rEdge10 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2339,11 +2339,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10! * 12 )
 			}
-			FramedOpening.setDescription(1, wall10)
+			FramedOpening.setDescription(1, wall10!)
 			if ( wall10 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2365,7 +2365,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall11 != 'undefined' && typeof rEdge11 != 'undefined' ) {
+		if ( typeof wall11 != undefined && typeof rEdge11 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2376,11 +2376,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11! * 12 )
 			}
-			FramedOpening.setDescription(1, wall11)
+			FramedOpening.setDescription(1, wall11!)
 			if ( wall11 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2402,7 +2402,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall12 != 'undefined' && typeof rEdge12 != 'undefined' ) {
+		if ( typeof wall12 != undefined && typeof rEdge12 != undefined ) {
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -2413,11 +2413,11 @@ export class Building {
 				FramedOpening.setWidth( 4 * 12 )
 			}
 			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12 * 12 )
+				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12! * 12 )
 			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12 * 12 )
+				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12! * 12 )
 			}
-			FramedOpening.setDescription(1, wall12)
+			FramedOpening.setDescription(1, wall12!)
 			if ( wall12 == 'Endwall 1' ) {
 				FramedOpening.setWall( 'e1' )
 				this.e1FOs.push( FramedOpening )
@@ -2939,18 +2939,19 @@ export class Building {
 			WallAlterationStatuse3?: string,
 			WallAlterationStatuss4?: string
 		) {
-			if ( typeof WallAlterationStatuse1 != 'undefined' ) {
+			if ( typeof WallAlterationStatuse1 != undefined ) {
 				return ( WallAlterationStatuse1 )
 			}
-			if ( typeof WallAlterationStatuss2 != 'undefined' ) {
+			if ( typeof WallAlterationStatuss2 != undefined ) {
 				return ( WallAlterationStatuss2 )
 			}
-			if ( typeof WallAlterationStatuse3 != 'undefined' ) {
+			if ( typeof WallAlterationStatuse3 != undefined ) {
 				return ( WallAlterationStatuse3 )
 			}
-			if ( typeof WallAlterationStatuss4 != 'undefined' ) {
+			if ( typeof WallAlterationStatuss4 != undefined ) {
 				return ( WallAlterationStatuss4 )
 			}
+			return false
 	}
 
 	LengthAboveFinishedFloor( 
@@ -2959,47 +2960,47 @@ export class Building {
 			WallAlterationStatuse3?: string,
 			WallAlterationStatuss4?: string,
 		) {
-			if ( typeof WallAlterationStatuse1 != 'undefined' ) {
+			if ( typeof WallAlterationStatuse1 != undefined ) {
 				if ( WallAlterationStatuse1 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuse1 == 'Partial' && typeof this.WallAlteratione1Length != 'undefined' ) {
+				else if( WallAlterationStatuse1 == 'Partial' && typeof this.WallAlteratione1Length != undefined ) {
 					return this.WallAlteratione1Length
 				}
-				else if( WallAlterationStatuse1 == 'Gable Only' && typeof this.WallAlteratione1Length != 'undefined' ) {
+				else if( WallAlterationStatuse1 == 'Gable Only' && typeof this.WallAlteratione1Length != undefined ) {
 					return this.bHeight
 				}
 			}
-			if ( typeof WallAlterationStatuss2 != 'undefined' ) {
+			if ( typeof WallAlterationStatuss2 != undefined ) {
 				if ( WallAlterationStatuss2 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuss2 == 'Partial' && typeof this.WallAlterations2Length != 'undefined' ) {
+				else if( WallAlterationStatuss2 == 'Partial' && typeof this.WallAlterations2Length != undefined ) {
 					return this.WallAlterations2Length
 				}
-				else if( WallAlterationStatuss2 == 'Gable Only' && typeof this.WallAlterations2Length != 'undefined' ) {
+				else if( WallAlterationStatuss2 == 'Gable Only' && typeof this.WallAlterations2Length != undefined ) {
 					return this.bHeight
 				}
 			}
-			if ( typeof WallAlterationStatuse3 != 'undefined' ) {
+			if ( typeof WallAlterationStatuse3 != undefined ) {
 				if ( WallAlterationStatuse3 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuse3 == 'Partial' && typeof this.WallAlteratione3Length != 'undefined' ) {
+				else if( WallAlterationStatuse3 == 'Partial' && typeof this.WallAlteratione3Length != undefined ) {
 					return this.WallAlteratione3Length
 				}
-				else if( WallAlterationStatuse3 == 'Gable Only' && typeof this.WallAlteratione3Length != 'undefined' ) {
+				else if( WallAlterationStatuse3 == 'Gable Only' && typeof this.WallAlteratione3Length != undefined ) {
 					return this.bHeight
 				}
 			}
-			if ( typeof WallAlterationStatuss4 != 'undefined' ) {
+			if ( typeof WallAlterationStatuss4 != undefined ) {
 				if ( WallAlterationStatuss4 == 'Include' ) {
 					return 0
 				}
-				else if( WallAlterationStatuss4 == 'Partial' && typeof this.WallAlterations4Length != 'undefined' ) {
+				else if( WallAlterationStatuss4 == 'Partial' && typeof this.WallAlterations4Length != undefined ) {
 					return this.WallAlterations4Length
 				}
-				else if( WallAlterationStatuss4 == 'Gable Only' && typeof this.WallAlterations4Length != 'undefined' ) {
+				else if( WallAlterationStatuss4 == 'Gable Only' && typeof this.WallAlterations4Length != undefined ) {
 					return this.bHeight
 				}
 			}
@@ -3012,19 +3013,19 @@ export class Building {
 		LinerPanels4?: string,
 		LinerPanelRoof?: string
 		) {
-			if ( typeof LinerPanele1 != 'undefined' && LinerPanele1 == '') {
+			if ( typeof LinerPanele1 != undefined && LinerPanele1 == '') {
 				this.e1LinerPanels = 'None'
 			}
-			if ( typeof LinerPanels2 != 'undefined' && LinerPanels2 == '') {
+			if ( typeof LinerPanels2 != undefined && LinerPanels2 == '') {
 				this.s2LinerPanels = 'None'
 			}
-			if ( typeof LinerPanele3 != 'undefined' && LinerPanele3 == '') {
+			if ( typeof LinerPanele3 != undefined && LinerPanele3 == '') {
 				this.e3LinerPanels = 'None'
 			}
-			if ( typeof LinerPanels4 != 'undefined' && LinerPanels4 == '') {
+			if ( typeof LinerPanels4 != undefined && LinerPanels4 == '') {
 				this.s4LinerPanels = 'None'
 			}
-			if ( typeof LinerPanelRoof != 'undefined' && LinerPanelRoof == '') {
+			if ( typeof LinerPanelRoof != undefined && LinerPanelRoof == '') {
 				this.roofLinerPanel = 'None'
 			}
 	}
@@ -3034,18 +3035,19 @@ export class Building {
 		Wainscote3?: string,
 		Wainscots4?: string,
 	) {
-		if ( typeof Wainscote1 == 'undefined' || this.wainscote1 == '') {
+		if ( typeof Wainscote1 != undefined && this.wainscote1 == '') {
 			return 'None'
 		}
-		if ( typeof Wainscots2 == 'undefined' || this.wainscots2 == '') {
+		if ( typeof Wainscots2 != undefined && this.wainscots2 == '') {
 			return 'None'
 		}
-		if ( typeof Wainscote3 == 'undefined' || this.wainscote3 == '') {
+		if ( typeof Wainscote3 != undefined && this.wainscote3 == '') {
 			return 'None'
 		}
-		if ( typeof Wainscots4 == 'undefined' || this.wainscots4 == '') {
+		if ( typeof Wainscots4 != undefined && this.wainscots4 == '') {
 			return 'None'
 		}
+		return false
 	}
 
 	ExpandableEndwall( 
@@ -3054,28 +3056,29 @@ export class Building {
 		ExpandableEndwalle3?: string,
 		ExpandableEndwalls4?: string,
 	) {
-		if ( typeof ExpandableEndwalle1 != 'undefined' && ExpandableEndwalle1 != 'Yes' ) {
+		if ( typeof ExpandableEndwalle1 != undefined && ExpandableEndwalle1 != 'Yes' ) {
 			return false
-		} else if ( typeof ExpandableEndwalle1 != 'undefined' && ExpandableEndwalle1 == 'Yes' ) {
+		} else if ( typeof ExpandableEndwalle1 != undefined && ExpandableEndwalle1 == 'Yes' ) {
 			return true
 		}
-		else if ( typeof ExpandableEndwalls2 != 'undefined' && ExpandableEndwalls2 != 'Yes' ) {
+		else if ( typeof ExpandableEndwalls2 != undefined && ExpandableEndwalls2 != 'Yes' ) {
 			return false
-		} else if ( typeof ExpandableEndwalls2 != 'undefined' && ExpandableEndwalls2 == 'Yes' ) {
+		} else if ( typeof ExpandableEndwalls2 != undefined && ExpandableEndwalls2 == 'Yes' ) {
 			return true
 		}
-		else if ( typeof ExpandableEndwalle3 != 'undefined' && ExpandableEndwalle3 != 'Yes' ) {
+		else if ( typeof ExpandableEndwalle3 != undefined && ExpandableEndwalle3 != 'Yes' ) {
 			return false
 		}
-		else if ( typeof ExpandableEndwalle3 != 'undefined' && ExpandableEndwalle3 == 'Yes' ) {
+		else if ( typeof ExpandableEndwalle3 != undefined && ExpandableEndwalle3 == 'Yes' ) {
 			return true
 		}
-		else if ( typeof ExpandableEndwalls4 != 'undefined' && ExpandableEndwalls4 != 'Yes') {
+		else if ( typeof ExpandableEndwalls4 != undefined && ExpandableEndwalls4 != 'Yes') {
 			return false
 		}
-		else if ( typeof ExpandableEndwalls4 != 'undefined' && ExpandableEndwalls4 == 'Yes' ) {
+		else if ( typeof ExpandableEndwalls4 != undefined && ExpandableEndwalls4 == 'Yes' ) {
 			return true
 		}
+		return false
 	}
 
 	DistanceToRoof(	
@@ -3087,13 +3090,13 @@ export class Building {
 		Walls4?: string
 		) {
 			if ( this.rShape == 'Gable' ) {
-				if ( typeof Walls2 != 'undefined' ) {
+				if ( typeof Walls2 != undefined ) {
 					return this.bHeight * 12 - StartingHeight
 				}
-				if ( typeof Walls4 != 'undefined' ) {
+				if ( typeof Walls4 != undefined ) {
 					return this.bHeight * 12 - StartingHeight
 				}
-				if ( typeof Walle1 != 'undefined' ) {
+				if ( typeof Walle1 != undefined ) {
 					if ( DistanceFromRightCorner / 12 <= this.bWidth / 2 ) {
 						return ( DistanceFromRightCorner / 12 * this.rPitch + this.bHeight * 12 - StartingHeight)
 					}
@@ -3103,7 +3106,7 @@ export class Building {
 						return ( (this.bWidth - DistanceFromRightCorner / 12) * this.rPitch + this.bHeight * 12 - StartingHeight)
 					}
 				}
-				if ( typeof Walle3 != 'undefined' ) {
+				if ( typeof Walle3 != undefined ) {
 					if ( DistanceFromRightCorner / 12 <= this.bWidth / 2 ) {
 						return ( DistanceFromRightCorner / 12 * this.rPitch + this.bHeight * 12 - StartingHeight)
 					}
@@ -3115,16 +3118,16 @@ export class Building {
 				}
 			}
 			if ( this.rShape == 'Single Slope' ) {
-				if ( typeof Walle1 != 'undefined' ) {
+				if ( typeof Walle1 != undefined ) {
 					return ( (this.bWidth - DistanceFromRightCorner / 12) * this.rPitch + this.bHeight * 12 - StartingHeight )
 				}
-				if ( typeof Walls2 != 'undefined' ) {
+				if ( typeof Walls2 != undefined ) {
 					return ( this.bHeight * 12 - StartingHeight )
 				}
-				if ( typeof Walle3 != 'undefined') {
+				if ( typeof Walle3 != undefined) {
 					return ( DistanceFromRightCorner / 12 * this.rPitch + this.bHeight * 12 - StartingHeight )
 				}
-				if ( typeof Walls4 != 'undefined' ) {
+				if ( typeof Walls4 != undefined ) {
 					return ( this.bHeight * 12 + this.bWidth * this.rPitch - StartingHeight )
 				}
 			}
@@ -3138,7 +3141,7 @@ export class Building {
 			return ( (HeightAlongRoof - this.bHeight * 12) / this.rPitch )
 		}
 		if ( this.rShape == 'Single Slope' ) {
-			if ( typeof Walle1 != 'undefined' ) {
+			if ( typeof Walle1 != undefined ) {
 				return ( this.bWidth * 12 - (HeightAlongRoof - this.bHeight * 12) / this.rPitch * 12 )
 			}
 			else {

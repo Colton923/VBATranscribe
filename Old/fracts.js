@@ -1,3 +1,13 @@
+class Panel {
+    constructor() {
+        this.name = "Me"
+    }
+    newName(name) {
+        this.name = name
+    }
+}
+
+function thisInches(inches) {
     var thisStr = ""
     var divisor = 16
     var ft = Math.floor( inches / 12 )
@@ -56,4 +66,9 @@
             thisStr = ft + "'"
         }
     }
-    console.log(thisStr)
+    return thisStr
+}
+
+    inches = 15.23
+
+    console.log(thisInches(inches))

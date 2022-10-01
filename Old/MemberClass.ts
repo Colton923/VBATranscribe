@@ -187,7 +187,7 @@ export class Member {
 		if ( ColumnsOrRafters == 'Rafter' ) {
 			var thisTbl = new MainRafterAndExpandableEndwallRafterTbl
 					return thisTbl.tbl
-		} else if ( ColumnsOrRafters == 'Column' && typeof Wall != 'undefined' ) {
+		} else if ( ColumnsOrRafters == 'Column' && typeof Wall != undefined ) {
 				switch (Wall) {
 					case 's2':
 						var thisTbl = new MainColumnAndExpandableEndwallColumnTbl
@@ -224,8 +224,8 @@ export class Member {
 				this.width = 4
 			case 'W-Beam':
 				//Apparently this doesn't even work in the VBA
-				if ( typeof mName != 'undefined' ) {
-					var splitstr = mName.split('x')
+				if ( typeof mName != undefined ) {
+					var splitstr = mName!.split('x')
 					this.depth = parseInt(splitstr[1])
 				}
 			case '8" Receiver Cee':

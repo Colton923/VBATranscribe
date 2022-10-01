@@ -1,4 +1,4 @@
-class Panel {
+export class Panel {
     //Fractional Inches
     PanelLength: number
     //Formatted Imperial Measurement

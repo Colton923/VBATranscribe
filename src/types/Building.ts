@@ -100,6 +100,12 @@ export type BuildingInfo = {
 	numOfBays: number
 	roofShape: string
 	bays?: Bay[]
+  // New fields to calculate on form submission
+  roofLength: number
+  highSideEaveHeight: number
+  sidewall2ExtRafterLength: number
+  sidewall4ExtRafterLength: number
+  netSingleRoofPanelQty: number
 }
 
 type Bay = {
@@ -335,7 +341,14 @@ export type AdditionalOptions = {
 		endwall3: Overhang
 		sidewall4: Overhang
 	}
-	extension?: Extension
+	extension: {
+    endwall1: Extension
+		endwall2: Extension
+		endwall3: Extension
+		sidewall4: Extension
+  }
+  sidewall2EaveExtPitch: number
+  sidewall4EaveExtPitch: number
 }
 
 type RidgeVentType = 'Standard' | 'Low Profile'
@@ -348,6 +361,7 @@ type Overhang = {
 	soffitColor: ColorsOrNone
 	soffitTrimColor: ColorsOrNone
 }
+
 type SoffitPanelType =
 	| 'Prime SMP Colors (Lifetime Warranty)'
 	| 'Prime Acrylic AZ55 Galvalume (25yr Warranty)'
@@ -361,8 +375,7 @@ type SoffitPanelType =
 	| 'Reverse Standard Galvalume (25yr Warranty)'
 
 type Extension = {
-	name: string
-	skylightLength: number
+	measurement: number
 	soffit: boolean
 	soffitPanelShape: PanelShape
 	soffitPanelType: SoffitPanelType
@@ -370,3 +383,4 @@ type Extension = {
 	soffitTrimColor: ColorsOrNone
 	expandable: boolean
 }
+

@@ -51,4 +51,6 @@ export class Building {
   set framedOpenings(framedOpenings: FramedOpenings) {
     this.DATA.framedOpenings = framedOpenings
   }
+
+
 }

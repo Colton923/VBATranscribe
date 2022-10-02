@@ -817,7 +817,12 @@ export class Building {
 		b12?: number
 	) {
 		if ( typeof wall1 != undefined && typeof rEdge1 != undefined && typeof w1 != undefined && typeof h1 != undefined && typeof b1 != undefined ) {
-			var FramedOpening = new FO()
+			/**
+       * CHECK
+       *
+       * Using the FramedOpening class a base for both windows and misc FOs
+       */
+      var FramedOpening = new FO()
 			FramedOpening.setType('Window')
 			FramedOpening.setWidth( w1! * 12 )
 			FramedOpening.setHeight( h1! * 12 )
@@ -849,369 +854,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall2 != undefined && typeof rEdge2 != undefined && typeof w2 != undefined && typeof h2 != undefined && typeof b2 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w2! * 12 )
-			FramedOpening.setHeight( h2! * 12 )
-			FramedOpening.setbEdgeHeight( b2! * 12 )
-			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2! * 12)
-			}
-			FramedOpening.setDescription(1, wall2!)
-			if ( wall2 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall3 != undefined && typeof rEdge3 != undefined && typeof w3 != undefined && typeof h3 != undefined && typeof b3 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w3! * 12 )
-			FramedOpening.setHeight( h3! * 12 )
-			FramedOpening.setbEdgeHeight( b3! * 12 )
-			if ( wall3 == 'Endwall 1' || wall3! == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3! * 12)
-			}
-			FramedOpening.setDescription(1, wall3!)
-			if ( wall3 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall4 != undefined && typeof rEdge4 != undefined && typeof w4 != undefined && typeof h4 != undefined && typeof b4 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w4! * 12 )
-			FramedOpening.setHeight( h4! * 12 )
-			FramedOpening.setbEdgeHeight( b4! * 12 )
-			if ( wall4 == 'Endwall 1' || wall4! == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4! * 12)
-			}
-			FramedOpening.setDescription(1, wall4!)
-			if ( wall4 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall5 != undefined && typeof rEdge5 != undefined && typeof w5 != undefined && typeof h5 != undefined && typeof b5 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w5! * 12 )
-			FramedOpening.setHeight( h5! * 12 )
-			FramedOpening.setbEdgeHeight( b5! * 12 )
-			if ( wall5 == 'Endwall 1' || wall5! == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5! * 12)
-			}
-			FramedOpening.setDescription(1, wall5!)
-			if ( wall5 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall6 != undefined && typeof rEdge6 != undefined && typeof w6 != undefined && typeof h6 != undefined && typeof b6 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w6! * 12 )
-			FramedOpening.setHeight( h6! * 12 )
-			FramedOpening.setbEdgeHeight( b6! * 12 )
-			if ( wall6 == 'Endwall 1' || wall6! == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6! * 12)
-			}
-			FramedOpening.setDescription(1, wall6!)
-			if ( wall6 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall7 != undefined && typeof rEdge7 != undefined && typeof w7 != undefined && typeof h7 != undefined && typeof b7 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w7! * 12 )
-			FramedOpening.setHeight( h7! * 12 )
-			FramedOpening.setbEdgeHeight( b7! * 12 )
-			if ( wall7 == 'Endwall 1' || wall7! == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7! * 12)
-			}
-			FramedOpening.setDescription(1, wall7!)
-			if ( wall7 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall8 != undefined && typeof rEdge8 != undefined && typeof w8 != undefined && typeof h8 != undefined && typeof b8 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w8! * 12 )
-			FramedOpening.setHeight( h8! * 12 )
-			FramedOpening.setbEdgeHeight( b8! * 12 )
-			if ( wall8 == 'Endwall 1' || wall8! == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8! * 12)
-			}
-			FramedOpening.setDescription(1, wall8!)
-			if ( wall8 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall9 != undefined && typeof rEdge9 != undefined && typeof w9 != undefined && typeof h9 != undefined && typeof b9 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w9! * 12 )
-			FramedOpening.setHeight( h9! * 12 )
-			FramedOpening.setbEdgeHeight( b9! * 12 )
-			if ( wall9 == 'Endwall 1' || wall9! == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9! * 12)
-			}
-			FramedOpening.setDescription(1, wall9!)
-			if ( wall9 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall10 != undefined && typeof rEdge10 != undefined && typeof w10 != undefined && typeof h10 != undefined && typeof b10 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w10! * 12 )
-			FramedOpening.setHeight( h10! * 12 )
-			FramedOpening.setbEdgeHeight( b10! * 12 )
-			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10! * 12)
-			}
-			FramedOpening.setDescription(1, wall10!)
-			if ( wall10 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall11 != undefined && typeof rEdge11 != undefined && typeof w11 != undefined && typeof h11 != undefined && typeof b11 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w11! * 12 )
-			FramedOpening.setHeight( h11! * 12 )
-			FramedOpening.setbEdgeHeight( b11! * 12 )
-			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11! * 12)
-			}
-			FramedOpening.setDescription(1, wall11!)
-			if ( wall11 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall12 != undefined && typeof rEdge12 != undefined && typeof w12 != undefined && typeof h12 != undefined && typeof b12 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('Window')
-			FramedOpening.setWidth( w12! * 12 )
-			FramedOpening.setHeight( h12! * 12 )
-			FramedOpening.setbEdgeHeight( b12! * 12 )
-			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12! * 12)
-			}
-			FramedOpening.setDescription(1, wall12!)
-			if ( wall12 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
+
 	}
 	SetOverheadDoors(
 		h1?: number,
@@ -1264,6 +907,21 @@ export class Building {
 		rEdge12?: number
 	) {
 		if ( typeof wall1 != undefined && typeof rEdge1 != undefined && typeof w1 != undefined && typeof h1 != undefined ) {
+      /**
+       * CHECK
+       *
+       * Overhead Doors contain a good amount of data that is different from the
+       * Windows and Misc FOs. This is really bad use.
+       *
+       * VERIFY
+       *
+       * Need to definitely check if arrays of all the Misc. FOs, Windows, and Overhead Doors
+       * are need to be tracked per wall.
+       *
+       * TODO
+       *
+       * Verify and update the code to calulate the correct position of the Overhead Door
+       */
 			var FramedOpening = new FO()
 			FramedOpening.setType('OHDoor')
 			FramedOpening.setWidth( w1! * 12 )
@@ -1296,369 +954,7 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall2 != undefined && typeof rEdge2 != undefined && typeof w2 != undefined && typeof h2 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w2! * 12 )
-			FramedOpening.setHeight( h2! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2! * 12)
-			}
-			FramedOpening.setDescription(1, wall2!)
-			if ( wall2 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall3 != undefined && typeof rEdge3 != undefined && typeof w3 != undefined && typeof h3 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w3! * 12 )
-			FramedOpening.setHeight( h3! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3! * 12)
-			}
-			FramedOpening.setDescription(1, wall3!)
-			if ( wall3 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall4 != undefined && typeof rEdge4 != undefined && typeof w4 != undefined && typeof h4 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w4! * 12 )
-			FramedOpening.setHeight( h4! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4! * 12)
-			}
-			FramedOpening.setDescription(1, wall4!)
-			if ( wall4 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall5 != undefined && typeof rEdge5 != undefined && typeof w5 != undefined && typeof h5 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w5! * 12 )
-			FramedOpening.setHeight( h5! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5! * 12)
-			}
-			FramedOpening.setDescription(1, wall5!)
-			if ( wall5 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall6 != undefined && typeof rEdge6 != undefined && typeof w6 != undefined && typeof h6 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w6! * 12 )
-			FramedOpening.setHeight( h6! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6! * 12)
-			}
-			FramedOpening.setDescription(1, wall6!)
-			if ( wall6 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall7 != undefined && typeof rEdge7 != undefined && typeof w7 != undefined && typeof h7 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w7! * 12 )
-			FramedOpening.setHeight( h7! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7! * 12)
-			}
-			FramedOpening.setDescription(1, wall7!)
-			if ( wall7 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall8 != undefined && typeof rEdge8 != undefined && typeof w8 != undefined && typeof h8 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w8! * 12 )
-			FramedOpening.setHeight( h8! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8! * 12)
-			}
-			FramedOpening.setDescription(1, wall8!)
-			if ( wall8 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall9 != undefined && typeof rEdge9 != undefined && typeof w9 != undefined && typeof h9 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w9! * 12 )
-			FramedOpening.setHeight( h9! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9! * 12)
-			}
-			FramedOpening.setDescription(1, wall9!)
-			if ( wall9 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall10 != undefined && typeof rEdge10 != undefined && typeof w10 != undefined && typeof h10 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w10! * 12 )
-			FramedOpening.setHeight( h10! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10! * 12)
-			}
-			FramedOpening.setDescription(1, wall10!)
-			if ( wall10 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall11 != undefined && typeof rEdge11 != undefined && typeof w11 != undefined && typeof h11 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w11! * 12 )
-			FramedOpening.setHeight( h11! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11! * 12)
-			}
-			FramedOpening.setDescription(1, wall11!)
-			if ( wall11 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall12 != undefined && typeof rEdge12 != undefined && typeof w12 != undefined && typeof h12 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('OHDoor')
-			FramedOpening.setWidth( w12! * 12 )
-			FramedOpening.setHeight( h12! * 12 )
-			FramedOpening.setbEdgeHeight( 0 )
-			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12! * 12)
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12! * 12)
-			}
-			FramedOpening.setDescription(1, wall12!)
-			if ( wall12 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
+
 	}
 	SetPersonnelDoors(
 		size1?: string,
@@ -1699,6 +995,18 @@ export class Building {
 		rEdge12?: number
 	) {
 		if ( typeof wall1 != undefined && typeof rEdge1 != undefined ) {
+      /**
+       *
+       * TODO
+       *
+       * Makes the updates to values!
+       *
+       * Add the width and height of the Personnel Door, which will be calculated
+       *
+       * height = 7 * 12 ??magic numbers (where are these values derived from)??
+       * width = size == 3070 ? 3 * 12 : 4 * 12
+       *
+       */
 			var FramedOpening = new FO()
 			FramedOpening.setType('PDoor')
 			FramedOpening.setHeight( 7 * 12 )
@@ -1735,414 +1043,17 @@ export class Building {
 				this.fieldlocateFOs.push( FramedOpening )
 			}
 		}
-		if ( typeof wall2 != undefined && typeof rEdge2 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size2 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size2 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall2 == 'Endwall 1' || wall2 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge2! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge2! * 12 )
-			}
-			FramedOpening.setDescription(1, wall2!)
-			if ( wall2 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall2 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall3 != undefined && typeof rEdge3 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size3 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size3 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall3 == 'Endwall 1' || wall3 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge3! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge3! * 12 )
-			}
-			FramedOpening.setDescription(1, wall3!)
-			if ( wall3 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall3 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall4 != undefined && typeof rEdge4 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size4 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size4 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall4 == 'Endwall 1' || wall4 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge4! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge4! * 12 )
-			}
-			FramedOpening.setDescription(1, wall4!)
-			if ( wall4 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall4 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall5 != undefined && typeof rEdge5 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size5 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size5 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall5 == 'Endwall 1' || wall5 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge5! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge5! * 12 )
-			}
-			FramedOpening.setDescription(1, wall5!)
-			if ( wall5 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall5 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall6 != undefined && typeof rEdge6 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size6 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size6 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall6 == 'Endwall 1' || wall6 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge6! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge6! * 12 )
-			}
-			FramedOpening.setDescription(1, wall6!)
-			if ( wall6 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall6 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall7 != undefined && typeof rEdge7 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size7 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size7 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall7 == 'Endwall 1' || wall7 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge7! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge7! * 12 )
-			}
-			FramedOpening.setDescription(1, wall7!)
-			if ( wall7 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall7 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall8 != undefined && typeof rEdge8 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size8 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size8 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall8 == 'Endwall 1' || wall8 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge8! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge8! * 12 )
-			}
-			FramedOpening.setDescription(1, wall8!)
-			if ( wall8 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall8 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall9 != undefined && typeof rEdge9 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size9 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size9 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall9 == 'Endwall 1' || wall9 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge9! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge9! * 12 )
-			}
-			FramedOpening.setDescription(1, wall9!)
-			if ( wall9 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall9 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall10 != undefined && typeof rEdge10 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size10 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size10 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall10 == 'Endwall 1' || wall10 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge10! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge10! * 12 )
-			}
-			FramedOpening.setDescription(1, wall10!)
-			if ( wall10 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall10 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall11 != undefined && typeof rEdge11 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size11 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size11 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall11 == 'Endwall 1' || wall11 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge11! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge11! * 12 )
-			}
-			FramedOpening.setDescription(1, wall11!)
-			if ( wall11 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall11 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
-		if ( typeof wall12 != undefined && typeof rEdge12 != undefined ) {
-			var FramedOpening = new FO()
-			FramedOpening.setType('PDoor')
-			FramedOpening.setHeight( 7 * 12 )
-			if ( size12 == '3070' ) {
-				FramedOpening.setWidth( 3 * 12 )
-			}
-			if ( size12 == '4070' ) {
-				FramedOpening.setWidth( 4 * 12 )
-			}
-			if ( wall12 == 'Endwall 1' || wall12 == 'Endwall 3' ) {
-				FramedOpening.setrEdgePosition( this.bWidth * 12 - rEdge12! * 12 )
-			} else {
-				FramedOpening.setrEdgePosition( this.bLength * 12 - rEdge12! * 12 )
-			}
-			FramedOpening.setDescription(1, wall12!)
-			if ( wall12 == 'Endwall 1' ) {
-				FramedOpening.setWall( 'e1' )
-				this.e1FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Sidewall 2' ) {
-				FramedOpening.setWall( 's2' )
-				this.s2FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Endwall 3' ) {
-				FramedOpening.setWall( 'e3' )
-				this.e3FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Sidewall 4' ) {
-				FramedOpening.setWall( 's4' )
-				this.s4FOs.push( FramedOpening )
-			}
-			if ( wall12 == 'Field Locate' ) {
-				FramedOpening.setWall( 'Field Locate' )
-				this.fieldlocateFOs.push( FramedOpening )
-			}
-		}
+
 	}
+
+
+  /**
+   * CHECK / TODO
+   *
+   * If the Sidewall2 Extension Pitch measurement is greater than 0
+   * and the Sidewall2 Eave Extension Pitch is set to "Match Roof",
+   * then set the Sidewall2 Eave Extension Pitch to the Roof Pitch
+   */
 	setExtensionPitches(
 		s2_EaveExtension: number,
 		s4_EaveExtension: number,
@@ -2170,6 +1081,15 @@ export class Building {
 		bay10_length: number,
 		bay11_length: number,
 		bay12_length: number) {
+      /**
+       * CHECK
+       *
+       * Gets a running total of the total bay lengths.
+       *
+       * Creates a new column for each bay
+       *
+       * The columns are stored for the Sidewall2
+       */
 			if ( bayNums > 0 ) {
 				var TotalBayLength: number
 				TotalBayLength = 0
@@ -2185,137 +1105,7 @@ export class Building {
 					this.s2Columns.push(Column)
 				}
 
-				if ( bay2_length > 0 ) {
-					TotalBayLength += bay2_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
 
-				if ( bay3_length > 0 ) {
-					TotalBayLength += bay3_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay4_length > 0 ) {
-					TotalBayLength += bay4_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay5_length > 0 ) {
-					TotalBayLength += bay5_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay6_length > 0 ) {
-					TotalBayLength += bay6_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay7_length > 0 ) {
-					TotalBayLength += bay7_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay8_length > 0 ) {
-					TotalBayLength += bay8_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay9_length > 0 ) {
-					TotalBayLength += bay9_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay10_length > 0 ) {
-					TotalBayLength += bay10_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay11_length > 0 ) {
-					TotalBayLength += bay11_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
-
-				if ( bay12_length > 0 ) {
-					TotalBayLength += bay12_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					Column.SetLength ( this.bHeight * 12 )
-					Column.SetTEdgeHeight ( this.bHeight * 12 )
-					this.s2Columns.push(Column)
-				}
 			}
 		}
 
@@ -2333,6 +1123,16 @@ export class Building {
 		bay10_length: number,
 		bay11_length: number,
 		bay12_length: number) {
+      /**
+       * CHECK
+       *
+       * Repeats the same process above except, this one checks other
+       * properties and creates the Sidewall4 columns.
+       *
+       * TODO
+       *
+       * Combine this into the one above
+       */
 			if ( bayNums > 0 ) {
 				var TotalBayLength: number
 				TotalBayLength = 0
@@ -2352,208 +1152,49 @@ export class Building {
 					Column.SetTEdgeHeight ( Column.length )
 					this.s4Columns.push(Column)
 				}
-
-				if ( bay2_length > 0 ) {
-					TotalBayLength += bay2_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay3_length > 0 ) {
-					TotalBayLength += bay3_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay4_length > 0 ) {
-					TotalBayLength += bay4_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay5_length > 0 ) {
-					TotalBayLength += bay5_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay6_length > 0 ) {
-					TotalBayLength += bay6_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay7_length > 0 ) {
-					TotalBayLength += bay7_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay8_length > 0 ) {
-					TotalBayLength += bay8_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay9_length > 0 ) {
-					TotalBayLength += bay9_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay10_length > 0 ) {
-					TotalBayLength += bay10_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay11_length > 0 ) {
-					TotalBayLength += bay11_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-
-				if ( bay12_length > 0 ) {
-					TotalBayLength += bay12_length
-					if ( TotalBayLength == this.bLength ) {
-						return
-					}
-					var Column = new Member()
-					Column.SetCenterLine ( TotalBayLength * 12 )
-					if ( this.rShape == 'Gable' ) {
-						Column.SetLength( this.bHeight * 12 )
-					}
-					if ( this.rShape == 'Single Slope' ) {
-						Column.SetLength( this.HighSideEaveHeight() )
-					}
-					Column.SetTEdgeHeight ( Column.length )
-					this.s4Columns.push(Column)
-				}
-			}
+      }
 		}
+
+  /**
+   * CHECK / TODO
+   *
+   * Perform the caluclation on the onSubmit handler in the form prior
+   * to sending the data to the server.
+   */
 
 	RoofLength() {
 		return ( this.bLength * 12 +this.e1Overhang + this.e1Extension + this.e3Overhang + this.e3Extension )
 	}
 
+  /**
+   * CHECK
+   *
+   * Can omit this since we have the inch to imperial conversion
+   */
 	RoofFtLength() {
 		return ( this.RoofLength() / 12 )
 	}
 
+  /**
+   * TODO
+   *
+   * Perform the calculation on the onSubmit handler in the form prior
+   * to sending the data to the server.
+   *
+   * Added type to BuildingData
+   */
 	HighSideEaveHeight() {
 		return ( this.bHeight * 12 + this.bWidth * this.rPitch )
 	}
 
+  /**
+   * TODO
+   *
+   * Perform the calculation on the onSubmit handler in the form prior
+   * to sending the data to the server.
+   *
+   * Added type to BuildingData
+   */
 	s2ExtensionRafterLength() {
 		if ( this.s2Extension == 0 ) {
 			return 0
@@ -2563,6 +1204,14 @@ export class Building {
 		}
 	}
 
+  /**
+   * TODO
+   *
+   * Perform the calculation on the onSubmit handler in the form prior
+   * to sending the data to the server.
+   *
+   * Added type to BuildingData
+   */
 	s4ExtensionRafterLength() {
 		if ( this.s4Extension == 0 ) {
 			return 0
@@ -2572,6 +1221,13 @@ export class Building {
 		}
 	}
 
+  /**
+   * CHECK / TODO
+   *
+   * There is only extension intersections for Sidewall4 -> Endwall 1
+   * and Sidewall4 -> Endwall 3. Where are the others coming from relative
+   * to the excel form?
+   */
 	s2e1ExtensionIntersection( s2e1_Intersection: string ) {
 		if ( s2e1_Intersection == 'N/A' || s2e1_Intersection == 'Exclude' ) {
 			return false
@@ -2608,6 +1264,14 @@ export class Building {
 		}
 	}
 
+  /**
+   * CHECK / TODO
+   *
+   * Calculate the Sidewall2EaveExtension Building Length based on the
+   * Sidewall2 to Endwall1 intersection and the Sidewall2 to Endwall3 intersection
+   *
+   * Need to find out where the value returned is used
+   */
 	s2EaveExtensionBuildingLength( s2e1_Intersection: string, s2e3_Intersection: string ) {
 		var EaveExtLength: number = 0
 		EaveExtLength = this.bLength * 12 + this.e1Overhang + this.e3Overhang
@@ -2620,6 +1284,14 @@ export class Building {
 		return EaveExtLength
 	}
 
+  /**
+   * CHECK / TODO
+   *
+   * Calculate the Sidewall4EaveExtension Building Length based on the
+   * Sidewall4 to Endwall1 intersection and the Sidewall4 to Endwall3 intersection
+   *
+   * Need to find out where the value returned is used
+   */
 	s4EaveExtensionBuildingLength( s4e1_Intersection: string, s4e3_Intersection: string ) {
 		var EaveExtLength: number = 0
 		EaveExtLength = this.bLength * 12 + this.e1Overhang + this.e3Overhang
@@ -2632,10 +1304,22 @@ export class Building {
 		return EaveExtLength
 	}
 
+  /**
+   * CHECK
+   *
+   * I think this calculates the number of roof panels?
+   *
+   * Added type to BuildingData
+   */
 	NetSingleRoofPanelQty() {
 		return ( Math.ceil(( this.bLength * 12 + this.e1Overhang + this.e3Overhang + this.e1Extension + this.e3Extension) / 36) )
 	}
 
+  /**
+   * CHECK
+   *
+   * Wtf lol.
+   */
 	WallStatus(
 			WallAlterationStatuse1?: string,
 			WallAlterationStatuss2?: string,
@@ -2657,6 +1341,15 @@ export class Building {
 			return false
 	}
 
+  /**
+   * CHECK / TODO
+   *
+   * This is used to determine the height windows and stuff should be placed at.
+   * In the form this must be the "above finished floor".
+   *
+   * The BottomEdgePosition for each window is calculated with this and depends
+   * on the wall selected.
+   */
 	LengthAboveFinishedFloor(
 			WallAlterationStatuse1?: string,
 			WallAlterationStatuss2?: string,

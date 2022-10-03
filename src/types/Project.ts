@@ -2,20 +2,20 @@
  * BuildingData - main
  */
 export type ProjectData = {
-  customer: Customer
-  building: BuildingData
+	customer: Customer
+	building: BuildingData
 }
 
 export type BuildingData = {
-  info: BuildingInfo
-  exteriorPanels: ExteriorPanels
-  trim: Trim
-  personnelDoors: PersonnelDoors
-  overheadDoors: OverheadDoors
-  windows: Windows
-  framedOpenings: FramedOpenings
-  insulation: Insulation
-  additionalOptions: AdditionalOptions
+	info: BuildingInfo
+	exteriorPanels: ExteriorPanels
+	trim: Trim
+	personnelDoors: PersonnelDoors
+	overheadDoors: OverheadDoors
+	windows: Windows
+	framedOpenings: FramedOpenings
+	insulation: Insulation
+	additionalOptions: AdditionalOptions
 }
 
 export type Customer = {
@@ -100,12 +100,12 @@ export type BuildingInfo = {
 	numOfBays: number
 	roofShape: string
 	bays?: Bay[]
-  // New fields to calculate on form submission
-  roofLength: number
-  highSideEaveHeight: number
-  sidewall2ExtRafterLength: number
-  sidewall4ExtRafterLength: number
-  netSingleRoofPanelQty: number
+	// New fields to calculate on form submission
+	roofLength: number
+	highSideEaveHeight: number
+	sidewall2ExtRafterLength: number
+	sidewall4ExtRafterLength: number
+	netSingleRoofPanelQty: number
 }
 
 type Bay = {
@@ -342,13 +342,13 @@ export type AdditionalOptions = {
 		sidewall4: Overhang
 	}
 	extension: {
-    endwall1: Extension
+		endwall1: Extension
 		endwall2: Extension
 		endwall3: Extension
 		sidewall4: Extension
-  }
-  sidewall2EaveExtPitch: number
-  sidewall4EaveExtPitch: number
+	}
+	sidewall2EaveExtPitch: number
+	sidewall4EaveExtPitch: number
 }
 
 type RidgeVentType = 'Standard' | 'Low Profile'
@@ -383,4 +383,3 @@ type Extension = {
 	soffitTrimColor: ColorsOrNone
 	expandable: boolean
 }
-

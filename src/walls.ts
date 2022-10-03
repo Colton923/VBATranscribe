@@ -1,11 +1,12 @@
 import { Building } from './Main'
+import { BuildingInfo } from "./types/Project"
 
 const DOORHEIGHT = 84
 const DOORWIDTH_3070 = 36
 const DOORWIDTH_4070 = 48
 const SIDEWALL2_POS_X = 0
 //smallest thing we are measuring by
-const DEFAULT_MIN_DISTANCE = 1 / 16
+const DEFAULT_MIN_DISTANCE = 0.0625 // 1/16th of an inch
 
 /*
  ************************** Every value is to be read in inches **************************
@@ -14,91 +15,101 @@ const DEFAULT_MIN_DISTANCE = 1 / 16
 
 //single-sloped building high side is the last side.
 export default function steelBuilding(Building: Building) {
-	const buildingX = Building.DATA.info.length
-	const buildingY = Building.DATA.info.width
+	const buildingX = Building.info.length
+	const buildingY = Building.info.width
 	const buildingZ = 0
-	if (Building.DATA.info.roofShape === 'Gable') {
-		const buildingZ = Building.DATA.info.height + (Building.DATA.info.roofPitch * buildingY) / 2
+
+	if (Building.info.roofShape === 'Gable') {
+		const buildingZ = Building.info.height + (Building.info.roofPitch * buildingY) / 2
 	} else {
-		const buildingZ = Building.DATA.info.height + Building.DATA.info.roofPitch * buildingY
+		const buildingZ = Building.info.height + Building.info.roofPitch * buildingY
 	}
 
 	const perimeter =
 		buildingX * 2 +
 		buildingY * 2 +
-		Building.DATA.exteriorPanels.wallAlterationsGroup.endwall1.length +
-		Building.DATA.exteriorPanels.wallAlterationsGroup.sidewall2.length +
-		Building.DATA.exteriorPanels.wallAlterationsGroup.endwall3.length +
-		Building.DATA.exteriorPanels.wallAlterationsGroup.sidewall4.length
+		Building.exteriorPanels.wallAlterationsGroup.endwall1.length +
+		Building.exteriorPanels.wallAlterationsGroup.sidewall2.length +
+		Building.exteriorPanels.wallAlterationsGroup.endwall3.length +
+		Building.exteriorPanels.wallAlterationsGroup.sidewall4.length
 	// Make Columns
-	const columnList: threeD[] = []
+	const columnList: ThreeD[] = []
 
 	// First generation of Columns doesn't include columns additional due to OverHead Doors
-	for (let indexI = 0; indexI <= Building.DATA.info.numOfBays; indexI++) {
-		for (let indexJ = 0; indexJ < Math.ceil(buildingY / 30); indexJ++) {
-			if (indexI === 0 || indexI === Building.DATA.info.numOfBays) {
-				const newColumn = new threeD()
-				newColumn.xPos = 0 + indexI * Building.DATA.bays[indexI].length
-				newColumn.yPos = 0 + ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30)
-				newColumn.zPos = 0
-				newColumn.height_Z = roofHeight(Building, newColumn.yPos)
-				newColumn.name = 'Column'
+  if (Building.info.numOfBays > 0 && Building.info.bays) {
+    for (let indexI = 0; indexI <= Building.info.numOfBays; indexI++) {
+      for (let indexJ = 0; indexJ < Math.ceil(buildingY / 30); indexJ++) {
+        if (indexI === 0 || indexI === Building.info.numOfBays) {
+          const newColumn = new ThreeD()
+          newColumn.xPos = 0 + indexI * Building.info.bays[indexI].length
+          newColumn.yPos = 0 + ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30)
+          newColumn.zPos = 0
+          newColumn.height_Z = roofHeight(Building.info, newColumn.yPos)
+          newColumn.name = 'Column'
 
-				// Need the steel lookup tables accessible.
-				// TODO Use lookup table for type
-				newColumn.type = 'W#x#'
-				columnList.push(newColumn)
-			} else if (
-				((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30) === 0 ||
-				((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30) ===
-					(Math.ceil(buildingY / 30) * buildingY) / Math.ceil(buildingY / 30)
-			) {
-				const newColumn = new threeD()
-				newColumn.xPos = 0 + indexI * Building.DATA.bays[indexI].length
-				newColumn.yPos = 0 + ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30)
-				newColumn.zPos = 0
-				newColumn.height_Z = roofHeight(Building, newColumn.yPos)
-				newColumn.name = 'Column'
+          // Need the steel lookup tables accessible.
+          // TODO Use lookup table for type
+          newColumn.type = 'W#x#'
+          columnList.push(newColumn)
+        } else if (
+          ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30) === 0 ||
+          ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30) ===
+            (Math.ceil(buildingY / 30) * buildingY) / Math.ceil(buildingY / 30)
+        ) {
+          const newColumn = new ThreeD()
+          newColumn.xPos = 0 + indexI * Building.info.bays[indexI].length
+          newColumn.yPos = 0 + ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30)
+          newColumn.zPos = 0
+          newColumn.height_Z = roofHeight(Building.info, newColumn.yPos)
+          newColumn.name = 'Column'
 
-				// Need the steel lookup tables accessible.
-				// TODO Use lookup table for type
-				newColumn.type = 'W#x#'
-				columnList.push(newColumn)
-			}
-		}
-	}
+          // Need the steel lookup tables accessible.
+          // TODO Use lookup table for type
+          newColumn.type = 'W#x#'
+          columnList.push(newColumn)
+        }
+      }
+    }
+  }
 	// Add logic here for if there's an overhead door and it intersects an existing
 	// column, then move the column to the left side of the OH Door,
 	// and add another column on the right side of the OH Door
 
 	// Make Rafters
-	const rafterList: threeD[] = []
-	for (let indexI = 0; indexI <= Building.DATA.info.numOfBays; indexI++) {
-		const newRafter = new threeD()
-		newRafter.xPos = 0 + (1 + indexI) * Building.DATA.bays[indexI].length
-		newRafter.yPos = 0
-		newRafter.zPos = Building.DATA.info.roofHeight
-		if (Building.DATA.roofShape === 'Gable') {
-			newRafter.height_Z = (Building.DATA.roofPitch * Building.DATA.info.width) / 2
-		} else {
-			newRafter.height_Z = Building.DATA.roofPitch * Building.DATA.info.width
-		}
-		newRafter.width_Y = Building.DATA.info.width
-		newRafter.name = 'Rafter'
-		// Need the steel lookup tables accessible.
-		// TODO Use lookup table for type
-		newRafter.type = 'W#x#'
-		rafterList.push(newRafter)
-	}
+	const rafterList: ThreeD[] = []
+
+  if (Building.info.numOfBays > 0 && Building.info.bays) {
+    for (let indexI = 0; indexI <= Building.info.numOfBays; indexI++) {
+      const newRafter = new ThreeD()
+      newRafter.xPos = 0 + (1 + indexI) * Building.info.bays[indexI].length
+      newRafter.yPos = 0
+      newRafter.zPos = Building.info.roofHeight
+
+      if (Building.info.roofShape === 'Gable') {
+        newRafter.height_Z = (Building.info.roofPitch * Building.info.width) / 2
+      } else {
+        newRafter.height_Z = Building.info.roofPitch * Building.info.width
+      }
+
+      newRafter.width_Y = Building.info.width
+      newRafter.name = 'Rafter'
+      // Need the steel lookup tables accessible.
+      // TODO Use lookup table for type
+      newRafter.type = 'W#x#'
+      rafterList.push(newRafter)
+    }
+  }
 
 	// Make Purlins & Eave Struts
 	// New Building Property = Purlin Spacing Max
-	const purlinList: threeD[] = []
-	const purlinCount = Math.ceil(buildingY / Building.DATA.info.MaxPurlinSpacing)
+	const purlinList: ThreeD[] = []
+	const purlinCount = Math.ceil(buildingY / Building.info.maxPurlinSpacing)
 	let purlinSpace = Math.ceil((buildingY / purlinCount) * 100) / 100
+
 	for (let indexI = 0; indexI <= purlinCount; indexI++) {
-		const newPurlin = new threeD()
+		const newPurlin = new ThreeD()
 		newPurlin.xPos = 0
+
 		if (indexI === purlinCount) {
 			purlinSpace = buildingY / indexI
 			newPurlin.name = 'Eave Strut'
@@ -107,12 +118,15 @@ export default function steelBuilding(Building: Building) {
 		} else {
 			newPurlin.name = 'Purlin'
 		}
+
 		newPurlin.yPos = 0 + indexI * purlinSpace
-		if (Building.DATA.roofShape === 'Gable') {
-			newPurlin.zPos = (Building.DATA.roofPitch * Building.DATA.info.width) / 2
+
+		if (Building.info.roofShape === 'Gable') {
+			newPurlin.zPos = (Building.info.roofPitch * Building.info.width) / 2
 		} else {
-			newPurlin.zPos = Building.DATA.roofPitch * Building.DATA.info.width
+			newPurlin.zPos = Building.info.roofPitch * Building.info.width
 		}
+
 		newPurlin.length_X = buildingX
 		// Need the steel lookup tables accessible.
 		// TODO Use lookup table for type
@@ -121,17 +135,17 @@ export default function steelBuilding(Building: Building) {
 	}
 
 	// Make Girts
-	const girtList: threeD[] = []
+	const girtList: ThreeD[] = []
 	const firstGirt = 7 + 1 / 6
 
 	// Endwall 1
 	let girtSpace = 5
 	let girtCount = Math.ceil((buildingZ - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		const newGirt = new threeD()
-		if (indexI * girtSpace + firstGirt > Building.DATA.info.roofHeight) {
+		const newGirt = new ThreeD()
+		if (indexI * girtSpace + firstGirt > Building.info.roofHeight) {
 			newGirt.xPos = 0
-			newGirt.yPos = pos_Y_fromMid_givenRoofHeight(Building, indexI * girtSpace)
+			newGirt.yPos = pos_Y_fromMid_givenRoofHeight(Building.info, indexI * girtSpace)
 			newGirt.width_Y = newGirt.yPos * 2
 		} else {
 			newGirt.xPos = 0
@@ -152,14 +166,14 @@ export default function steelBuilding(Building: Building) {
 
 	// Sidewall 2
 	girtSpace = 5
-	girtCount = Math.ceil((Building.DATA.info.roofHeight - firstGirt) / girtSpace) + 1
+	girtCount = Math.ceil((Building.info.roofHeight - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		const newGirt = new threeD()
+		const newGirt = new ThreeD()
 		newGirt.xPos = 0
 		newGirt.yPos = 0
 
 		if ((indexI = 1)) {
-			girtSpace = Math.ceil(((Building.DATA.info.roofHeight - firstGirt) / girtCount) * 100) / 100
+			girtSpace = Math.ceil(((Building.info.roofHeight - firstGirt) / girtCount) * 100) / 100
 		}
 		newGirt.zPos = girtSpace * indexI + firstGirt
 		newGirt.length_X = buildingX
@@ -175,10 +189,10 @@ export default function steelBuilding(Building: Building) {
 	girtSpace = 5
 	girtCount = Math.ceil((buildingZ - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		const newGirt = new threeD()
-		if (indexI * girtSpace + firstGirt > Building.DATA.info.roofHeight) {
+		const newGirt = new ThreeD()
+		if (indexI * girtSpace + firstGirt > Building.info.roofHeight) {
 			newGirt.xPos = buildingX
-			newGirt.yPos = pos_Y_fromMid_givenRoofHeight(Building, indexI * girtSpace)
+			newGirt.yPos = pos_Y_fromMid_givenRoofHeight(Building.info, indexI * girtSpace)
 			newGirt.width_Y = newGirt.yPos * 2
 		} else {
 			newGirt.xPos = buildingX
@@ -200,14 +214,14 @@ export default function steelBuilding(Building: Building) {
 
 	// Sidewall 4
 	girtSpace = 5
-	girtCount = Math.ceil((Building.DATA.info.roofHeight - firstGirt) / girtSpace) + 1
+	girtCount = Math.ceil((Building.info.roofHeight - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		const newGirt = new threeD()
+		const newGirt = new ThreeD()
 		newGirt.xPos = 0
 		newGirt.yPos = buildingY
 
 		if ((indexI = 1)) {
-			girtSpace = Math.ceil(((Building.DATA.info.roofHeight - firstGirt) / girtCount) * 100) / 100
+			girtSpace = Math.ceil(((Building.info.roofHeight - firstGirt) / girtCount) * 100) / 100
 		}
 		newGirt.zPos = girtSpace * indexI + firstGirt
 		newGirt.length_X = buildingX
@@ -223,39 +237,22 @@ export default function steelBuilding(Building: Building) {
 
 	// Possibly add bracing
 }
-function roofHeight(
-	Building: {
-		DATA: { info: { roofShape: string; width: number; roofHeight: number }; roofPitch: number }
-	},
-	POS_Y: number
-) {
-	if (Building.DATA.info.roofShape === 'Gable' && POS_Y > Building.DATA.info.width / 2) {
-		return (
-			Building.DATA.info.roofHeight + Building.DATA.roofPitch * (POS_Y - Building.DATA.info.width)
-		)
+function roofHeight(info: BuildingInfo,	POS_Y: number) {
+	if (info.roofShape === 'Gable' && POS_Y > info.width / 2) {
+		return info.roofHeight + info.roofPitch * (POS_Y - info.width)
 	}
-	return Building.DATA.info.roofHeight + POS_Y * Building.DATA.roofPitch
+	return info.roofHeight + POS_Y * info.roofPitch
 }
 
-function pos_Y_fromMid_givenRoofHeight(
-	Building: {
-		DATA: { info: { roofShape: string; width: number; roofHeight: number }; roofPitch: number }
-	},
-	roofHeight: number
-) {
-	if (Building.DATA.info.roofShape === 'Gable') {
-		return (
-			Building.DATA.info.width / 2 -
-			1 / ((roofHeight - Building.DATA.info.roofHeight) * Building.DATA.roofPitch)
-		)
+function pos_Y_fromMid_givenRoofHeight(info: BuildingInfo, otherRoofHeight: number) {
+	if (info.roofShape === 'Gable') {
+		return (info.width / 2 -	1) / ((otherRoofHeight - info.roofHeight) * info.roofPitch)
 	}
-	return (
-		Building.DATA.info.width -
-		1 / ((roofHeight - Building.DATA.info.roofHeight) * Building.DATA.roofPitch)
-	)
+
+	return (info.width - 1) / ((otherRoofHeight - info.roofHeight) * info.roofPitch)
 }
 
-class threeD {
+class ThreeD {
 	length_X = 0
 	width_Y = 0
 	height_Z = 0

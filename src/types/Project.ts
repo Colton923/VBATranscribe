@@ -101,11 +101,13 @@ export type BuildingInfo = {
 	roofShape: string
 	bays?: Bay[]
 	// New fields to calculate on form submission
+  roofHeight: number
 	roofLength: number
 	highSideEaveHeight: number
 	sidewall2ExtRafterLength: number
 	sidewall4ExtRafterLength: number
 	netSingleRoofPanelQty: number
+  maxPurlinSpacing: number
 }
 
 type Bay = {

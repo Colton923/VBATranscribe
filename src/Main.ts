@@ -1,10 +1,10 @@
-import type { BuildingData, BuildingInfo, Customer, FramedOpenings, Trim } from './types/Building'
+import type { BuildingData, BuildingInfo, Customer, ExteriorPanels, FramedOpenings, Trim } from './types/Project'
 import inchesInputToImperial from './inchesToImperial'
 
 export class Building {
-	readonly CUSTOMER: Customer
-	readonly DATA: BuildingData
-	readonly UNDERCUT = 4.25
+	private readonly CUSTOMER: Customer
+	private readonly DATA: BuildingData
+	private readonly UNDERCUT = 4.25
 
 	constructor() {
 		this.CUSTOMER = {} as Customer
@@ -32,21 +32,37 @@ export class Building {
 		return inchesInputToImperial(parseInt(inches))
 	}
 
-	get buildingData() {
+	get data() {
 		return this.DATA
 	}
 
-	get buildingInfo() {
+	get info() {
 		return this.DATA.info
 	}
 
-	set buildingInfo(buildingInfo: BuildingInfo) {
+	set info(buildingInfo: BuildingInfo) {
 		this.DATA.info = buildingInfo
 	}
+
+	get exteriorPanels() {
+		return this.DATA.exteriorPanels
+	}
+
+	set exteriorPanels(buildingInfo: ExteriorPanels) {
+		this.DATA.exteriorPanels = buildingInfo
+	}
+
+  get trim() {
+    return this.DATA.trim
+  }
 
 	set trim(trim: Trim) {
 		this.DATA.trim = trim
 	}
+
+  get framedOpenings() {
+    return this.DATA.framedOpenings
+  }
 
 	set framedOpenings(framedOpenings: FramedOpenings) {
 		this.DATA.framedOpenings = framedOpenings

@@ -1,5 +1,7 @@
 import { Building } from './Main'
 import { rafterTbl, columnTbl, nonExpandableColumnTbl } from './constTables/Steel'
+import steelTableValue from './functions/steelTableIndexer'
+
 const DOORHEIGHT = 84
 const DOORWIDTH_3070 = 36
 const DOORWIDTH_4070 = 48
@@ -16,13 +18,17 @@ const DEFAULT_MIN_DISTANCE = 1 / 16
 export default function steelBuilding(Building: Building) {
 	const buildingX = Building.DATA.info.length
 	const buildingY = Building.DATA.info.width
-	let buildingZ = 0
-	const columnSeparationMax = 60 / Math.round((Math.sqrt( (Building.DATA.info.roofPitch / 12) * (Building.DATA.info.roofPitch / 12) + 1)))
+	const columnSeparationMax =
+		60 /
+		Math.round(
+			Math.sqrt((Building.DATA.info.roofPitch / 12) * (Building.DATA.info.roofPitch / 12) + 1)
+		)
+	const buildingZ = 0
 
 	if (Building.DATA.info.roofShape === 'Gable') {
-		let buildingZ = Building.DATA.info.height + (Building.DATA.info.roofPitch * buildingY) / 2
+		const buildingZ = Building.DATA.info.height + (Building.DATA.info.roofPitch * buildingY) / 2
 	} else {
-		let buildingZ = Building.DATA.info.height + Building.DATA.info.roofPitch * buildingY
+		const buildingZ = Building.DATA.info.height + Building.DATA.info.roofPitch * buildingY
 	}
 
 	const perimeter =
@@ -33,44 +39,32 @@ export default function steelBuilding(Building: Building) {
 		Building.DATA.exteriorPanels.wallAlterationsGroup.endwall3.length +
 		Building.DATA.exteriorPanels.wallAlterationsGroup.sidewall4.length
 	// Make Columns
-	let columnList: threeD[] = []
+	const columnList: threeD[] = []
 
-	// First generation of Columns includes all perimeter columns
-	// .type only considers that the bay length is between 10 and 80 feet, and the height is between 20 and 80 feet.
-	// .type doesn't consider endwalls being expandable.
+	// First generation of Columns includes all perimeter and interior columns. I believe that interior columns use different values for the steelTableValue() function.
+	// TODO: Check on the above.
 
 	for (let indexI = 0; indexI <= Building.DATA.info.numOfBays; indexI++) {
-		for (let indexJ = 0; indexJ < Math.ceil(buildingY / 30); indexJ++) {
-			if (indexI === 0 || indexI === Building.DATA.info.numOfBays) {
-				let newColumn = new threeD()
-				newColumn.xPos = 0 + indexI * Building.DATA.bays[indexI].length
-				newColumn.yPos = 0 + ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30)
-				newColumn.zPos = 0
-				newColumn.height_Z = roofHeight(Building, newColumn.yPos)
-				newColumn.name = 'Column'
-				newColumn.type = columnTbl[ ( Math.ceil( Building.DATA.bays[indexI].length /12 / 10) - 1 ) ][ ( Math.ceil( newColumn.height_Z /12 / 10 ) ) - 1 ]
-				columnList.push(newColumn)
-			} else if (
-				((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30) === 0 ||
-				((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30) ===
-					(Math.ceil(buildingY / 30) * buildingY) / Math.ceil(buildingY / 30)
-			) {
-				let newColumn = new threeD()
-				newColumn.xPos = 0 + indexI * Building.DATA.bays[indexI].length
-				newColumn.yPos = 0 + ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30)
-				newColumn.zPos = 0
-				newColumn.height_Z = roofHeight(Building, newColumn.yPos)
-				newColumn.name = 'Column'
-				newColumn.type = columnTbl[ ( Math.ceil( Building.DATA.bays[indexI].length /12 / 10) - 1 ) ][ ( Math.ceil( newColumn.height_Z /12 / 10 ) ) - 1 ]
-				columnList.push(newColumn)
-			}
+		for (let indexJ = 0; indexJ < Math.ceil(buildingY / 30 / 12); indexJ++) {
+			const newColumn = new threeD()
+			newColumn.xPos = 0 + indexI * Building.DATA.bays[indexI].length
+			newColumn.yPos = 0 + ((1 + indexJ) * buildingY) / Math.ceil(buildingY / 30)
+			newColumn.zPos = 0
+			newColumn.height_Z = roofHeight(Building, newColumn.yPos)
+			newColumn.name = 'Column'
+			newColumn.type = steelTableValue(
+				columnTbl,
+				Building.DATA.bays[indexI].length / 12,
+				newColumn.height_Z / 12
+			)
+			columnList.push(newColumn)
 		}
 	}
 
 	// Make Rafters
-	let rafterList: threeD[] = []
+	const rafterList: threeD[] = []
 	for (let indexI = 0; indexI <= Building.DATA.info.numOfBays; indexI++) {
-		let newRafter = new threeD()
+		const newRafter = new threeD()
 		newRafter.xPos = 0 + (1 + indexI) * Building.DATA.bays[indexI].length
 		newRafter.yPos = 0
 		newRafter.zPos = Building.DATA.info.roofHeight
@@ -81,22 +75,25 @@ export default function steelBuilding(Building: Building) {
 		}
 		newRafter.width_Y = Building.DATA.info.width
 		newRafter.name = 'Rafter'
-		newRafter.type = rafterTbl[ ( Math.ceil( Building.DATA.bays[indexI].length /12 / 10) - 1 ) ][ ( Math.ceil( newRafter.height_Z /12 / 10 ) ) - 1 ]
+		newRafter.type =
+			rafterTbl[Math.ceil(Building.DATA.bays[indexI].length / 12 / 10) - 1][
+				Math.ceil(newRafter.height_Z / 12 / 10) - 1
+			]
 		rafterList.push(newRafter)
 	}
 
 	// Make Purlins & Eave Struts & "Receiver Cees" (Receiver Channels)
 	// New Building Property = Purlin Spacing Max
-	// 
+	//
 	// TODO:
 	// Confirmation that Building.DATA.info.MaxPurlinSpacing Exists ?
 	//
 
-	let purlinList: threeD[] = []
+	const purlinList: threeD[] = []
 	const purlinCount = Math.ceil(buildingY / Building.DATA.info.MaxPurlinSpacing)
 	let purlinSpace = Math.ceil((buildingY / purlinCount) * 100) / 100
 	for (let indexI = 0; indexI <= purlinCount; indexI++) {
-		let newPurlin = new threeD()
+		const newPurlin = new threeD()
 		newPurlin.xPos = 0
 		newPurlin.length_X = buildingX
 		newPurlin.yPos = 0 + indexI * purlinSpace
@@ -118,7 +115,7 @@ export default function steelBuilding(Building: Building) {
 
 	// Make Reciever Channels
 	// Two Reciever Channels for each side of shed. Connects the purlins together at the ends.
-	let recieverChannel1 = new threeD()
+	const recieverChannel1 = new threeD()
 	recieverChannel1.xPos = 0
 	recieverChannel1.yPos = 0
 	recieverChannel1.width_Y = buildingY
@@ -126,7 +123,7 @@ export default function steelBuilding(Building: Building) {
 	recieverChannel1.type = 'C'
 	purlinList.push(recieverChannel1)
 
-	let recieverChannel2 = new threeD()
+	const recieverChannel2 = new threeD()
 	recieverChannel2.xPos = buildingX
 	recieverChannel2.yPos = 0
 	recieverChannel2.width_Y = buildingY
@@ -135,14 +132,14 @@ export default function steelBuilding(Building: Building) {
 	purlinList.push(recieverChannel2)
 
 	// Make Girts
-	let girtList: threeD[] = []
+	const girtList: threeD[] = []
 	const firstGirt = 7 + 1 / 6
 
 	// Endwall 1
 	let girtSpace = 5
 	let girtCount = Math.ceil((buildingZ - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		let newGirt = new threeD()
+		const newGirt = new threeD()
 		if (indexI * girtSpace + firstGirt > Building.DATA.info.roofHeight) {
 			newGirt.xPos = 0
 			newGirt.yPos = pos_Y_fromMid_givenRoofHeight(Building, indexI * girtSpace)
@@ -166,7 +163,7 @@ export default function steelBuilding(Building: Building) {
 	girtSpace = 5
 	girtCount = Math.ceil((Building.DATA.info.roofHeight - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		let newGirt = new threeD()
+		const newGirt = new threeD()
 		newGirt.xPos = 0
 		newGirt.yPos = 0
 
@@ -185,7 +182,7 @@ export default function steelBuilding(Building: Building) {
 	girtSpace = 5
 	girtCount = Math.ceil((buildingZ - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		let newGirt = new threeD()
+		const newGirt = new threeD()
 		if (indexI * girtSpace + firstGirt > Building.DATA.info.roofHeight) {
 			newGirt.xPos = buildingX
 			newGirt.yPos = pos_Y_fromMid_givenRoofHeight(Building, indexI * girtSpace)
@@ -210,7 +207,7 @@ export default function steelBuilding(Building: Building) {
 	girtSpace = 5
 	girtCount = Math.ceil((Building.DATA.info.roofHeight - firstGirt) / girtSpace) + 1
 	for (let indexI = 0; indexI <= girtCount; indexI++) {
-		let newGirt = new threeD()
+		const newGirt = new threeD()
 		newGirt.xPos = 0
 		newGirt.yPos = buildingY
 

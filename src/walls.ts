@@ -41,6 +41,7 @@ export default function steelBuilding(Building: Building) {
 	// Make Columns
 	const columnList: threeD[] = []
 
+	// Vertical Columns Gen
 	// First generation of Columns includes all perimeter and interior columns. I believe that interior columns use different values for the steelTableValue() function.
 	// TODO: Check on the above.
 

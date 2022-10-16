@@ -38,11 +38,193 @@ export default function steelBuilding(Building: Building) {
 		Building.DATA.exteriorPanels.wallAlterationsGroup.sidewall2.length +
 		Building.DATA.exteriorPanels.wallAlterationsGroup.endwall3.length +
 		Building.DATA.exteriorPanels.wallAlterationsGroup.sidewall4.length
+
+	// Make Framed Openings
+	const framedOpeningList: threeD[] = []
+
+	// First: Personnel Doors
+	for (let index = 0; index < Building.DATA.BuildingData.personnelDoors.numOfDoors; index++) {
+		const element = Building.DATA.BuildingData.personnelDoors.doors[index]
+		if (element.PersonnelDoorWall === 'Endwall 1') {
+			const newFO = new threeD()
+			newFO.xPos = 0
+			newFO.yPos = element.leftEdgePos
+			newFO.zPos = 0
+			newFO.height_Z = 7 * 12
+			if (element.PersonnelDoorSize === 3070) {
+				newFO.width_Y = 3 * 12
+			} else {
+				newFO.width_Y = 4 * 12
+			}
+			framedOpeningList.push(newFO)
+		} else if (element.PersonnelDoorWall === 'Sidewall 2') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX - element.leftEdgePos
+			newFO.yPos = 0
+			newFO.zPos = 0
+			newFO.height_Z = 7 * 12
+			if (element.PersonnelDoorSize === 3070) {
+				newFO.length_X = 3 * 12
+			} else {
+				newFO.length_X = 4 * 12
+			}
+			framedOpeningList.push(newFO)
+		} else if (element.PersonnelDoorWall === 'Endwall 3') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX
+			newFO.yPos = buildingY - element.leftEdgePos
+			newFO.zPos = 0
+			newFO.height_Z = 7 * 12
+			if (element.PersonnelDoorSize === 3070) {
+				newFO.width_Y = 3 * 12
+			} else {
+				newFO.width_Y = 4 * 12
+			}
+			framedOpeningList.push(newFO)
+		} else if (element.PersonnelDoorWall === 'Sidewall 4') {
+			const newFO = new threeD()
+			newFO.xPos = element.leftEdgePos
+			newFO.yPos = buildingY
+			newFO.zPos = 0
+			newFO.height_Z = 7 * 12
+			if (element.PersonnelDoorSize === 3070) {
+				newFO.length_X = 3 * 12
+			} else {
+				newFO.length_X = 4 * 12
+			}
+			framedOpeningList.push(newFO)
+		}
+	}
+	// Second: Overhead Doors
+
+	for (let index = 0; index < Building.DATA.BuildingData.overheadDoors.numOfDoors; index++) {
+		const element = Building.DATA.BuildingData.overheadDoors.doors[index]
+		if (element.wall === 'Endwall 1') {
+			const newFO = new threeD()
+			newFO.xPos = 0
+			newFO.yPos = element.leftEdgePos
+			newFO.zPos = 0
+			newFO.height_Z = element.height
+			newFO.width_Y = element.width
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Sidewall 2') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX - element.leftEdgePos
+			newFO.yPos = 0
+			newFO.zPos = 0
+			newFO.height_Z = element.height
+			newFO.length_X = element.width
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Endwall 3') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX
+			newFO.yPos = buildingY - element.leftEdgePos
+			newFO.zPos = 0
+			newFO.height_Z = element.height
+			newFO.width_Y = element.width
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Sidewall 4') {
+			const newFO = new threeD()
+			newFO.xPos = element.leftEdgePos
+			newFO.yPos = buildingY
+			newFO.zPos = 0
+			newFO.height_Z = element.height
+			newFO.length_X = element.width
+			framedOpeningList.push(newFO)
+		}
+	}
+
+	// Third: Windows
+	for (let index = 0; index < Building.DATA.BuildingData.windows.numOfWindows; index++) {
+		const element = Building.DATA.BuildingData.windows.windows[index]
+		if (element.wall === 'Endwall 1') {
+			const newFO = new threeD()
+			newFO.xPos = 0
+			newFO.yPos = element.leftEdgePos
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.width_Y = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Sidewall 2') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX - element.leftEdgePos
+			newFO.yPos = 0
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.length_X = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Endwall 3') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX
+			newFO.yPos = buildingY - element.leftEdgePos
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.width_Y = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Sidewall 4') {
+			const newFO = new threeD()
+			newFO.xPos = element.leftEdgePos
+			newFO.yPos = buildingY
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.length_X = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		}
+	}
+	// Fourth: Miscellaneous
+	for (
+		let index = 0;
+		index < Building.DATA.BuildingData.framedOpenings.numOfFramedOpenings;
+		index++
+	) {
+		const element = Building.DATA.BuildingData.framedOpenings.group[index]
+		if (element.wall === 'Endwall 1') {
+			const newFO = new threeD()
+			newFO.xPos = 0
+			newFO.yPos = element.leftEdgePos
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.width_Y = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Sidewall 2') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX - element.leftEdgePos
+			newFO.yPos = 0
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.length_X = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Endwall 3') {
+			const newFO = new threeD()
+			newFO.xPos = buildingX
+			newFO.yPos = buildingY - element.leftEdgePos
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.width_Y = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		} else if (element.wall === 'Sidewall 4') {
+			const newFO = new threeD()
+			newFO.xPos = element.leftEdgePos
+			newFO.yPos = buildingY
+			newFO.zPos = element.bottomEdgePos
+			newFO.height_Z = element.height
+			newFO.length_X = element.width
+			newFO.height_Z = element.topEdgePos - element.bottomEdgePos
+			framedOpeningList.push(newFO)
+		}
+	}
+
 	// Make Columns
 	const columnList: threeD[] = []
 
-	// First generation of Columns includes all perimeter and interior columns. I believe that interior columns use different values for the steelTableValue() function.
-	// TODO: Check on the above.
+	// First generation of Columns includes all perimeter and interior columns.
 
 	for (let indexI = 0; indexI <= Building.DATA.info.numOfBays; indexI++) {
 		for (let indexJ = 0; indexJ < Math.ceil(buildingY / 30 / 12); indexJ++) {
@@ -221,8 +403,6 @@ export default function steelBuilding(Building: Building) {
 		newGirt.type = 'C'
 		girtList.push(newGirt)
 	}
-
-	// Make Framed Openings
 
 	// Possibly add bracing
 }

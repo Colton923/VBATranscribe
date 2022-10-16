@@ -6,6 +6,14 @@
 
 3. Overhead doors need to have drop down lists for height and width.
 
+4. Personnel Door Needs 'Endwall 3' Added to walls dropdown
+
+5. Overhead Door option for 'Roof' Removed
+
+# Changes that effect the base type Project.ts
+
+1. Type "FramedOpenings" .group doesn't go with the schema.
+
 # Concerns
 
 1. Windows.Width: Number, where the input is a string on the form.

@@ -1,5 +1,5 @@
 import type { BuildingData, BuildingInfo, Customer, FramedOpenings, Trim } from './types/Building'
-import inchesInputToImperial from './inchesToImperial'
+import inchesInputToImperial from './functions/inchesToImperial'
 
 export class Building {
 	readonly CUSTOMER: Customer

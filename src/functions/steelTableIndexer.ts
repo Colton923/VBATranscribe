@@ -5,7 +5,7 @@
  * 30 than 30.01 is. This is so that we can round up while using the table. Finally it does this again for the column, and returns the value in the table.
  */
 
-export default function steelIndex(table: any, row: number, col: number) {
+export default function steelTableValue(table: any, row: number, col: number) {
 	/* Make arrays for the first column and row of the table */
 	const distancesR: any[] = []
 	const distancesC: any[] = []
@@ -14,9 +14,9 @@ export default function steelIndex(table: any, row: number, col: number) {
 	let tblRow = 0
 	let tblCol = 0
 
-	/* Initialize other variables */
-	let scoreR = 1000
-	let scoreC = 1000
+	/* Initialize other variables to the first possible score */
+	let scoreR = Math.abs(+table[1][0] - row)
+	let scoreC = Math.abs(+table[0][1] - col)
 
 	/* Load the array with the first row of the table */
 	for (let index = 0; index < table.length; index++) {
@@ -24,7 +24,7 @@ export default function steelIndex(table: any, row: number, col: number) {
 	}
 
 	/* Load the array with the first column of the table */
-	for (let index = 0; index < table.length; index++) {
+	for (let index = 0; index < table[0].length; index++) {
 		distancesC.push(table[0][index])
 	}
 
@@ -38,8 +38,8 @@ export default function steelIndex(table: any, row: number, col: number) {
 	}
 
 	/* Find the closest match of given 'col' variable to the value in the table and return the index in the table */
-	for (let index = 0; index < distancesC[0].length; index++) {
-		const element = distancesC[0][index]
+	for (let index = 0; index < distancesC.length; index++) {
+		const element = distancesC[index]
 		if (Math.abs(+element - col) <= scoreC) {
 			scoreC = Math.abs(+element - col)
 			tblCol = index

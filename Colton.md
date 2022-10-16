@@ -8,11 +8,7 @@
 
 4. Personnel Door Needs 'Endwall 3' Added to walls dropdown
 
-5. Overhead Door option for 'Roof' Removed
-
 # Changes that effect the base type Project.ts
-
-1. Type "FramedOpenings" .group doesn't go with the schema.
 
 # Concerns
 

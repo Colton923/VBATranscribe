@@ -1,9 +1,9 @@
-import { threeD } from '../walls'
+import { ThreeD } from '../walls'
 export type buildingComponents = {
-	FramedOpenings: threeD[]
-	Columns: threeD[]
-    Rafters: threeD[]
-    Purlins: threeD[]
-    Girts: threeD[]
-    Panels: threeD[]
+  FramedOpenings: ThreeD[]
+  Columns: ThreeD[]
+  Rafters: ThreeD[]
+  Purlins: ThreeD[]
+  Girts: ThreeD[]
+  Panels: ThreeD[]
 }

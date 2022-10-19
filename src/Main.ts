@@ -6,19 +6,20 @@ export class Building {
   private readonly DATA: BuildingData
   private readonly UNDERCUT = 4.25
 
-  constructor() {
+  constructor(Building: BuildingData) {
     this.CUSTOMER = {} as Customer
-    this.DATA = {
-      info: {},
-      exteriorPanels: {},
-      trim: {},
-      personnelDoors: {},
-      overheadDoors: {},
-      windows: {},
-      framedOpenings: {},
-      insulation: {},
-      additionalOptions: {},
-    } as BuildingData
+    this.DATA = Building
+    // this.DATA = {
+    //   info: {},
+    //   exteriorPanels: {},
+    //   trim: {},
+    //   personnelDoors: {},
+    //   overheadDoors: {},
+    //   windows: {},
+    //   framedOpenings: {},
+    //   insulation: {},
+    //   additionalOptions: {},
+    // } as BuildingData
   }
 
   /**
@@ -84,7 +85,7 @@ export class Building {
     return this.DATA.insulation
   }
 
-  get additionalOptions() {
-    return this.DATA.additionalOptions
-  }
+  // get additionalOptions() {
+  //   return this.DATA.additionalOptions
+  // }
 }

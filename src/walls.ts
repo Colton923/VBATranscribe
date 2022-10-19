@@ -14,9 +14,9 @@ const DEFAULT_MIN_DISTANCE = 1 / 16
 
 function roofHeight(Building: Building, POS_Y: number) {
   if (Building.info.roofShape === 'Gable' && POS_Y > Building.info.width / 2) {
-    return Building.info.roofLength + Building.info.roofPitch * (POS_Y - Building.info.width)
+    return Building.info.height + Building.info.roofPitch * (POS_Y - Building.info.width)
   }
-  return Building.info.roofLength + POS_Y * Building.info.roofPitch
+  return Building.info.height + POS_Y * Building.info.roofPitch
 }
 
 export class ThreeD {
@@ -266,9 +266,9 @@ export function steelBuilding(Building: Building) {
 
       if (
         (indexI === 0 &&
-          Building.exteriorPanels.wallAlterationsGroup.endwall1.expendableEndwall === true) ||
+          Building.exteriorPanels.wallAlterationsGroup.endwall1.expandableEndwall === true) ||
         (indexI === Building.info.numOfBays &&
-          Building.exteriorPanels.wallAlterationsGroup.endwall3.expendableEndwall === true)
+          Building.exteriorPanels.wallAlterationsGroup.endwall3.expandableEndwall === true)
       ) {
         newColumn.type = steelTableValue(
           columnTbl,
@@ -691,7 +691,7 @@ export function steelBuilding(Building: Building) {
     newPanel.yPos = 0
     newPanel.zPos = 0
     newPanel.length_X = PANEL_WIDTH
-    newPanel.height_Z = Building.info.roofLength
+    newPanel.height_Z = Building.info.height
 
     framedOpeningList.forEach((element) => {
       if (
@@ -700,7 +700,7 @@ export function steelBuilding(Building: Building) {
       ) {
         if (newPanel.xPos > element.xPos && newPanel.xPos < element.xPos + element.length_X) {
           newPanel.zPos = element.height_Z
-          newPanel.height_Z = Building.info.roofLength - element.height_Z
+          newPanel.height_Z = Building.info.height - element.height_Z
         }
       }
     })
@@ -741,7 +741,7 @@ export function steelBuilding(Building: Building) {
     newPanel.yPos = buildingY
     newPanel.zPos = 0
     newPanel.length_X = PANEL_WIDTH
-    newPanel.height_Z = Building.info.roofLength
+    newPanel.height_Z = Building.info.height
 
     framedOpeningList.forEach((element) => {
       if (
@@ -750,7 +750,7 @@ export function steelBuilding(Building: Building) {
       ) {
         if (newPanel.xPos > element.xPos && newPanel.xPos < element.xPos + element.length_X) {
           newPanel.zPos = element.height_Z
-          newPanel.height_Z = Building.info.roofLength - element.height_Z
+          newPanel.height_Z = Building.info.height - element.height_Z
         }
       }
     })

@@ -96,15 +96,18 @@ export type BuildingInfo = {
 	length: number
 	numOfBays: number
 	roofShape: string
-	bays?: Array<{
-		length: number
-	}>
-	// New fields to calculate on form submission
+	bays: Bay[]
+	maxPurlinSpacing: 4 | 5 // ADD TO FORM
+	// Calculated properties
 	roofLength: number
 	highSideEaveHeight: number
 	sidewall2ExtRafterLength: number
 	sidewall4ExtRafterLength: number
 	netSingleRoofPanelQty: number
+}
+
+type Bay = {
+	length: number
 }
 
 /**
@@ -204,8 +207,6 @@ export type PersonnelDoors = {
 }
 
 type PersonnelDoor = {
-	width: number
-	height: number
 	size: PersonnelDoorSize
 	wall: PersonnelDoorWall
 	halfGlass: SelectBoolean
@@ -216,12 +217,8 @@ type PersonnelDoor = {
 	rightEdgePos: number
 }
 
-type PersonnelDoorSize = {
-	size: string
-	width: number
-	height: number
-}
-type PersonnelDoorWall = 'Endwall 1' | 'Sidewall 2' | 'Sidewall 4' | 'Field Locate'
+type PersonnelDoorSize = 3070 | 4070
+type PersonnelDoorWall = 'Endwall 1' | 'Sidewall 2' | 'Endwall 3' | 'Sidewall 4'
 type PersonnelDoorCanopy = 'No' | "4' x 4'6\"" | "4' x 7'6\""
 type PersonnelDoorJambSize = 4.25 | 6.25 | 8.25 | 10.25
 
@@ -240,7 +237,7 @@ type OverheadDoor = {
 	type: OverheadDoorType
 	insulation: OverheadDoorInsulation
 	operation: OverheadDoorOperation
-	highLift: boolean
+	heightLift: boolean
 	window: OverheadDoorWindows
 	leftEdgePos: number
 	rightEdgePos: number
@@ -301,8 +298,7 @@ type ExhuastFanLouvers =
 	| '24" Louver'
 	| '30" Louver'
 	| '36" Louver'
-
-type WeatherHood = 24 | 30 | 36
+type WeatherHood = '24"' | '30"' | '36"'
 
 type StructuralSteelOptions =
 	| 'Full Height Jambs w/ Header & Stool'

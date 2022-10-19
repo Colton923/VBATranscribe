@@ -1,11 +1,4 @@
-import type {
-	BuildingData,
-	BuildingInfo,
-	Customer,
-	ExteriorPanels,
-	FramedOpenings,
-	Trim,
-} from './types/Project'
+import type { BuildingData, BuildingInfo, Customer, FramedOpenings, Trim } from './types/Project'
 import inchesInputToImperial from './functions/inchesToImperial'
 
 export class Building {
@@ -39,7 +32,11 @@ export class Building {
 		return inchesInputToImperial(parseInt(inches))
 	}
 
-	get data() {
+	get customer() {
+		return this.CUSTOMER
+	}
+
+	get buildingData() {
 		return this.DATA
 	}
 
@@ -47,16 +44,12 @@ export class Building {
 		return this.DATA.info
 	}
 
-	set info(buildingInfo: BuildingInfo) {
-		this.DATA.info = buildingInfo
+	set info(info: BuildingInfo) {
+		this.DATA.info = info
 	}
 
 	get exteriorPanels() {
 		return this.DATA.exteriorPanels
-	}
-
-	set exteriorPanels(buildingInfo: ExteriorPanels) {
-		this.DATA.exteriorPanels = buildingInfo
 	}
 
 	get trim() {
@@ -67,11 +60,31 @@ export class Building {
 		this.DATA.trim = trim
 	}
 
+	get personnelDoors() {
+		return this.DATA.personnelDoors
+	}
+
+	get overheadDoors() {
+		return this.DATA.overheadDoors
+	}
+
+	get windows() {
+		return this.DATA.windows
+	}
+
 	get framedOpenings() {
 		return this.DATA.framedOpenings
 	}
 
 	set framedOpenings(framedOpenings: FramedOpenings) {
 		this.DATA.framedOpenings = framedOpenings
+	}
+
+	get insulation() {
+		return this.DATA.insulation
+	}
+
+	get additionalOptions() {
+		return this.DATA.additionalOptions
 	}
 }

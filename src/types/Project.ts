@@ -12,7 +12,7 @@ export type BuildingData = {
 	windows: Windows
 	framedOpenings: FramedOpenings
 	insulation: Insulation
-	additionalOptions: AdditionalOptions
+	// additionalOptions: AdditionalOptions
 }
 
 export type Customer = {
@@ -39,7 +39,8 @@ export type Customer = {
  * --------------------------
  */
 
-type SelectBoolean = '0' | '1'
+// type SelectBoolean = '0' | '1'
+type SelectBoolean = boolean
 
 export type Colors =
 	| 'Brilliant (White)'
@@ -97,13 +98,12 @@ export type BuildingInfo = {
 	numOfBays: number
 	roofShape: string
 	bays: Bay[]
-	maxPurlinSpacing: 4 | 5 // ADD TO FORM
+	maxPurlinSpacing: 48 | 60 // ADD TO FORM (4ft | 5ft)
 	// Calculated properties
-	roofLength: number
-	highSideEaveHeight: number
-	sidewall2ExtRafterLength: number
-	sidewall4ExtRafterLength: number
-	netSingleRoofPanelQty: number
+	highSideEaveHeight?: number
+	sidewall2ExtRafterLength?: number
+	sidewall4ExtRafterLength?: number
+	netSingleRoofPanelQty?: number
 }
 
 type Bay = {
@@ -153,7 +153,7 @@ type LinerPanelRoof = {
 
 type WallAlteration = {
 	wallStatus: 'Include' | 'Exclude' | 'Partial' | 'Gable Only'
-	expendableEndwall: boolean
+	expandableEndwall: boolean
 	length: number
 }
 
@@ -214,7 +214,6 @@ type PersonnelDoor = {
 	jambSize: PersonnelDoorJambSize
 	deadBolt: SelectBoolean
 	leftEdgePos: number
-	rightEdgePos: number
 }
 
 type PersonnelDoorSize = 3070 | 4070
@@ -240,7 +239,6 @@ type OverheadDoor = {
 	heightLift: boolean
 	window: OverheadDoorWindows
 	leftEdgePos: number
-	rightEdgePos: number
 }
 
 type OverheadDoorType = 'Sectional' | 'RUD' | 'Customer Provided'

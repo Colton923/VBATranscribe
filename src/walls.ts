@@ -2,6 +2,7 @@ import { Building } from './Main'
 import type { buildingComponents } from './types/buildingComponents'
 import { rafterTbl, columnTbl, nonExpandableColumnTbl } from './constTables/Steel'
 import steelTableValue from './functions/steelTableIndexer'
+import roundSixteenth from './functions/roundSixteenth'
 
 const DOORHEIGHT = 84
 const DOORWIDTH_3070 = 36
@@ -20,16 +21,39 @@ function roofHeight(Building: Building, POS_Y: number) {
 }
 
 export class ThreeD {
-	length_X = 0
-	width_Y = 0
-	height_Z = 0
+	_length_Y = 0
+	_width_X = 0
+	_height_Z = 0
 	xPos = 0
 	yPos = 0
 	zPos = 0
 	name = ''
 	type = ''
-}
 
+	get length_Y() {
+		return this._length_Y
+	}
+
+	set length_Y(val: number) {
+		this._length_Y = roundSixteenth(val)
+	}
+
+	get width_X() {
+		return this._width_X
+	}
+
+	set width_X(val: number) {
+		this._width_X = roundSixteenth(val)
+	}
+
+	get height_Z() {
+		return this._height_Z
+	}
+
+	set height_Z(val: number) {
+		this._height_Z = roundSixteenth(val)
+	}
+}
 /*
  ************************** Every value is to be read in inches **************************
  * Unsure about the below... TODO: Roll through the algo and make sure it can be read this way. It's a ratio.
@@ -788,3 +812,5 @@ export function steelBuilding(Building: Building) {
 	}
 	return components
 }
+
+console.log(steelBuilding(test))

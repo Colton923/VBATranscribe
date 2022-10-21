@@ -92,6 +92,7 @@ type Endwalls = 'Endwall 1' | 'Sidewall 2' | 'Endwall 3' | 'Sidewall 4' | 'Roof'
 export type BuildingInfo = {
 	width: number
 	height: number
+	// TODO: check the output format - possibly display 1/12 or 1:12 instead of options 1 - 10
 	roofPitch: number
 	gutters: boolean
 	length: number

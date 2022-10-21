@@ -646,17 +646,17 @@ export function steelBuilding(Building: Building) {
 			(buildingY / 2) * Building.info.roofPitch * ((buildingY / 2) * Building.info.roofPitch) +
 				(buildingY / 2) * (buildingY / 2)
 		)
-	let optimalCountRoofY = Math.ceil(
-		(2 *
-			Math.sqrt(
-				(buildingY / 2) * Building.info.roofPitch * ((buildingY / 2) * Building.info.roofPitch) +
-					(buildingY / 2) * (buildingY / 2)
-			)) /
-			(41 * 12)
-	)
-
-	if (optimalCountRoofY % 2 !== 0) {
-		optimalCountRoofY += 1
+	const optimalCountRoofY = Math.ceil(roofLen / (41 * 12))
+	const yVector = [optimalCountRoofY]
+	const tempPanelLen = roofLen / optimalCountRoofY
+	let totalPanelLen = 0
+	if (optimalCountRoofY % 2 !== 0 && Building.info.roofShape === 'Gable') {
+		for (let i = 0; i < optimalCountRoofY; i++) {
+			if (totalPanelLen <= roofLen / 2) {
+				yVector[i] = i * tempPanelLen
+				totalPanelLen += tempPanelLen
+			}
+		}
 	}
 
 	// Endwall 1
@@ -775,6 +775,8 @@ export function steelBuilding(Building: Building) {
 			}
 		}
 	}
+
+	// Screw Gen
 
 	const components: buildingComponents = {
 		FramedOpenings: framedOpeningList,

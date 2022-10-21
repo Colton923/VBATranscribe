@@ -6,38 +6,21 @@ export class Building {
 	private readonly DATA: BuildingData
 	private readonly UNDERCUT = 4.25
 
-<<<<<<< HEAD
-	constructor() {
+	constructor(Building: BuildingData) {
 		this.CUSTOMER = {} as Customer
-		this.DATA = {
-			info: {},
-			exteriorPanels: {},
-			trim: {},
-			personnelDoors: {},
-			overheadDoors: {},
-			windows: {},
-			framedOpenings: {},
-			insulation: {},
-			additionalOptions: {},
-		} as BuildingData
+		this.DATA = Building
+		// this.DATA = {
+		//   info: {},
+		//   exteriorPanels: {},
+		//   trim: {},
+		//   personnelDoors: {},
+		//   overheadDoors: {},
+		//   windows: {},
+		//   framedOpenings: {},
+		//   insulation: {},
+		//   additionalOptions: {},
+		// } as BuildingData
 	}
-=======
-  constructor(Building: BuildingData) {
-    this.CUSTOMER = {} as Customer
-    this.DATA = Building
-    // this.DATA = {
-    //   info: {},
-    //   exteriorPanels: {},
-    //   trim: {},
-    //   personnelDoors: {},
-    //   overheadDoors: {},
-    //   windows: {},
-    //   framedOpenings: {},
-    //   insulation: {},
-    //   additionalOptions: {},
-    // } as BuildingData
-  }
->>>>>>> 883480aa33de2a2b8ca328d114f5333fbbeaec9e
 
 	/**
 	 * Converts inches as a string into a number and then converts that number
@@ -102,13 +85,7 @@ export class Building {
 		return this.DATA.insulation
 	}
 
-<<<<<<< HEAD
-	get additionalOptions() {
-		return this.DATA.additionalOptions
-	}
-=======
-  // get additionalOptions() {
-  //   return this.DATA.additionalOptions
-  // }
->>>>>>> 883480aa33de2a2b8ca328d114f5333fbbeaec9e
+	// get additionalOptions() {
+	//   return this.DATA.additionalOptions
+	// }
 }

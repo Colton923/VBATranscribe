@@ -521,7 +521,6 @@ function inchesInputToImperial(inches: number) {
 		return str
 	}
 }
-
 class Building {
 	private readonly CUSTOMER: Customer
 	private readonly DATA: BuildingData
@@ -541,17 +540,6 @@ class Building {
 		//   insulation: {},
 		//   additionalOptions: {},
 		// } as BuildingData
-	}
-
-	/**
-	 * Converts inches as a string into a number and then converts that number
-	 * into a string with the imperial measurement
-	 *
-	 * @param inches
-	 * @returns {string} string of inches in imperial measurement
-	 */
-	static inchesInputToImperial(inches: string) {
-		return inchesInputToImperial(parseInt(inches))
 	}
 
 	get customer() {
@@ -814,6 +802,74 @@ function roofHeight(Building: Building, POS_X: number) {
 	return baseHeight + POS_X * Building.info.roofPitch
 }
 
+class Pricing {
+	private _shape = ''
+	private _description = ''
+	private _material = ''
+	// measurement is a string after it did the inchestoimperial fn
+	private _measurement = ''
+	private _color = ''
+	private _units = ''
+	private _cost_per_unit = 0
+	private _size = ''
+	private _cost = 0
+
+	get shape() {
+		return this._shape
+	}
+	set shape(val: string) {
+		this._shape = val
+	}
+	get description() {
+		return this._description
+	}
+	set description(val: string) {
+		this._description = val
+	}
+	get material() {
+		return this._material
+	}
+	set material(val: string) {
+		this._material = val
+	}
+	get measurement() {
+		return this._measurement
+	}
+	set measurement(val: string) {
+		this._measurement = val
+	}
+	get color() {
+		return this._color
+	}
+	set color(val: string) {
+		this._color = val
+	}
+	get units() {
+		return this._units
+	}
+	set units(val: string) {
+		this._units = val
+	}
+	get cost_per_unit() {
+		return this._cost_per_unit
+	}
+	set cost_per_unit(val: number) {
+		this._cost_per_unit = val
+	}
+	get size() {
+		return this._size
+	}
+	set size(val: string) {
+		this._size = val
+	}
+	get cost() {
+		return this._cost
+	}
+	set cost(val: number) {
+		this._cost = Math.round(val * 100) / 100
+	}
+}
+
 export class ThreeD {
 	private _length_Y = 0
 	private _width_X = 0
@@ -821,20 +877,11 @@ export class ThreeD {
 	private _xPos = 0
 	private _yPos = 0
 	private _zPos = 0
+	private _Pricings: Pricing[] = []
 	name = ''
 	type = ''
-
-	constructor(threeD?: ThreeD) {
-		if (threeD) {
-			this._length_Y = threeD._length_Y
-			this._width_X = threeD._width_X
-			this._height_Z = threeD._height_Z
-			this._xPos = threeD._xPos
-			this._yPos = threeD._yPos
-			this._zPos = threeD._zPos
-			this.name = threeD.name
-			this.type = threeD.type
-		}
+	constructor() {
+		this._Pricings = []
 	}
 
 	get length_Y() {
@@ -884,11 +931,77 @@ export class ThreeD {
 	set zPos(val: number) {
 		this._zPos = roundSixteenth(val)
 	}
-}
+	Pricing(index: number) {
+		if (this._Pricings.length < index) {
+			return 0
+		} else {
+			return this._Pricings[index]
+		}
+	}
 
-class MaterialsPricing extends ThreeD {
-	materials = {}
-	pricing = {}
+	// FO Pricing Set
+	fo_personnelDoor(halfGlass: boolean, canopy: string, jambSize: string, deadBolt: boolean) {
+		const newPricing = new Pricing()
+		if (this.name === 'Personnel Door') {
+			newPricing.units = '/each'
+			newPricing.measurement = jambSize
+			let sentence = this.type + ' '
+
+			if (canopy !== 'No') {
+				sentence += canopy + 'Door Slab '
+				const newPricing_PD_Canopy = new Pricing()
+				newPricing_PD_Canopy.description = '4' + "'" + ' 4' + "'" + '6' + '"' + ' Door Canopy'
+				newPricing_PD_Canopy.cost_per_unit = 0 // TODO: Lookup Table
+				newPricing_PD_Canopy.units = '/each'
+				this._Pricings.push(newPricing_PD_Canopy)
+			} else {
+				sentence += jambSize + ' ' + 'Jamb Kit'
+			}
+			if (deadBolt === true) {
+				sentence += 'W/ Deadbolt '
+			} else {
+				sentence += 'W/O Deadbolt '
+			}
+			if (halfGlass === true) {
+				sentence += 'W/ Glass '
+			} else {
+				sentence += 'W/O Glass '
+			}
+			newPricing.description = sentence
+			newPricing.cost_per_unit = 0 // TODO: Loookup This Table from fn we built last night
+		}
+		this._Pricings.push(newPricing)
+	}
+	fo_overheadDoor(
+		ohDoorType: string,
+		insulation: string,
+		operation: string,
+		highLift: boolean,
+		windows: string
+	) {
+		const newPricing = new Pricing()
+		if (this.name === 'Overhead Door') {
+			newPricing.description = ohDoorType + ' OH Door'
+			newPricing.units = '/each'
+			if (Math.abs(this.length_Y) > Math.abs(this.width_X)) {
+				newPricing.measurement =
+					inchesInputToImperial(this.length_Y) + ' x ' + inchesInputToImperial(this.height_Z)
+			} else {
+				newPricing.measurement =
+					inchesInputToImperial(this.width_X) + ' x ' + inchesInputToImperial(this.height_Z)
+			}
+			switch (ohDoorType) {
+				case 'Sectional':
+					newPricing.cost_per_unit = 0 // TODO: Lookup Table
+				case 'RUD':
+					newPricing.cost_per_unit = 0 // TODO: Lookup Table
+				case 'Customer Provided':
+					newPricing.cost_per_unit = 0 // TODO: Lookup Table
+			}
+			newPricing.cost_per_unit = 0 // TODO: Loookup This Table from fn we built last night
+		}
+		this._Pricings.push(newPricing)
+	}
 }
 
 /*
@@ -973,7 +1086,13 @@ export function steelBuilding(Building: Building) {
 					newFO.type = '4070'
 				}
 			}
-
+			newFO.fo_personnelDoor(
+				personnelDoor.halfGlass,
+				personnelDoor.canopy,
+				inchesInputToImperial(personnelDoor.jambSize),
+				personnelDoor.deadBolt
+			)
+			console.log(newFO.Pricing(0))
 			framedOpeningList.push(newFO)
 		}
 	}
@@ -1713,20 +1832,20 @@ export function steelBuilding(Building: Building) {
 	return components
 }
 
-class MaterialsList extends ThreeD {
-	quantity = 0
-	shape = ''
-	description = ''
-	measurement = ''
-	color = ''
-	footageCost = 0
-	unitPrice = 0
-	totalCost = 0
+// class MaterialsList extends ThreeD {
+// 	quantity = 0
+// 	shape = ''
+// 	description = ''
+// 	measurement = ''
+// 	color = ''
+// 	footageCost = 0
+// 	unitPrice = 0
+// 	totalCost = 0
 
-	constructor(threeD: ThreeD) {
-		super(threeD)
-	}
-}
+// 	constructor(threeD: ThreeD) {
+// 		super(threeD)
+// 	}
+// }
 
 // Pricing Object
 type StructuralSteelPricing = {
@@ -1785,7 +1904,7 @@ function calculateFramedOpeningsPrices(framedOpenings: ThreeD[]) {
 
 // }
 const result = steelBuilding(TestBuilding)
-console.log(result.Panels)
+//console.log(result.Panels)
 // TODO: Convert Steel.ts and SteelTableIndexer, and all it's usage in the above to the new system
 // console.log(TestBuilding.info.height)
 // console.log(TestBuilding.info.roofPitch)

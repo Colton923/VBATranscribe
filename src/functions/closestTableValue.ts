@@ -5,7 +5,7 @@
  * 30 than 30.01 is. This is so that we can round up while using the table. Finally it does this again for the column, and returns the value in the table.
  */
 
-export default function steelTableValue(table: any, row: number, col: number) {
+export default function closestTableValue(table: any, row: number, col: number) {
   /* Make arrays for the first column and row of the table */
   const distancesR: any[] = []
   const distancesC: any[] = []

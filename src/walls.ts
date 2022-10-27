@@ -1,6 +1,6 @@
 import { Building } from './Main'
 import type { buildingComponents } from './types/buildingComponents'
-import { rafterTbl, columnTbl, nonExpandableColumnTbl } from './constTables/Steel'
+import { rafterTable, columnTable, nonExpandableColumnTable } from './tables/Steel'
 import steelTableValue from './functions/closestTableValue'
 import roundSixteenth from './functions/roundSixteenth'
 
@@ -88,10 +88,10 @@ export function steelBuilding(Building: Building) {
         newFO.name = 'Personnel Door'
 
         if (personnelDoor.size === 3070) {
-          newFO.width_Y = DOORWIDTH_3070
+          newFO.width_X = DOORWIDTH_3070
           newFO.type = '3070'
         } else {
-          newFO.width_Y = DOORWIDTH_4070
+          newFO.width_X = DOORWIDTH_4070
           newFO.type = '4070'
         }
       } else if (personnelDoor.wall === 'Sidewall 2') {
@@ -102,10 +102,10 @@ export function steelBuilding(Building: Building) {
         newFO.name = 'Personnel Door'
 
         if (personnelDoor.size === 3070) {
-          newFO.length_X = -DOORWIDTH_3070
+          newFO.length_Y = -DOORWIDTH_3070
           newFO.type = '3070'
         } else {
-          newFO.length_X = -DOORWIDTH_4070
+          newFO.length_Y = -DOORWIDTH_4070
           newFO.type = '4070'
         }
       } else if (personnelDoor.wall === 'Endwall 3') {
@@ -116,10 +116,10 @@ export function steelBuilding(Building: Building) {
         newFO.name = 'Personnel Door'
 
         if (personnelDoor.size === 3070) {
-          newFO.width_Y = -DOORWIDTH_3070
+          newFO.width_X = -DOORWIDTH_3070
           newFO.type = '3070'
         } else {
-          newFO.width_Y = -DOORWIDTH_4070
+          newFO.width_X = -DOORWIDTH_4070
           newFO.type = '4070'
         }
       } else if (personnelDoor.wall === 'Sidewall 4') {
@@ -130,10 +130,10 @@ export function steelBuilding(Building: Building) {
         newFO.name = 'Personnel Door'
 
         if (personnelDoor.size === 3070) {
-          newFO.length_X = DOORWIDTH_3070
+          newFO.length_Y = DOORWIDTH_3070
           newFO.type = '3070'
         } else {
-          newFO.length_X = DOORWIDTH_4070
+          newFO.length_Y = DOORWIDTH_4070
           newFO.type = '4070'
         }
       }
@@ -153,7 +153,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = overheadDoor.leftEdgePos
         newFO.zPos = 0
         newFO.height_Z = overheadDoor.height
-        newFO.width_Y = overheadDoor.width
+        newFO.width_X = overheadDoor.width
         newFO.name = 'Overhead Door'
         newFO.type = ''
       } else if (overheadDoor.wall === 'Sidewall 2') {
@@ -161,7 +161,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = 0
         newFO.zPos = 0
         newFO.height_Z = overheadDoor.height
-        newFO.length_X = -overheadDoor.width
+        newFO.length_Y = -overheadDoor.width
         newFO.name = 'Overhead Door'
         newFO.type = ''
       } else if (overheadDoor.wall === 'Endwall 3') {
@@ -169,7 +169,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = buildingY - overheadDoor.leftEdgePos
         newFO.zPos = 0
         newFO.height_Z = overheadDoor.height
-        newFO.width_Y = -overheadDoor.width
+        newFO.width_X = -overheadDoor.width
         newFO.name = 'Overhead Door'
         newFO.type = ''
       } else if (overheadDoor.wall === 'Sidewall 4') {
@@ -177,7 +177,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = buildingY
         newFO.zPos = 0
         newFO.height_Z = overheadDoor.height
-        newFO.length_X = overheadDoor.width
+        newFO.length_Y = overheadDoor.width
         newFO.name = 'Overhead Door'
         newFO.type = ''
       }
@@ -196,7 +196,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = window.leftEdgePos
         newFO.zPos = window.bottomEdgePos
         newFO.height_Z = window.height
-        newFO.width_Y = window.width
+        newFO.width_X = window.width
         newFO.name = 'Window'
         newFO.type = ''
       } else if (window.wall === 'Sidewall 2') {
@@ -204,7 +204,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = 0
         newFO.zPos = window.bottomEdgePos
         newFO.height_Z = window.height
-        newFO.length_X = -window.width
+        newFO.length_Y = -window.width
         newFO.name = 'Window'
         newFO.type = ''
       } else if (window.wall === 'Endwall 3') {
@@ -212,7 +212,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = buildingY - window.leftEdgePos
         newFO.zPos = window.bottomEdgePos
         newFO.height_Z = window.height
-        newFO.width_Y = -window.width
+        newFO.width_X = -window.width
         newFO.name = 'Window'
         newFO.type = ''
       } else if (window.wall === 'Sidewall 4') {
@@ -220,7 +220,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = buildingY
         newFO.zPos = window.bottomEdgePos
         newFO.height_Z = window.height
-        newFO.length_X = window.width
+        newFO.length_Y = window.width
         newFO.name = 'Window'
         newFO.type = ''
       }
@@ -240,7 +240,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = framedOpening.leftEdgePos
         newFO.zPos = framedOpening.bottomEdgePos
         newFO.height_Z = framedOpening.height
-        newFO.width_Y = framedOpening.width
+        newFO.width_X = framedOpening.width
         newFO.name = 'Miscellaneous'
         newFO.type = ''
       } else if (framedOpening.wall === 'Sidewall 2') {
@@ -248,7 +248,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = 0
         newFO.zPos = framedOpening.bottomEdgePos
         newFO.height_Z = framedOpening.height
-        newFO.length_X = -framedOpening.width
+        newFO.length_Y = -framedOpening.width
         newFO.name = 'Miscellaneous'
         newFO.type = ''
       } else if (framedOpening.wall === 'Endwall 3') {
@@ -256,7 +256,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = buildingY - framedOpening.leftEdgePos
         newFO.zPos = framedOpening.bottomEdgePos
         newFO.height_Z = framedOpening.height
-        newFO.width_Y = -framedOpening.width
+        newFO.width_X = -framedOpening.width
         newFO.name = 'Miscellaneous'
         newFO.type = ''
       } else if (framedOpening.wall === 'Sidewall 4') {
@@ -264,7 +264,7 @@ export function steelBuilding(Building: Building) {
         newFO.yPos = buildingY
         newFO.zPos = framedOpening.bottomEdgePos
         newFO.height_Z = framedOpening.height
-        newFO.length_X = framedOpening.width
+        newFO.length_Y = framedOpening.width
         newFO.name = 'Miscellaneous'
         newFO.type = ''
       }
@@ -295,13 +295,13 @@ export function steelBuilding(Building: Building) {
           Building.exteriorPanels.wallAlterationsGroup.endwall3.expandableEndwall === true)
       ) {
         newColumn.type = steelTableValue(
-          columnTbl,
+          columnTable,
           Building.info.bays[indexI].length / 12,
           newColumn.height_Z / 12
         )
       } else {
         newColumn.type = steelTableValue(
-          nonExpandableColumnTbl,
+          nonExpandableColumnTable,
           Building.info.bays[indexI].length / 12,
           newColumn.height_Z / 12
         )
@@ -310,26 +310,26 @@ export function steelBuilding(Building: Building) {
       framedOpeningList.forEach((element) => {
         if (
           element.name === 'Overhead Door' &&
-          (element.length_X > 10 * 12 || element.width_Y > 10 * 12)
+          (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
         ) {
-          if (newColumn.xPos > element.xPos && newColumn.xPos < element.xPos + element.length_X) {
-            if (newColumn.yPos > element.yPos && newColumn.yPos < element.yPos + element.width_Y) {
+          if (newColumn.xPos > element.xPos && newColumn.xPos < element.xPos + element.length_Y) {
+            if (newColumn.yPos > element.yPos && newColumn.yPos < element.yPos + element.width_X) {
               newColumn.xPos = element.xPos
               newColumn.yPos = element.yPos
               newColumn.height_Z = roofHeight(Building, newColumn.yPos)
               newColumn.type = steelTableValue(
-                columnTbl,
+                columnTable,
                 Building.info.bays[indexI].length / 12,
                 newColumn.height_Z / 12
               )
 
               const extraColumn = new ThreeD()
-              extraColumn.xPos = element.xPos + element.length_X
-              extraColumn.yPos = element.yPos + element.width_Y
+              extraColumn.xPos = element.xPos + element.length_Y
+              extraColumn.yPos = element.yPos + element.width_X
               extraColumn.zPos = 0
               extraColumn.height_Z = newColumn.height_Z
-              extraColumn.length_X = newColumn.length_X
-              extraColumn.width_Y = newColumn.width_Y
+              extraColumn.length_Y = newColumn.length_Y
+              extraColumn.width_X = newColumn.width_X
               extraColumn.name = newColumn.name
               extraColumn.type = newColumn.type
               columnList.push(extraColumn)
@@ -354,20 +354,20 @@ export function steelBuilding(Building: Building) {
         framedOpeningList.forEach((element) => {
           if (
             element.name === 'Overhead Door' &&
-            (element.length_X > 10 * 12 || element.width_Y > 10 * 12)
+            (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
           ) {
             if (element.xPos === 0 || element.xPos === buildingX) {
               if (
                 newColumn.yPos > element.yPos &&
-                newColumn.yPos < element.yPos + element.width_Y
+                newColumn.yPos < element.yPos + element.width_X
               ) {
                 if (
                   Math.abs(newColumn.yPos - element.yPos) <
-                  Math.abs(newColumn.yPos - (element.yPos + element.width_Y))
+                  Math.abs(newColumn.yPos - (element.yPos + element.width_X))
                 ) {
                   newColumn.yPos = element.yPos
                 } else {
-                  newColumn.yPos = element.yPos + element.width_Y
+                  newColumn.yPos = element.yPos + element.width_X
                 }
               }
             }
@@ -375,15 +375,15 @@ export function steelBuilding(Building: Building) {
             if (element.yPos === 0 || element.yPos === buildingY) {
               if (
                 newColumn.xPos > element.xPos &&
-                newColumn.xPos < element.xPos + element.length_X
+                newColumn.xPos < element.xPos + element.length_Y
               ) {
                 if (
                   Math.abs(newColumn.xPos - element.xPos) <
-                  Math.abs(newColumn.xPos - (element.xPos + element.length_X))
+                  Math.abs(newColumn.xPos - (element.xPos + element.length_Y))
                 ) {
                   newColumn.xPos = element.xPos
                 } else {
-                  newColumn.xPos = element.xPos + element.length_X
+                  newColumn.xPos = element.xPos + element.length_Y
                 }
               }
             }
@@ -392,7 +392,7 @@ export function steelBuilding(Building: Building) {
         newColumn.height_Z = roofHeight(Building, newColumn.yPos)
         newColumn.name = 'Column'
         newColumn.type = steelTableValue(
-          columnTbl,
+          columnTable,
           Building.info.bays[indexI].length / 12,
           newColumn.height_Z / 12
         )
@@ -416,10 +416,10 @@ export function steelBuilding(Building: Building) {
       newRafter.height_Z = Building.info.roofPitch * Building.info.width
     }
 
-    newRafter.width_Y = Building.info.width
+    newRafter.width_X = Building.info.width
     newRafter.name = 'Rafter'
     newRafter.type = steelTableValue(
-      rafterTbl,
+      rafterTable,
       Building.info.bays[indexI].length / 12,
       newRafter.height_Z / 12
     )
@@ -464,9 +464,9 @@ export function steelBuilding(Building: Building) {
       newPurlin.xPos = indexJ * purlinLengthX
 
       if (indexJ === purlinCountX - 1) {
-        newPurlin.length_X = buildingX - newPurlin.xPos
+        newPurlin.length_Y = buildingX - newPurlin.xPos
       } else {
-        newPurlin.length_X = purlinLengthX
+        newPurlin.length_Y = purlinLengthX
       }
 
       newPurlin.yPos = 0 + indexI * purlinSpace
@@ -494,7 +494,7 @@ export function steelBuilding(Building: Building) {
       const recieverChannel = new ThreeD()
       recieverChannel.xPos = indexJ * buildingX
       recieverChannel.yPos = 0
-      recieverChannel.width_Y =
+      recieverChannel.width_X =
         2 *
         Math.sqrt(
           ((Building.info.roofPitch * buildingY) / 2) *
@@ -541,9 +541,9 @@ export function steelBuilding(Building: Building) {
       newGirt.xPos = 0
       newGirt.yPos = indexJ * girtWidthY
       if (indexJ === girtCountY - 1) {
-        newGirt.width_Y = buildingY - newGirt.yPos
+        newGirt.width_X = buildingY - newGirt.yPos
       } else {
-        newGirt.width_Y = girtWidthY
+        newGirt.width_X = girtWidthY
       }
       newGirt.zPos = girtSpace * indexI + firstGirt
       newGirt.name = 'Girt'
@@ -576,9 +576,9 @@ export function steelBuilding(Building: Building) {
       newGirt.xPos = indexJ * girtLengthX
       newGirt.yPos = 0
       if (indexJ === girtCountX - 1) {
-        newGirt.length_X = buildingX - newGirt.xPos
+        newGirt.length_Y = buildingX - newGirt.xPos
       } else {
-        newGirt.length_X = girtLengthX
+        newGirt.length_Y = girtLengthX
       }
       newGirt.zPos = girtSpace * indexI + firstGirt
       newGirt.name = 'Girt'
@@ -611,9 +611,9 @@ export function steelBuilding(Building: Building) {
       newGirt.xPos = buildingX
       newGirt.yPos = indexJ * girtWidthY
       if (indexJ === girtCountY - 1) {
-        newGirt.width_Y = buildingY - newGirt.yPos
+        newGirt.width_X = buildingY - newGirt.yPos
       } else {
-        newGirt.width_Y = girtWidthY
+        newGirt.width_X = girtWidthY
       }
       newGirt.zPos = girtSpace * indexI + firstGirt
       newGirt.name = 'Girt'
@@ -647,9 +647,9 @@ export function steelBuilding(Building: Building) {
       newGirt.yPos = buildingY
 
       if (indexJ === girtCountX - 1) {
-        newGirt.length_X = buildingX - newGirt.xPos
+        newGirt.length_Y = buildingX - newGirt.xPos
       } else {
-        newGirt.length_X = girtLengthX
+        newGirt.length_Y = girtLengthX
       }
 
       newGirt.zPos = girtSpace * indexI + firstGirt
@@ -689,15 +689,15 @@ export function steelBuilding(Building: Building) {
     newPanel.xPos = 0
     newPanel.yPos = indexI * (PANEL_WIDTH - WALL_PANEL_OVERLAP)
     newPanel.zPos = 0
-    newPanel.width_Y = PANEL_WIDTH
+    newPanel.width_X = PANEL_WIDTH
     newPanel.height_Z = roofHeight(Building, newPanel.yPos)
 
     framedOpeningList.forEach((element) => {
       if (
         element.name === 'Overhead Door' &&
-        (element.length_X > 10 * 12 || element.width_Y > 10 * 12)
+        (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
       ) {
-        if (newPanel.yPos > element.yPos && newPanel.yPos < element.yPos + element.width_Y) {
+        if (newPanel.yPos > element.yPos && newPanel.yPos < element.yPos + element.width_X) {
           newPanel.zPos = element.height_Z
           newPanel.height_Z = roofHeight(Building, newPanel.yPos) - element.height_Z
         }
@@ -714,15 +714,15 @@ export function steelBuilding(Building: Building) {
     newPanel.xPos = indexI * (PANEL_WIDTH - WALL_PANEL_OVERLAP)
     newPanel.yPos = 0
     newPanel.zPos = 0
-    newPanel.length_X = PANEL_WIDTH
+    newPanel.length_Y = PANEL_WIDTH
     newPanel.height_Z = Building.info.height
 
     framedOpeningList.forEach((element) => {
       if (
         element.name === 'Overhead Door' &&
-        (element.length_X > 10 * 12 || element.width_Y > 10 * 12)
+        (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
       ) {
-        if (newPanel.xPos > element.xPos && newPanel.xPos < element.xPos + element.length_X) {
+        if (newPanel.xPos > element.xPos && newPanel.xPos < element.xPos + element.length_Y) {
           newPanel.zPos = element.height_Z
           newPanel.height_Z = Building.info.height - element.height_Z
         }
@@ -739,15 +739,15 @@ export function steelBuilding(Building: Building) {
     newPanel.xPos = buildingX
     newPanel.yPos = indexI * (PANEL_WIDTH - WALL_PANEL_OVERLAP)
     newPanel.zPos = 0
-    newPanel.width_Y = PANEL_WIDTH
+    newPanel.width_X = PANEL_WIDTH
     newPanel.height_Z = roofHeight(Building, newPanel.yPos)
 
     framedOpeningList.forEach((element) => {
       if (
         element.name === 'Overhead Door' &&
-        (element.length_X > 10 * 12 || element.width_Y > 10 * 12)
+        (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
       ) {
-        if (newPanel.yPos > element.yPos && newPanel.yPos < element.yPos + element.width_Y) {
+        if (newPanel.yPos > element.yPos && newPanel.yPos < element.yPos + element.width_X) {
           newPanel.zPos = element.height_Z
           newPanel.height_Z = roofHeight(Building, newPanel.yPos) - element.height_Z
         }
@@ -764,15 +764,15 @@ export function steelBuilding(Building: Building) {
     newPanel.xPos = indexI * (PANEL_WIDTH - WALL_PANEL_OVERLAP)
     newPanel.yPos = buildingY
     newPanel.zPos = 0
-    newPanel.length_X = PANEL_WIDTH
+    newPanel.length_Y = PANEL_WIDTH
     newPanel.height_Z = Building.info.height
 
     framedOpeningList.forEach((element) => {
       if (
         element.name === 'Overhead Door' &&
-        (element.length_X > 10 * 12 || element.width_Y > 10 * 12)
+        (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
       ) {
-        if (newPanel.xPos > element.xPos && newPanel.xPos < element.xPos + element.length_X) {
+        if (newPanel.xPos > element.xPos && newPanel.xPos < element.xPos + element.length_Y) {
           newPanel.zPos = element.height_Z
           newPanel.height_Z = Building.info.height - element.height_Z
         }
@@ -792,8 +792,8 @@ export function steelBuilding(Building: Building) {
         newPanel.xPos = indexI * (PANEL_WIDTH - WALL_PANEL_OVERLAP)
         newPanel.yPos = indexJ * (roofLen / optimalCountRoofY - ROOF_PANEL_OVERLAP)
         newPanel.zPos = roofHeight(Building, newPanel.yPos)
-        newPanel.width_Y = roofLen / optimalCountRoofY
-        newPanel.length_X = PANEL_WIDTH
+        newPanel.width_X = roofLen / optimalCountRoofY
+        newPanel.length_Y = PANEL_WIDTH
         newPanel.name = 'Panel'
         panelList.push(newPanel)
       }

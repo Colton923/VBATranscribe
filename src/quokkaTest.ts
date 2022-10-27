@@ -453,6 +453,23 @@ export function steelPriceLookup(me: ThreeD, steelPriceTbl: any) {
   }
   return 0
 }
+const steelMiscPriceTable = [
+  ['8" Receiver Cee', 4.0],
+  ['10" Receiver Cee', 6.25],
+  ['8" Purlin', 3.59],
+  ['10" Purlin', 6.0],
+  ['2x4 Base Angle', 2.0],
+  ['Weld Clips', 2.0],
+  ['Eave Strut', 6.49],
+]
+// {string, Price / LF}
+const panelPriceTable = [
+  ['Prime SMP Colors (Lifetime Warranty)', 4.06],
+  ['Prime Acrylic AZ55 Galvalume (25yr Warranty)', 3.31],
+  ['Prime Galvalume Copper Metallic (Lifetime Warranty)', 5.08],
+  ['Thrifty SMP Colors (20yr Warranty)', 3.91],
+  ['Standard Galvalume (25yr Warranty)', 3.0],
+]
 // This table can only be {String, Number}
 export const miscellaneousTbl = [
   ['Non-Insulated Window', 30],
@@ -671,8 +688,8 @@ const nonExpandableColumnTbl = [
 ]
 function roundSixteenth(number: number) {
   const whole = Math.floor(number)
-  const numOfSixths = Math.ceil((1 - (Math.ceil(number) - number)) / 0.0625)
-  return whole + numOfSixths * 0.0625
+  const numofSixteenths = Math.ceil((number - whole) / 0.0625)
+  return whole + numofSixteenths * 0.0625
 }
 
 function inchesInputToImperial(inches: number) {
@@ -1165,12 +1182,8 @@ export class ThreeD {
   set zPos(val: number) {
     this._zPos = roundSixteenth(val)
   }
-  Pricing(index: number) {
-    if (this._Pricings.length < index) {
-      return 0
-    } else {
-      return this._Pricings[index]
-    }
+  get pricingsList() {
+    return this._Pricings
   }
 
   // FO Pricing Set
@@ -1312,11 +1325,27 @@ export class ThreeD {
       newPricing.cost_per_unit = +steelPriceLookup(this, miscellaneousTbl)
       this._Pricings.push(newPricing)
     }
-    //TODO: This is where I left off.
-    if ((this.name === 'Purlin', 'Eave Strut', 'Receiver Cee', 'Girt')) {
+    if (this.name === 'Purlin' || this.name === 'Receiver Cee' || this.name === 'Girt') {
       const newPricing = new Pricing()
       newPricing.units = '/ft'
+      newPricing.cost_per_unit = miscellaneousPriceLookup(
+        this.type + ' ' + this.name,
+        steelMiscPriceTable
+      )
+      this._Pricings.push(newPricing)
     }
+    if (this.name === 'Eave Strut') {
+      const newPricing = new Pricing()
+      newPricing.units = '/ft'
+      newPricing.cost_per_unit = miscellaneousPriceLookup(this.name, steelMiscPriceTable)
+      this._Pricings.push(newPricing)
+    }
+  }
+  setPrice_panel() {
+    const newPricing = new Pricing()
+    newPricing.units = '/ft'
+    newPricing.cost_per_unit = miscellaneousPriceLookup(this.type, panelPriceTable)
+    this._Pricings.push(newPricing)
   }
 }
 
@@ -1555,101 +1584,123 @@ export function steelBuilding(Building: Building) {
 
   // Columns are a max of 30' apart. Interior columns only needed if the span of the building (buildingX) > 80
 
-  // Origin Column Gen
-  const newColumn = new ThreeD()
-  newColumn.yPos = 0
-  newColumn.xPos = 0
-  newColumn.zPos = 0
-  newColumn.height_Z = roofHeight(Building, newColumn.xPos)
-  newColumn.name = 'Column'
+  // First row of Columns
+  const column00 = new ThreeD()
+  column00.yPos = 0
+  column00.xPos = 0
+  column00.zPos = 0
+  column00.height_Z = roofHeight(Building, column00.xPos)
+  column00.name = 'Column'
 
   if (
     Building.exteriorPanels.wallAlterationsGroup.endwall1.expandableEndwall === true ||
     (Building.info.numOfBays &&
       Building.exteriorPanels.wallAlterationsGroup.endwall3.expandableEndwall === true)
   ) {
-    newColumn.type = closestTableValue(
+    column00.type = closestTableValue(
       columnTbl,
       Building.info.bays[0].length / 12,
-      newColumn.height_Z / 12
+      column00.height_Z / 12
     )
   } else {
-    newColumn.type = closestTableValue(
+    column00.type = closestTableValue(
       nonExpandableColumnTbl,
       Building.info.bays[0].length / 12,
-      newColumn.height_Z / 12
+      column00.height_Z / 12
     )
   }
-  newColumn.setPrice_steel()
-  columnList.push(newColumn)
+  column00.setPrice_steel()
+  columnList.push(column00)
+
+  const column01 = new ThreeD()
+  column01.yPos = 0
+  column01.xPos = buildingX
+  column01.zPos = 0
+  column01.height_Z = roofHeight(Building, column01.xPos)
+  column01.name = 'Column'
+
+  if (
+    Building.exteriorPanels.wallAlterationsGroup.endwall1.expandableEndwall === true ||
+    (Building.info.numOfBays &&
+      Building.exteriorPanels.wallAlterationsGroup.endwall3.expandableEndwall === true)
+  ) {
+    column01.type = closestTableValue(
+      columnTbl,
+      Building.info.bays[0].length / 12,
+      column01.height_Z / 12
+    )
+  } else {
+    column01.type = closestTableValue(
+      nonExpandableColumnTbl,
+      Building.info.bays[0].length / 12,
+      column01.height_Z / 12
+    )
+  }
+  column01.setPrice_steel()
+  columnList.push(column01)
 
   // Perimeter Column Gen
   for (let indexI = 0; indexI < Building.info.numOfBays; indexI++) {
     for (let indexJ = 0; indexJ < 2; indexJ++) {
-      if (indexI !== 0 && indexJ !== 0) {
-        const newColumn = new ThreeD()
-        newColumn.yPos = 0 + (indexI + 1) * Building.info.bays[indexI].length
-        newColumn.xPos = 0 + indexJ * buildingX
-        newColumn.zPos = 0
-        newColumn.height_Z = roofHeight(Building, newColumn.xPos)
-        newColumn.name = 'Column'
+      const newColumn = new ThreeD()
+      newColumn.yPos = 0 + (indexI + 1) * Building.info.bays[indexI].length
+      newColumn.xPos = 0 + indexJ * buildingX
+      newColumn.zPos = 0
+      newColumn.height_Z = roofHeight(Building, newColumn.xPos)
+      newColumn.name = 'Column'
 
+      if (
+        indexI + 1 === Building.info.numOfBays &&
+        Building.exteriorPanels.wallAlterationsGroup.endwall3.expandableEndwall === true
+      ) {
+        newColumn.type = closestTableValue(
+          columnTbl,
+          Building.info.bays[indexI].length / 12,
+          newColumn.height_Z / 12
+        )
+      } else {
+        newColumn.type = closestTableValue(
+          nonExpandableColumnTbl,
+          Building.info.bays[indexI].length / 12,
+          newColumn.height_Z / 12
+        )
+      }
+
+      for (let i = 0; i < framedOpeningList.length; i++) {
+        const element = framedOpeningList[i]
         if (
-          indexI + 1 === Building.info.numOfBays &&
-          Building.exteriorPanels.wallAlterationsGroup.endwall3.expandableEndwall === true
+          element.name === 'Overhead Door' &&
+          (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
         ) {
-          newColumn.type = closestTableValue(
-            columnTbl,
-            Building.info.bays[indexI].length / 12,
-            newColumn.height_Z / 12
-          )
-        } else {
-          newColumn.type = closestTableValue(
-            nonExpandableColumnTbl,
-            Building.info.bays[indexI].length / 12,
-            newColumn.height_Z / 12
-          )
-        }
+          if (newColumn.yPos > element.yPos && newColumn.yPos < element.yPos + element.length_Y) {
+            if (newColumn.xPos > element.xPos && newColumn.xPos < element.xPos + element.width_X) {
+              newColumn.yPos = element.yPos
+              newColumn.xPos = element.xPos
+              newColumn.height_Z = roofHeight(Building, newColumn.xPos)
+              newColumn.type = closestTableValue(
+                columnTbl,
+                Building.info.bays[indexI].length / 12,
+                newColumn.height_Z / 12
+              )
 
-        for (let i = 0; i < framedOpeningList.length; i++) {
-          const element = framedOpeningList[i]
-          if (
-            element.name === 'Overhead Door' &&
-            (element.length_Y > 10 * 12 || element.width_X > 10 * 12)
-          ) {
-            if (newColumn.yPos > element.yPos && newColumn.yPos < element.yPos + element.length_Y) {
-              if (
-                newColumn.xPos > element.xPos &&
-                newColumn.xPos < element.xPos + element.width_X
-              ) {
-                newColumn.yPos = element.yPos
-                newColumn.xPos = element.xPos
-                newColumn.height_Z = roofHeight(Building, newColumn.xPos)
-                newColumn.type = closestTableValue(
-                  columnTbl,
-                  Building.info.bays[indexI].length / 12,
-                  newColumn.height_Z / 12
-                )
-
-                const extraColumn = new ThreeD()
-                extraColumn.yPos = element.yPos + element.length_Y
-                extraColumn.xPos = element.xPos + element.width_X
-                extraColumn.zPos = 0
-                extraColumn.height_Z = newColumn.height_Z
-                extraColumn.length_Y = newColumn.length_Y
-                extraColumn.width_X = newColumn.width_X
-                extraColumn.name = newColumn.name
-                extraColumn.type = newColumn.type
-                extraColumn.setPrice_steel()
-                columnList.push(extraColumn)
-                break
-              }
+              const extraColumn = new ThreeD()
+              extraColumn.yPos = element.yPos + element.length_Y
+              extraColumn.xPos = element.xPos + element.width_X
+              extraColumn.zPos = 0
+              extraColumn.height_Z = newColumn.height_Z
+              extraColumn.length_Y = newColumn.length_Y
+              extraColumn.width_X = newColumn.width_X
+              extraColumn.name = newColumn.name
+              extraColumn.type = newColumn.type
+              extraColumn.setPrice_steel()
+              columnList.push(extraColumn)
+              break
             }
           }
         }
-        newColumn.setPrice_steel()
-        columnList.push(newColumn)
       }
+      newColumn.setPrice_steel()
+      columnList.push(newColumn)
     }
   }
 
@@ -1801,7 +1852,11 @@ export function steelBuilding(Building: Building) {
         newPurlin.type = ''
       } else {
         newPurlin.name = 'Purlin'
-        newPurlin.type = 'C'
+        if (Building.info.bays[0].length > 25 * 12) {
+          newPurlin.type = '10"'
+        } else {
+          newPurlin.type = '8"'
+        }
       }
       newPurlin.setPrice_steel()
       purlinList.push(newPurlin)
@@ -1867,8 +1922,12 @@ export function steelBuilding(Building: Building) {
         newGirt.width_X = girtWidthY
       }
       newGirt.zPos = girtSpace * indexI + firstGirt
-      newGirt.name = 'Girt'
-      newGirt.type = 'C'
+      newGirt.name = 'Purlin'
+      if (Building.info.bays[0].length > 25 * 12) {
+        newGirt.type = '10"'
+      } else {
+        newGirt.type = '8"'
+      }
       newGirt.setPrice_steel()
       girtList.push(newGirt)
     }
@@ -1903,8 +1962,12 @@ export function steelBuilding(Building: Building) {
         newGirt.length_Y = girtLengthX
       }
       newGirt.zPos = girtSpace * indexI + firstGirt
-      newGirt.name = 'Girt'
-      newGirt.type = 'C'
+      newGirt.name = 'Purlin'
+      if (Building.info.bays[0].length > 25 * 12) {
+        newGirt.type = '10"'
+      } else {
+        newGirt.type = '8"'
+      }
       newGirt.setPrice_steel()
       girtList.push(newGirt)
     }
@@ -1939,8 +2002,12 @@ export function steelBuilding(Building: Building) {
         newGirt.width_X = girtWidthY
       }
       newGirt.zPos = girtSpace * indexI + firstGirt
-      newGirt.name = 'Girt'
-      newGirt.type = 'C'
+      newGirt.name = 'Purlin'
+      if (Building.info.bays[0].length > 25 * 12) {
+        newGirt.type = '10"'
+      } else {
+        newGirt.type = '8"'
+      }
       newGirt.setPrice_steel()
       girtList.push(newGirt)
     }
@@ -1977,8 +2044,12 @@ export function steelBuilding(Building: Building) {
       }
 
       newGirt.zPos = girtSpace * indexI + firstGirt
-      newGirt.name = 'Girt'
-      newGirt.type = 'C'
+      newGirt.name = 'Purlin'
+      if (Building.info.bays[0].length > 25 * 12) {
+        newGirt.type = '10"'
+      } else {
+        newGirt.type = '8"'
+      }
       newGirt.setPrice_steel()
       girtList.push(newGirt)
     }
@@ -2028,6 +2099,8 @@ export function steelBuilding(Building: Building) {
     })
 
     newPanel.name = 'Panel'
+    newPanel.type = Building.exteriorPanels.wallPanelType
+    newPanel.setPrice_panel()
     panelList.push(newPanel)
   }
 
@@ -2053,6 +2126,8 @@ export function steelBuilding(Building: Building) {
     })
 
     newPanel.name = 'Panel'
+    newPanel.type = Building.exteriorPanels.wallPanelType
+    newPanel.setPrice_panel()
     panelList.push(newPanel)
   }
 
@@ -2078,6 +2153,8 @@ export function steelBuilding(Building: Building) {
     })
 
     newPanel.name = 'Panel'
+    newPanel.type = Building.exteriorPanels.wallPanelType
+    newPanel.setPrice_panel()
     panelList.push(newPanel)
   }
 
@@ -2103,11 +2180,13 @@ export function steelBuilding(Building: Building) {
     })
 
     newPanel.name = 'Panel'
+    newPanel.type = Building.exteriorPanels.wallPanelType
+    newPanel.setPrice_panel()
     panelList.push(newPanel)
   }
 
   // Roof
-  // This loop is absolutely wrong. Just wanted to push something before we met again. It's close, but wrong.
+  // TODO: This loop is absolutely wrong. Just wanted to push something before we met again. It's close, but wrong.
   if (Building.info.roofShape === 'Gable') {
     for (let indexI = 0; indexI < optimalCountRoofX; indexI++) {
       for (let indexJ = 0; indexJ < optimalCountRoofY; indexJ++) {
@@ -2118,96 +2197,111 @@ export function steelBuilding(Building: Building) {
         newPanel.width_X = roofLen / optimalCountRoofY
         newPanel.length_Y = PANEL_WIDTH
         newPanel.name = 'Panel'
+        newPanel.type = Building.exteriorPanels.wallPanelType
+        newPanel.setPrice_panel()
         panelList.push(newPanel)
       }
     }
   }
 
-  // Screw Gen
-  const components: any = {
-    FramedOpenings: framedOpeningList,
-    Columns: columnList,
-    Rafters: rafterList,
-    Purlins: purlinList,
-    Girts: girtList,
-    Panels: panelList,
-  }
+  // TODO: Other Items (screws, tape, weld plates, etc.)
+  const components: any = []
+  components.push(framedOpeningList)
+  components.push(framedOpeningList)
+  components.push(columnList)
+  components.push(rafterList)
+  components.push(purlinList)
+  components.push(girtList)
+  components.push(panelList)
   return components
 }
 
-// class MaterialsList extends ThreeD {
-// 	quantity = 0
-// 	shape = ''
-// 	description = ''
-// 	measurement = ''
-// 	color = ''
-// 	footageCost = 0
-// 	unitPrice = 0
-// 	totalCost = 0
+type MaterialsPriceListItem = {
+  quantity: number
+  shape: string
+  description: string
+  measurement: string
+  color: string
+  footageCost: string
+  unitPrice: string
+  totalCost: string
+}
 
-// 	constructor(threeD: ThreeD) {
-// 		super(threeD)
-// 	}
-// }
+function materialsPriceList(steelBuilding: any[]) {
+  const materialsListTable: any[] = []
+  for (let i = 0; i < steelBuilding.length; i++) {
+    const elementI = steelBuilding[i]
+    let materialsListSubTable: MaterialsPriceListItem[] = []
+    const lineItem: MaterialsPriceListItem = {
+      quantity: 1,
+      shape: 'Test Shape',
+      description: elementI[0].name + ' ' + elementI[0].type,
+      measurement: inchesInputToImperial(
+        Math.max(elementI[0].width_X, elementI[0].length_Y, elementI[0].height_Z)
+      ),
+      color: 'Test Color',
+      footageCost: elementI[0].pricingsList[0].units,
+      unitPrice: String(elementI[0].pricingsList[0].cost_per_unit),
+      totalCost: 'Test Color',
+    }
+    materialsListSubTable.push(lineItem)
 
-// Pricing Object
-// type StructuralSteelPricing = {
-// 	price: number
-// 	unit: 'each' | 'ft' | 'lb'
-// 	weightPerFeet: number
-// }
+    for (let j = 1; j < elementI.length; j++) {
+      const elementJ = elementI[j]
+      const pricingList = elementJ.pricingsList
+      pricingList.forEach((pricing: Pricing) => {
+        const lineItem: MaterialsPriceListItem = {
+          quantity: 1,
+          shape: 'Test Shape',
+          description: elementJ.name + ' ' + elementJ.type,
+          measurement: inchesInputToImperial(
+            Math.max(elementJ.width_X, elementJ.length_Y, elementJ.height_Z)
+          ),
+          color: 'Test Color',
+          footageCost: pricing.units,
+          unitPrice: String(pricing.cost_per_unit),
+          totalCost: 'Test Color',
+        }
+        let found = false
+        for (let k = 0; k < materialsListSubTable.length; k++) {
+          if (found === false) {
+            const elementK = materialsListSubTable[k]
+            // I looked up how to compare two types to see if they are identical, and I didn't like it, so this:
+            if (
+              elementK.color === lineItem.color &&
+              elementK.description === lineItem.description &&
+              elementK.footageCost === lineItem.footageCost &&
+              elementK.measurement === lineItem.measurement &&
+              elementK.shape === lineItem.shape &&
+              elementK.unitPrice === lineItem.unitPrice
+            ) {
+              elementK.quantity += 1
+              found = true
+            }
+            if (found === false) {
+              materialsListSubTable.push(lineItem)
+            }
+          }
+        }
+      })
+    }
+    materialsListTable.push(materialsListSubTable)
+    materialsListSubTable = []
+  }
+  return materialsListTable
+}
 
-// type StructuralSteelPriceTable = Record<string, StructuralSteelPricing>
-
-// const structuralSteelPriceTable: StructuralSteelPriceTable = {
-// 	'TS 4x4x11GA': {
-// 		price: 120,
-// 		unit: 'lb',
-// 		weightPerFeet: 6.46,
-// 	},
-// }
-
-// function calculateStructuralSteelPrice(name: string, value: number) {
-// 	const item = structuralSteelPriceTable[name]
-
-// 	if (item.unit === 'each') {
-// 		return item.price * value
-// 	} else if (item.unit === 'lb') {
-// 		return item.price * ((value * 12) / item.weightPerFeet)
-// 	} else {
-// 		return item.price * (value * 12)
-// 	}
-// }
-
-// function calculateFramedOpeningsPrices(framedOpenings: ThreeD[]) {
-// 	const overheadDoors: ThreeD[] = []
-// 	const windows: ThreeD[] = []
-// 	const personnelDoors: ThreeD[] = []
-
-// 	framedOpenings.forEach((threeD) => {
-// 		if (threeD.type === 'overheadDoor') {
-// 			overheadDoors.push(threeD)
-// 		}
-// 	})
-
-// 	const calculatedOverheadDoors = calculateOverheadDoors(overheadDoors)
-// }
-
-// function calculateOverheadDoors(doors: ThreeD[]) {
-// 	const
-// }
-
-// function generateMaterialsList() {
-//   // List of Lists of ThreeDs
-//  //
-//
-
-// framed openings -
-// Steel
-
-// }
 const result = steelBuilding(TestBuilding)
-//console.log(result.Panels)
-// TODO: Convert Steel.ts and SteelTableIndexer, and all it's usage in the above to the new system
-// console.log(TestBuilding.info.height)
-// console.log(TestBuilding.info.roofPitch)
+console.log(
+  result[0].length +
+    result[1].length +
+    result[2].length +
+    result[3].length +
+    result[4].length +
+    result[5].length +
+    result[6].length
+)
+
+// The below result of the function is too big for Quokka?
+// const result0 = materialsPriceList(result)
+// console.log(result0)

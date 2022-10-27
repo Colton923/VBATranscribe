@@ -8,9 +8,7 @@
 
 4. Personnel Door Needs 'Endwall 3' Added to walls dropdown
 
-5. "Expandable Endwall" Not Expendable. See the main Type, and the form.
-
-6. "Height Lift" For overhead doors should be High Lift.
+5. "Height Lift" For overhead doors should be High Lift.
 
 # Concerns
 

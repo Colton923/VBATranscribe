@@ -16,6 +16,35 @@ export function steelPriceLookup(me: ThreeD, steelPriceTbl: any) {
   }
   return 0
 }
+export function canopyPriceLookup(lookup: string, canopyPriceTbl: any) {
+  for (let index = 0; index < canopyPriceTbl.length; index++) {
+    const element = String(canopyPriceTbl[index][0])
+    if (lookup === element) {
+      return canopyPriceTbl[index][1]
+    }
+  }
+}
+export function miscellaneousPriceLookup(lookup: string, tbl: any) {
+  for (let index = 0; index < tbl.length; index++) {
+    const element = String(tbl[index][0])
+    if (lookup === element) {
+      return tbl[index][1]
+    }
+  }
+}
+export function highLiftPriceLookup(buildingZ: number, z_Height: number, highLiftPriceTbl: any) {
+  const inches = buildingZ - z_Height
+  let score = 1000
+  let index = 0
+  for (let i = 0; i < highLiftPriceTbl.length; i++) {
+    const search = highLiftPriceTbl[i][0].substring(0, highLiftPriceTbl[i][0].indexOf('"', 0))
+    if (Math.abs(inches - search) < score) {
+      score = Math.abs(inches - search)
+      index = i
+    }
+  }
+  return highLiftPriceTbl[index][1]
+}
 // This table can only be {String, Number}
 export const miscellaneousTbl = [
   ['Non-Insulated Window', 30],
@@ -78,35 +107,6 @@ export const highLiftPriceTbl = [
 ]
 export const windowPricePerSqFt = 17
 export const rollUpDoorPricePerSqFt = 8.52
-export function canopyPriceLookup(lookup: string, canopyPriceTbl: any) {
-  for (let index = 0; index < canopyPriceTbl.length; index++) {
-    const element = String(canopyPriceTbl[index][0])
-    if (lookup === element) {
-      return canopyPriceTbl[index][1]
-    }
-  }
-}
-export function miscellaneousPriceLookup(lookup: string, tbl: any) {
-  for (let index = 0; index < tbl.length; index++) {
-    const element = String(tbl[index][0])
-    if (lookup === element) {
-      return tbl[index][1]
-    }
-  }
-}
-export function highLiftPriceLookup(buildingZ: number, z_Height: number, highLiftPriceTbl: any) {
-  const inches = buildingZ - z_Height
-  let score = 1000
-  let index = 0
-  for (let i = 0; i < highLiftPriceTbl.length; i++) {
-    const search = highLiftPriceTbl[i][0].substring(0, highLiftPriceTbl[i][0].indexOf('"', 0))
-    if (Math.abs(inches - search) < score) {
-      score = Math.abs(inches - search)
-      index = i
-    }
-  }
-  return highLiftPriceTbl[index][1]
-}
 export const overheadDoor_Sectional_PriceTbl = [
   [0, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 22, 24],
   [
@@ -186,21 +186,19 @@ export const overheadDoor_Sectional_PriceTbl = [
     8288.93, 9947.31, 11936.77, 14324.73,
   ],
 ]
-// export function overheadDoor_Sectional_PriceLookup(
-//   row: number,
-//   col: number,
-//   overheadDoor_Sectional_PriceTbl: any
-// ) {
-//   for (let i = 0; i < overheadDoor_Sectional_PriceTbl.length; i++) {
-//     const colZero = overheadDoor_Sectional_PriceTbl[i][0]
-//     if (row === colZero) {
-//       for (let j = 0; j < overheadDoor_Sectional_PriceTbl[0].length; j++) {
-//         const rowZero = overheadDoor_Sectional_PriceTbl[0][j]
-//         if (col === rowZero) {
-//           return overheadDoor_Sectional_PriceTbl[i][j]
-//         }
-//       }
-//       return 0
-//     }
-//   }
-// }
+const steelMiscPriceTable = [
+  ['8" Receiver Cee', 4.0],
+  ['10" Receiver Cee', 6.25],
+  ['8" Purlin', 3.59],
+  ['10" Purlin', 6.0],
+  ['2x4 Base Angle', 2.0],
+  ['Weld Clips', 2.0],
+  ['Eave Strut', 6.49],
+]
+const panelPriceTable = [
+  ['Prime SMP Colors (Lifetime Warranty)', 4.06],
+  ['Prime Acrylic AZ55 Galvalume (25yr Warranty)', 3.31],
+  ['Prime Galvalume Copper Metallic (Lifetime Warranty)', 5.08],
+  ['Thrifty SMP Colors (20yr Warranty)', 3.91],
+  ['Standard Galvalume (25yr Warranty)', 3.0],
+]

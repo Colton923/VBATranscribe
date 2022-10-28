@@ -1,4 +1,4 @@
-export const overheadDoorPricing = {
+export const overheadDoorPricingTable = {
   8: {
     8: '$889.86',
     9: '$1,002.22',

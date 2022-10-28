@@ -238,15 +238,15 @@ type OverheadDoor = {
   type: OverheadDoorType
   insulation: OverheadDoorInsulation
   operation: OverheadDoorOperation
-  heightLift: boolean
-  window: OverheadDoorWindows
+  highLift: boolean
+  window: OverheadDoorWindow
   leftEdgePos: number
 }
 
 type OverheadDoorType = 'Sectional' | 'RUD' | 'Customer Provided'
 type OverheadDoorInsulation = 'None' | 'Vinyl Backed' | 'Steel Backed'
 type OverheadDoorOperation = 'Manual' | 'Chain Hoist' | 'Electric Opener'
-type OverheadDoorWindows = 'None' | 'Non-Insulated' | 'Insulated' | 'Full Glass Panels'
+type OverheadDoorWindow = 'None' | 'Non-Insulated' | 'Insulated' | 'Full Glass Panel'
 
 /**
  * Windows
@@ -292,13 +292,15 @@ type FramedOpening = {
 type FramedOpeningWall = Endwalls | 'Field Locate'
 
 type ExhuastFanLouvers =
+  | 'None'
   | '24" Exhaust Fan'
   | '30" Exhaust Fan'
   | '36" Exhaust Fan'
   | '24" Louver'
   | '30" Louver'
   | '36" Louver'
-type WeatherHood = '24"' | '30"' | '36"'
+
+type WeatherHood = 'None' | '24"' | '30"' | '36"'
 
 type StructuralSteelOptions =
   | 'Full Height Jambs w/ Header & Stool'

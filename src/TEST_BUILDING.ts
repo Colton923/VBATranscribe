@@ -1,22 +1,20 @@
-import { Building } from 'Main'
-
-const TestBuilding = new Building({
+export const TestBuilding = new Building({
   info: {
     numOfBays: 2,
     bays: [
       {
-        length: 360,
+        length: 720,
       },
       {
-        length: 360,
+        length: 720,
       },
     ],
     gutters: true,
     roofShape: 'Gable',
-    roofPitch: 12,
-    width: 360,
+    roofPitch: 1 / 4,
+    width: 960,
     height: 240,
-    length: 720,
+    length: 1440,
     maxPurlinSpacing: 48,
   },
   exteriorPanels: {
@@ -131,7 +129,7 @@ const TestBuilding = new Building({
         deadBolt: true,
         halfGlass: false,
         jambSize: 10.25,
-        leftEdgePos: 0,
+        leftEdgePos: 120,
       },
       {
         wall: 'Endwall 1',
@@ -145,17 +143,39 @@ const TestBuilding = new Building({
     ],
   },
   overheadDoors: {
-    numOfDoors: 2,
+    numOfDoors: 3,
     doors: [
       {
         type: 'Sectional',
         width: 288,
         height: 168,
         wall: 'Sidewall 2',
-        highLift: true,
+        heightLift: true,
         insulation: 'None',
         leftEdgePos: 36,
         operation: 'Electric Opener',
+        window: 'None',
+      },
+      {
+        type: 'Sectional',
+        width: 288,
+        height: 168,
+        wall: 'Sidewall 4',
+        heightLift: true,
+        insulation: 'Vinyl Backed',
+        leftEdgePos: 36,
+        operation: 'Chain Hoist',
+        window: 'None',
+      },
+      {
+        type: 'RUD',
+        width: 288,
+        height: 168,
+        wall: 'Sidewall 4',
+        heightLift: true,
+        insulation: 'None',
+        leftEdgePos: 36,
+        operation: 'Chain Hoist',
         window: 'None',
       },
     ],
@@ -184,3 +204,81 @@ const TestBuilding = new Building({
   },
   // additionalOptions: {},
 })
+
+class Building {
+  private readonly CUSTOMER: Customer
+  private readonly DATA: BuildingData
+  private readonly UNDERCUT = 4.25
+
+  constructor(Building: BuildingData) {
+    this.CUSTOMER = {} as Customer
+    this.DATA = Building
+    // this.DATA = {
+    //   info: {},
+    //   exteriorPanels: {},
+    //   trim: {},
+    //   personnelDoors: {},
+    //   overheadDoors: {},
+    //   windows: {},
+    //   framedOpenings: {},
+    //   insulation: {},
+    //   additionalOptions: {},
+    // } as BuildingData
+  }
+
+  get customer() {
+    return this.CUSTOMER
+  }
+
+  get buildingData() {
+    return this.DATA
+  }
+
+  get info() {
+    return this.DATA.info
+  }
+
+  set info(info: BuildingInfo) {
+    this.DATA.info = info
+  }
+
+  get exteriorPanels() {
+    return this.DATA.exteriorPanels
+  }
+
+  get trim() {
+    return this.DATA.trim
+  }
+
+  set trim(trim: Trim) {
+    this.DATA.trim = trim
+  }
+
+  get personnelDoors() {
+    return this.DATA.personnelDoors
+  }
+
+  get overheadDoors() {
+    return this.DATA.overheadDoors
+  }
+
+  get windows() {
+    return this.DATA.windows
+  }
+
+  get framedOpenings() {
+    return this.DATA.framedOpenings
+  }
+
+  set framedOpenings(framedOpenings: FramedOpenings) {
+    this.DATA.framedOpenings = framedOpenings
+  }
+
+  get insulation() {
+    return this.DATA.insulation
+  }
+
+  // get additionalOptions() {
+  //   return this.DATA.additionalOptions
+  // }
+}

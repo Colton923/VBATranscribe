@@ -2624,6 +2624,10 @@ export function steelBuilding(Building: Building) {
 
   const optimalCountRoofX = optimalCountX
 
+  const PANEL_LENGTH = 41
+  const countRoofY = Math.ceil(buildingX / (PANEL_WIDTH - WALL_PANEL_OVERLAP))
+  const countRoofX = Math.ceil(buildingY / (PANEL_LENGTH * 12 - WALL_PANEL_OVERLAP))
+
   // x^2 + delta(z)^2
 
   const roofLen = Math.sqrt(
